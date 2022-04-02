@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Component } from 'react';
+import LogIn from './components/loginAndRigestration/login';
+import SignUp from './components/loginAndRigestration/signUp';
 
-function App() {
+
+class App extends Component {
+  submit(values) {
+    alert("submitted");
+    console.log(values);
+  }
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+      <div className="App">
+        {/* <Link to={"/login"}>login</Link>
+        <Link to={"/signUp"}>signUp</Link> */}
+
+        <Routes>
+          <Route path="/" element={<SignUp onSubmit={this.submit}/>} />
+          <Route path="/login" element={<LogIn onSubmit={this.submit}/>} />
+          <Route path="/signUp" element={<SignUp onSubmit={this.submit}/>} />
+        </Routes>
+
+
+      </div>
+  );
+}}
 export default App;
