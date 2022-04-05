@@ -4,7 +4,7 @@ import {
   addItemsToCart,
   removeItemsFromCart,
   removeOneItemFromCart,
-} from '../store/actions/cartActions';
+} from '../../store/actions/cartActions';
 import classes from './CartProduct.module.scss';
 
 const CartProduct = ({ item }) => {
