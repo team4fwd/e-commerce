@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import validate from './signupValidation'
-import RenderField from "./renderfield";
+import RenderField from "../RenderField";
 
 import { Field, reduxForm } from 'redux-form';
 
 let SignUp = props => {
-    const [fristName, setFristName] = useState("");
+
+    const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-
-    
     const { handleSubmit, pristine, submitting } = props;
     return (
         <div className="App">
@@ -29,26 +27,26 @@ let SignUp = props => {
                                         <form onSubmit={handleSubmit}>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="firstName" component={RenderField} label="First Name" value={fristName} onChange={(e)=>setFristName(e.target.value)}/>
+                                                <Field name="firstName" id="firstName" component={RenderField} label="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
 
                                             </div>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="lastName" component={RenderField} label="Last Name" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
+                                                <Field name="lastName" id="lastName" component={RenderField} label="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
 
                                             </div>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="email" component={RenderField} label="Your Email"value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                                                <Field name="email" id="email" component={RenderField} label="Your Email" value={email} onChange={(e) => setEmail(e.target.value)} />
 
                                             </div>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="password" type="Password" component={RenderField} label="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                                                <Field name="password" id="password" type="Password" component={RenderField} label="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                             </div>
-                                            
+
                                             <div className="form-outline mb-3">
-                                                <Field name="confirmpwd" type="Password" component={RenderField} label="Confirm Password" />
+                                                <Field name="confirmpwd" id="confirmpwd" type="Password" component={RenderField} label="Confirm Password" />
                                             </div>
 
 
@@ -56,7 +54,7 @@ let SignUp = props => {
                                                 <button type="submit" disabled={pristine || submitting} className="btn-primary signBtn btn btn-success btn-block btn-lg gradient-custom-4 text-body">Create</button>
                                             </div>
 
-                                            <p className="text-center text-muted mt-2 mb-0">Have already an account? <Link className="fw-bold text-body" to={"/login"}><u>Login here</u></Link>
+                                            <p className="text-center text-muted mt-2 mb-0">Have already an account? <Link className="fw-bold text-body btnLink" to={"/login"}><span>Login here</span></Link>
                                             </p>
                                         </form>
 

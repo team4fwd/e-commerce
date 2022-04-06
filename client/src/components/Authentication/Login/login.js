@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import validate from './loginValidation'
-import RenderField from "./renderfield";
+import RenderField from "../RenderField";
 import { Field, reduxForm } from 'redux-form';
 
+
+
 let LogIn = props => {
-    const { handleSubmit, pristine, submitting } = props;
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    
+
+    const { handleSubmit, pristine, submitting,LoginError } = props;
     return (
         <div className="App">
             <section className="vh-100 bg-image">
@@ -17,16 +24,16 @@ let LogIn = props => {
                                 <div className="card h-200" >
                                     <div className="card-body  pt-3 pb-3 p-5">
                                         <h4 className="text-center mb-2">Login</h4>
-
+                                       {(LoginError) ? <div className="alert alert-danger" role="alert">{LoginError}</div>:""}
                                         <form onSubmit={handleSubmit}>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="email" component={RenderField} label="Your Email" />
+                                                <Field name="email" id="email" component={RenderField} label="Your Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
 
                                             </div>
 
                                             <div className="form-outline mb-3">
-                                                <Field name="password"  type="Password" component={RenderField} label="Password" />
+                                                <Field name="password" id="password"  type="Password" component={RenderField} label="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
                                             </div>
 
@@ -35,7 +42,7 @@ let LogIn = props => {
                                                 <button type="submit" disabled={pristine || submitting} className="btn-primary signBtn btn btn-success btn-block btn-lg gradient-custom-4 text-body">Sign In</button>
                                             </div>
 
-                                            <p className="text-center text-muted mt-2 mb-0">Create an account <Link className="fw-bold text-body" to={"/signUp"}><u>here</u></Link>
+                                            <p className="text-center text-muted mt-2 mb-0">Create an account <Link className="fw-bold text-body btnLink" to={"/signUp"}><span>here</span></Link>
                                             </p>
                                         </form>
 

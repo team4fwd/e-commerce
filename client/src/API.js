@@ -1,13 +1,26 @@
-const api = "https://e-commerce-fwd.herokuapp.com/users/add"
+
+// API for sign up
+export const SignUpAPI = (values) =>
+    fetch("https://e-commerce-fwd.herokuapp.com/users/add", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+    }).then(res => res.json())
+        .then(data => data.message)
 
 
-export const signUp = (userData) =>
-  fetch(`${api}/signUp`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ userData })
-  }).then(res => res.json())
-    .then(Response => Response.message)
+// API for login
+export const LogInAPI = (values) =>
+
+    fetch("https://e-commerce-fwd.herokuapp.com/users/login", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values)
+    }).then(res => res.json())
+        .then(data => data
+        )
+

@@ -1,31 +1,43 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Component } from 'react';
-import LogIn from './components/loginAndRigestration/login';
-import SignUp from './components/loginAndRigestration/signUp';
+import React, { useState } from "react";
+import LogIn from './components/Authentication/Login/login';
+import SignUp from './components/Authentication/Registration/signUp';
+import { LogInAPI } from './API';
+import { SignUpAPI } from './API';
+function App() {
+  const [LoginError, setLoginError] = useState("");
 
-
-class App extends Component {
-  submit(values) {
-    alert("submitted");
-    console.log(values);
+  // submit function & API for sign up
+  const signSubmit = (values) => {
+    SignUpAPI(values)
   }
-  render() {
+
+
+  //submit function & API for login
+  const loginSubmit = (values) => {
+    LogInAPI(values)
+      .then((data) => {
+        if (data.status === false) {
+          setLoginError(data.message)
+        }
+      })
+  }
+
+
   return (
 
-      <div className="App">
-        {/* <Link to={"/login"}>login</Link>
-        <Link to={"/signUp"}>signUp</Link> */}
+    <div className="App">
 
-        <Routes>
-          <Route path="/" element={<SignUp onSubmit={this.submit}/>} />
-          <Route path="/login" element={<LogIn onSubmit={this.submit}/>} />
-          <Route path="/signUp" element={<SignUp onSubmit={this.submit}/>} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<SignUp onSubmit={signSubmit} />} />
+        <Route path="/login" element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />} />
+        <Route path="/signUp" element={<SignUp onSubmit={signSubmit} />} />
+      </Routes>
 
-
-      </div>
+    </div>
   );
-}}
+
+}
 export default App;
