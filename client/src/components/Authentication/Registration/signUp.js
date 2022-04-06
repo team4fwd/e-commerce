@@ -14,7 +14,7 @@ let SignUp = props => {
 
     const { handleSubmit, pristine, submitting } = props;
     return (
-        <div className="App">
+        <div>
             <section className="vh-100 bg-image">
                 <div className="mask d-flex align-items-center h-100 gradient-custom-3">
                     <div className="container h-100">

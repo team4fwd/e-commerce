@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rootReducer = combineReducers({
   form: formReducer,
-  cartReducer: cartReducer
+  cart: cartReducer
 });
 
 const store = createStore(rootReducer);

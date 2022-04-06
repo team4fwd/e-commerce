@@ -32,7 +32,6 @@ function App() {
 
 
   return (
-    <div className="App">
       <Routes>
         <Route path="/login" element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />} />
         <Route path="/signUp" element={<SignUp onSubmit={signSubmit} />} />
@@ -42,7 +41,6 @@ function App() {
         <Route path='/order' element={<Order />} />
       </Routes>
 
-    </div>
   );
 
 }
