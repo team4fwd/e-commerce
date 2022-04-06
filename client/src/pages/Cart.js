@@ -4,7 +4,7 @@ import CartProduct from '../components/cart/CartProduct';
 import SectionTitle from '../components/SectionTitle';
 
 const Cart = () => {
-  const { items, totalAmount } = useSelector((state) => state);
+  const { items, totalAmount } = useSelector((state) => state.cart);
   const hasItems = items.length > 0;
   return (
     <>
