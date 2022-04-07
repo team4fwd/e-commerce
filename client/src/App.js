@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Cart from './pages/Cart';
 import Order from './pages/Order';
 import Profile from './pages/Profile';
-import Admin from './pages/Admin';
+import Admin from './pages/admin/Admin';
 
 function App() {
   return (
