@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from '../../components/admin/Chart';
 import FeaturedInfo from '../../components/admin/FeaturedInfo';
-import './Home.scss';
+import './AdminHome.scss';
 import { usersData } from '../../components/admin/DummyData';
 import WidgetSm from '../../components/admin/WidgetSm';
 import WidgetLg from '../../components/admin/WidgetLg';

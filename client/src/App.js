@@ -3,6 +3,8 @@ import Cart from './pages/Cart';
 import Order from './pages/Order';
 import Profile from './pages/Profile';
 import Admin from './pages/admin/Admin';
+import AdminHome from './pages/admin/AdminHome';
+import UsersList from './pages/admin/UsersList';
 
 function App() {
   return (
@@ -11,7 +13,11 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/order' element={<Order />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin />}>
+          <Route index element={<AdminHome />} />
+          <Route path='home' element={<AdminHome />} />
+          <Route path='users' element={<UsersList />} />
+        </Route>
       </Routes>
     </Router>
   );

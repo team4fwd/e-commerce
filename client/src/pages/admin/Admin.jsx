@@ -1,7 +1,7 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Sidebar from '../../components/admin/Sidebar';
 import Topbar from '../../components/admin/Topbar';
-import Home from './Home';
 import './Admin.scss';
 
 const Admin = () => {
@@ -10,7 +10,7 @@ const Admin = () => {
       <Topbar />
       <div className='admin-container'>
         <Sidebar />
-        <Home />
+        <Outlet />
       </div>
     </div>
   );

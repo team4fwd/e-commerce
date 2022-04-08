@@ -14,6 +14,7 @@ import {
   MdTimeline,
   MdReport,
 } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
@@ -22,10 +23,12 @@ const Sidebar = () => {
         <div className='sidebar__menu'>
           <h3 className='sidebar__title'>Dashboard</h3>
           <ul className='sidebar__list'>
-            <li className='sidebar__list-item active'>
-              <MdLineStyle className='sidebar__icon' />
-              Home
-            </li>
+            <Link to='/admin'>
+              <li className='sidebar__list-item active'>
+                <MdLineStyle className='sidebar__icon' />
+                Home
+              </li>
+            </Link>
             <li className='sidebar__list-item'>
               <MdTimeline className='sidebar__icon' />
               Analytics
@@ -40,8 +43,10 @@ const Sidebar = () => {
           <h3 className='sidebar__title'>Quick Menu</h3>
           <ul className='sidebar__list'>
             <li className='sidebar__list-item'>
-              <MdPermIdentity className='sidebar__icon' />
-              Users
+              <Link to='/admin/users'>
+                <MdPermIdentity className='sidebar__icon' />
+                Users
+              </Link>
             </li>
             <li className='sidebar__list-item'>
               <MdStorefront className='sidebar__icon' />
