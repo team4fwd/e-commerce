@@ -7,7 +7,6 @@ import {
   MdPhoneAndroid,
   MdPublish,
 } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 import './User.scss';
 
 const User = () => {
