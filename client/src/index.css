@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.route-link,
+.route-link:hover,
+.route-link:active {
+  text-decoration: none;
+  color: inherit;
+}
