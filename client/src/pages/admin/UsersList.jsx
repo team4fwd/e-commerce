@@ -51,14 +51,22 @@ function UsersList() {
 
   return (
     <div className='usersList'>
-      <DataGrid
-        rows={data}
-        disableSelectionOnClick
-        columns={columns}
-        pageSize={8}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
+      <div className='usersList__titleContainer'>
+        <h3 className='usersList__title'>Users List</h3>
+        <Link to='newuser'>
+          <button className='usersList__add-btn'>Create</button>
+        </Link>
+      </div>
+      <div className='usersList__table'>
+        <DataGrid
+          rows={data}
+          disableSelectionOnClick
+          columns={columns}
+          pageSize={8}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 }
