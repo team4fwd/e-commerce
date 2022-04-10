@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import validate from './loginValidation'
-import RenderField from "../RenderField";
+import RenderField from "../../RenderField";
 import { Field, reduxForm } from 'redux-form';
 
 
 
 let LogIn = props => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
 
     
 
-    const { handleSubmit, pristine, submitting,LoginError } = props;
+    const { handleSubmit, pristine, submitting,loginError } = props;
     return (
         <div>
             <section className="vh-100 bg-image">
@@ -24,16 +21,16 @@ let LogIn = props => {
                                 <div className="card h-200" >
                                     <div className="card-body  pt-3 pb-3 p-5">
                                         <h4 className="text-center mb-2">Login</h4>
-                                       {(LoginError) ? <div className="alert alert-danger" role="alert">{LoginError}</div>:""}
+                                       {(loginError) ? <div className="alert alert-danger" role="alert">{loginError}</div>:""}
                                         <form onSubmit={handleSubmit}>
 
                                             <div className="form-outline mb-2">
-                                                <Field name="email" id="email" component={RenderField} label="Your Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+                                                <Field name="email" id="email" component={RenderField} label="Your Email" />
 
                                             </div>
 
                                             <div className="form-outline mb-3">
-                                                <Field name="password" id="password"  type="Password" component={RenderField} label="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                                                <Field name="password" id="password"  type="Password" component={RenderField} label="Password" />
 
                                             </div>
 

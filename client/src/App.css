@@ -1,3 +1,23 @@
+
+.modal-form {
+  margin-top: 1rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.form-select{
+  font-size: 1rem !important;
+
+}
+/* Categories Admin Board */
+.buttonMargin {
+  margin-right: 10px;
+}
+
 /* Login and registration css */
 
 .gradient-custom-3 {
@@ -88,6 +108,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
