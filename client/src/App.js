@@ -13,6 +13,12 @@ import AdminHome from './pages/admin/AdminHome';
 import UsersList from './pages/admin/UsersList';
 import User from './pages/admin/User';
 import NewUser from './pages/admin/NewUser';
+import Footer from './components/footer/Footer';
+import Home from './components/Home/Home';
+import NavBar from './components/NavBar/NavBar';
+import ProductQuote from './components/product-quote/ProductQuote';
+import Products from './components/Products/Products';
+import HomePage from './pages/Home/HomePage';
 
 function App() {
   const [LoginError, setLoginError] = useState('');
@@ -34,14 +40,17 @@ function App() {
   return (
     <Router>
       <Routes>
+      <NavBar/>
         <Route
           path='/login'
           element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />}
         />
         <Route path='/signUp' element={<SignUp onSubmit={signSubmit} />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/order' element={<Order />} />
+        <Footer/>
         <Route path='/admin' element={<Admin />}>
           <Route index element={<AdminHome />} />
           <Route path='home' element={<AdminHome />} />
