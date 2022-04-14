@@ -14,10 +14,7 @@ import UsersList from './pages/admin/UsersList';
 import User from './pages/admin/User';
 import NewUser from './pages/admin/NewUser';
 import Footer from './components/footer/Footer';
-import Home from './components/Home/Home';
 import NavBar from './components/NavBar/NavBar';
-import ProductQuote from './components/product-quote/ProductQuote';
-import Products from './components/Products/Products';
 import HomePage from './pages/Home/HomePage';
 
 function App() {
@@ -39,8 +36,8 @@ function App() {
 
   return (
     <Router>
+      <NavBar />
       <Routes>
-      <NavBar/>
         <Route
           path='/login'
           element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />}
@@ -50,7 +47,9 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/order' element={<Order />} />
-        <Footer/>
+      </Routes>
+      <Footer />
+      <Routes>
         <Route path='/admin' element={<Admin />}>
           <Route index element={<AdminHome />} />
           <Route path='home' element={<AdminHome />} />
