@@ -36,8 +36,8 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
       <Routes>
+        <NavBar />
         <Route
           path='/login'
           element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />}
