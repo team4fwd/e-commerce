@@ -2,6 +2,7 @@ import React from 'react';
 import './ProductDetails.scss';
 import { useState } from 'react';
 import { productImages as images } from '../../DummyData';
+import { FaIndent } from 'react-icons/fa';
 
 const ProductDetails = () => {
   const [key, setKey] = useState(0);
@@ -30,15 +31,12 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className='product__info'>
-        <h2 className='product__heading'>Awesome T-Shirt</h2>
+        <p>Home / Calvin Klein Jeans</p>
+        <h2 className='product__heading'>Men Brown Polo Collar T-shirt</h2>
         <span className='product__price'>EGP290</span>
-        <p className='product__description'>
-          Beautiful T-Shirt made of the finest materials, very lablabla
-          lablabla. lablablalablabla lablabla lablabla lablabla lablabla
-          lablabla lablabla
-        </p>
+
         <div className='product__details'>
-          <span>Status</span>
+          <span>Status:</span>
           <span>In Stock</span>
         </div>
         <div className='product__details'>
@@ -46,7 +44,7 @@ const ProductDetails = () => {
           <span>casual</span>
         </div>
         <div className='product__details'>
-          <span>Reviews</span>
+          <span>Reviews:</span>
           <span>8 reviews</span>
         </div>
         <div className='product__cta'>
@@ -67,6 +65,14 @@ const ProductDetails = () => {
           </div>
           <button className='product__add-to-cart'>Add to cart</button>
         </div>
+        <h3 className='product__detail-heading'>
+          Product Details
+          <FaIndent className='product__icon' />
+        </h3>
+        <p className='product__description'>
+          Brown Tshirt for men Solid Regular length Polo collar Short, regular
+          sleeves Knitted cotton fabric Button closure
+        </p>
       </div>
     </div>
   );

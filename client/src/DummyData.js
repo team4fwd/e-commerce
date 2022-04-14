@@ -1,3 +1,5 @@
+import productDetailImg1 from './assets/images/gallery-1.jpg';
+
 export const usersData = [
   {
     name: 'Jan',
@@ -134,9 +136,9 @@ export const userRows = [
 ];
 
 export const productImages = [
-  'https://i0.wp.com/nourstore.online/wp-content/uploads/2021/11/photo_2021-08-24_15-32-32.jpg?fit=930%2C1280&ssl=1',
-  'https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png',
-  'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
-  'https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png',
-  'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
+  'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/f5efb60f-60aa-48fa-9e53-2a342e62d8661625808738696-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-1.jpg',
+  'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/94a7233d-d2a9-4935-a204-57d55e97a53a1625808738680-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-3.jpg',
+  'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/c7dba4a9-6b43-4714-9aa2-a197adf49aca1625808738671-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-4.jpg',
+  'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/738b8c66-32ea-4748-a504-0b2a6fadf7481625808738660-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-5.jpg',
+  'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/522d522a-d6d6-47b9-9ea2-10ada95365491625808738688-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-2.jpg',
 ];
