@@ -132,3 +132,11 @@ export const userRows = [
     transactions: 'EGP1243',
   },
 ];
+
+export const productImages = [
+  'https://i0.wp.com/nourstore.online/wp-content/uploads/2021/11/photo_2021-08-24_15-32-32.jpg?fit=930%2C1280&ssl=1',
+  'https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png',
+  'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
+  'https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png',
+  'https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png',
+];

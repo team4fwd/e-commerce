@@ -6,9 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import './Profile.scss';
-import ProfileAdressForm from '../components/Profile/ProfileAdressForm';
-import SectionTitle from '../components/SectionTitle';
-import ProfileOrders from '../components/Profile/ProfileOrders';
+import ProfileAdressForm from '../../components/Profile/ProfileAdressForm';
+import SectionTitle from '../../components/SectionTitle';
+import ProfileOrders from '../../components/Profile/ProfileOrders';
 
 const Profile = () => {
   return (

@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Cart from './pages/Cart';
-import Order from './pages/Order';
-import Profile from './pages/Profile';
+import Cart from './pages/cart/Cart';
+import Order from './pages/order/Order';
+import Profile from './pages/profile/Profile';
 import Admin from './pages/admin/Admin';
 import AdminHome from './pages/admin/AdminHome';
 import UsersList from './pages/admin/UsersList';
 import User from './pages/admin/User';
 import NewUser from './pages/admin/NewUser';
+import ProductDetails from './pages/products/ProductDetails';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/cart' element={<Cart />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/product/:productId' element={<ProductDetails />} />
         <Route path='/order' element={<Order />} />
         <Route path='/admin' element={<Admin />}>
           <Route index element={<AdminHome />} />

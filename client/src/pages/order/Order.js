@@ -1,7 +1,7 @@
 import React from 'react';
-import SectionTitle from '../components/SectionTitle';
+import SectionTitle from '../../components/SectionTitle';
 import classes from './Order.module.scss';
-import OrderForm from '../components/order/OrderForm';
+import OrderForm from '../../components/order/OrderForm';
 import Form from 'react-bootstrap/Form';
 
 const Order = () => {

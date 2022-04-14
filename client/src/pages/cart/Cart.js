@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import classes from './Cart.module.scss';
-import CartProduct from '../components/cart/CartProduct';
-import SectionTitle from '../components/SectionTitle';
+import CartProduct from '../../components/cart/CartProduct';
+import SectionTitle from '../../components/SectionTitle';
 
 const Cart = () => {
   const { items, totalAmount } = useSelector((state) => state);
