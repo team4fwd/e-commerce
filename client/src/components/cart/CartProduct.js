@@ -43,7 +43,9 @@ const CartProduct = ({ item }) => {
         <button onClick={removeOneItemHandler}>-</button>
       </div>
       <div>EGP{item.amount * item.price}</div>
-      <div onClick={removeItemHandler}>X</div>
+      <div style={{ cursor: 'pointer' }} onClick={removeItemHandler}>
+        X
+      </div>
     </div>
   );
 };

@@ -3,11 +3,29 @@ import './ProductDetails.scss';
 import { useState } from 'react';
 import { productImages as images } from '../../DummyData';
 import { FaIndent } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { addItemsToCart } from '../../store/actions/cartActions';
 
 const ProductDetails = () => {
   const [key, setKey] = useState(0);
   const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch();
+
   const quantity = 10;
+
+  const addToCartHandler = () => {
+    dispatch(
+      addItemsToCart({
+        id: Date.now(),
+        img: images[0],
+        price: 290,
+        name: 'Men Brown Polo Collar T-shirt',
+        color: 'red',
+        size: 'M',
+        amount,
+      })
+    );
+  };
 
   return (
     <div className='product'>
@@ -63,7 +81,9 @@ const ProductDetails = () => {
               -
             </button>
           </div>
-          <button className='product__add-to-cart'>Add to cart</button>
+          <button onClick={addToCartHandler} className='product__add-to-cart'>
+            Add to cart
+          </button>
         </div>
         <h3 className='product__detail-heading'>
           Product Details
