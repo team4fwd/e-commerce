@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Cart from './pages/Cart';
-import Order from './pages/Order';
-import Profile from './pages/Profile';
+import Cart from './pages/cart/Cart';
+import Order from './pages/order/Order';
+import Profile from './pages/profile/Profile';
 import './App.css';
 import React, { useState } from 'react';
 import LogIn from './components/Authentication/Login/login';
@@ -16,6 +16,7 @@ import NewUser from './pages/admin/NewUser';
 import Footer from './components/footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './pages/Home/HomePage';
+import ProductDetails from './pages/products/ProductDetails';
 
 function App() {
   const [LoginError, setLoginError] = useState('');
@@ -46,6 +47,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/product/:productId' element={<ProductDetails />} />
         <Route path='/order' element={<Order />} />
       </Routes>
       <Footer />
