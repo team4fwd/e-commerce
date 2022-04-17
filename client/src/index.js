@@ -3,18 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, combineReducers } from 'redux';
+// import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer as formReducer } from 'redux-form';
-import cartReducer from './store/reducers/cartReducer';
+// import { reducer as formReducer } from 'redux-form';
+// import cartReducer from './store/reducers/cartReducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './store/store';
 
-const rootReducer = combineReducers({
-  form: formReducer,
-  cart: cartReducer,
-});
+// const rootReducer = combineReducers({
+//   form: formReducer,
+//   cart: cartReducer,
+// });
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

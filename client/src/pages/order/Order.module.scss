@@ -1,8 +1,8 @@
 .order-card {
-  max-width: 70%;
-  margin: 20vh auto;
+  max-width: 80%;
+  margin: 30px auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-column-gap: 50px;
   position: relative;
 
@@ -27,7 +27,7 @@
     top: 0;
 
     &__title {
-      font-size: 15px;
+      font-size: 18px;
       line-height: 1.6;
       font-weight: 700;
     }
@@ -83,4 +83,25 @@
       }
     }
   }
+}
+
+.order-detail p {
+  margin-top: 2px;
+}
+.order-detail {
+  margin-top: 30px;
+  padding: 30px 20px;
+  background-color: rgba(237, 203, 158, 0.264);
+}
+.order-detail h5 {
+  margin-bottom: 6px;
+}
+.order-box {
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
 }

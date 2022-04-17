@@ -27,14 +27,35 @@
     top: 0;
 
     &__title {
-      font-size: 15px;
+      font-size: 18px;
       line-height: 1.6;
       font-weight: 700;
     }
 
+    &__coupon-input {
+      margin: 20px 0;
+
+      input:focus {
+        outline: none;
+        border-color: black;
+        box-shadow: none;
+      }
+
+      button {
+        background-color: black;
+        color: white;
+        font-weight: 500;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: antiquewhite;
+          color: black;
+        }
+      }
+    }
+
     &__subtotal,
-    &__shipping,
-    &__tax,
+    &__coupon,
     &__total {
       display: flex;
       justify-content: space-between;
@@ -50,7 +71,7 @@
       }
     }
 
-    button {
+    &__btn {
       width: 100%;
       outline: none;
       border: none;

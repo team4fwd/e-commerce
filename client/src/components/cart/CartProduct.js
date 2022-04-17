@@ -7,7 +7,7 @@ import {
 } from '../../store/actions/cartActions';
 import classes from './CartProduct.module.scss';
 
-const CartProduct = ({ item }) => {
+const CartProduct = ({ item, order }) => {
   const dispatch = useDispatch();
 
   const addItemHandler = () => {
@@ -37,15 +37,23 @@ const CartProduct = ({ item }) => {
           <span>EGP{item.price}</span>
         </div>
       </div>
-      <div className={classes['cart-products__quantity']}>
-        <button onClick={addItemHandler}>+</button>
-        <span>{item.amount}</span>
-        <button onClick={removeOneItemHandler}>-</button>
-      </div>
+      {order ? (
+        <div className={classes['cart-products__quantity-text']}>
+          <span>{item.amount}</span>
+        </div>
+      ) : (
+        <div className={classes['cart-products__quantity']}>
+          <button onClick={addItemHandler}>+</button>
+          <span>{item.amount}</span>
+          <button onClick={removeOneItemHandler}>-</button>
+        </div>
+      )}
       <div>EGP{item.amount * item.price}</div>
-      <div style={{ cursor: 'pointer' }} onClick={removeItemHandler}>
-        X
-      </div>
+      {!order && (
+        <div style={{ cursor: 'pointer' }} onClick={removeItemHandler}>
+          X
+        </div>
+      )}
     </div>
   );
 };
