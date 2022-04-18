@@ -1,61 +1,192 @@
 import React, { useState } from "react";
-import RenderFieldForAdmin from "./renderFieldAdmin";
-import { Field, reduxForm } from 'redux-form';
+import { useFormik } from 'formik';
 import validate from './validationProduct';
+import { AddProductAPI } from "../../../API";
 import CategoryOption from "./categoryOption";
-import renderSelectField from "./renderSelectField";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+
+
+
+import "../prodAndCteg-List.scss"
 
 let AddProduct = props => {
+    const [productError, setProductError] = useState("");
+    const [images, setImages] = useState([])
+    let navigate = useNavigate();
 
-    const { handleSubmit, pristine, submitting, productError } = props;
+
+    const formik = useFormik({
+        initialValues: {
+            productName: '',
+            categoryName: '',
+            descriptions: '',
+            price: '',
+            quantity: '',
+            //
+            images: [],
+        },
+        validate,
+        onSubmit: values => {
+            if (!images) return alert("No Image Upload")
+
+            //values["images"] = images;
+            values.images = images;
+            AddProductAPI(values)
+                .then((data) => data)
+                .then((data) => {
+                    if (data.status === false) {
+                        setProductError(data.message)
+                    } else {
+                        navigate("/admin/products")
+                    }
+
+
+                })
+
+        }
+
+    });
+
+
+
+    const handleUpload = async (e) => {
+        e.preventDefault()
+
+        const files = e.target.files
+
+        for (var i = 0; i < files.length; i++) {
+            let file = files[i]
+
+            try {
+
+                if (!file) return alert("File not exist.")
+
+                if (file.size > 1024 * 1024) // 1mb
+                    return alert("Size too large!")
+
+                if (file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
+                    return alert("File format is incorrect.")
+
+                let formData = new FormData()
+                formData.append('file', file)
+
+                const res = await axios.post('https://e-commerce-fwd.herokuapp.com/uploadImage', formData, {
+                    headers: { 'content-type': 'multipart/form-data' }
+                })
+                await formik.values.images.push(res.data)
+                // images.push(res.data)
+
+            } catch (err) {
+                alert(err.response.data.message)
+            }
+        }
+        setImages(formik.values.images)
+
+    }
+
+
+
+    const handleDestroy = async (public_id) => {
+        await setImages(images.filter(function (obj) {
+            return obj.public_id !== public_id;
+        }));
+        formik.values.images = formik.values.images.filter(function (obj) {
+            return obj.public_id !== public_id;
+        });
+    }
+
     return (
-        <div>
-            <form onSubmit={handleSubmit} className="modal-form flex-center">
-                <div className="col-md-6">
-                    {(productError) ? <div className="alert alert-danger" role="alert">{productError}</div> : ""}
+        <div className='prodAndCteg-List row'>
+            <div className='prodAndCteg-List__titleContainer'>
+                <h3 className='prodAndCteg-List__title'>Update product</h3>
 
-                    <div className="form-outline mb-4">
-                        <Field name="productName" id="product" type="text" component={RenderFieldForAdmin} label="product name" />
-                    </div>
+            </div>
 
-                    <div className="form-outline mb-4">
-                        <Field name="categoryName" id="categoryName" type="text" component={renderSelectField} label="category name" >
-                            <CategoryOption /></Field>
-                    </div>
-                    <div className="form-outline mb-4">
-                        <Field name="descriptions" id="descriptions" type="text" component={RenderFieldForAdmin} label="descriptions" />
 
-                    </div>
-                    <div className="form-outline mb-4">
-                        <Field name="price" id="price " type="number" component={RenderFieldForAdmin} label="price" />
+            {(productError) ? <div className="alert alert-danger" role="alert">{productError}</div> : ""}
 
-                    </div>
-                    <div className="form-outline mb-4">
-                        <Field name="quantity" type="text" id="quantity" component={RenderFieldForAdmin} label="quantity" />
+            <div className="col-md-12 div-form">
 
-                    </div>
+                <form className="form-center" onSubmit={formik.handleSubmit}>
+                    <label className="control-label form-label" htmlFor="productName">Product Name</label>
+                    <input
+                        className="form-control form-control-lg"
+                        id="productName"
+                        name="productName"
+                        type="text"
+                        onChange={formik.handleChange}
+                        value={formik.values.productName}
+                    />
+                    {formik.errors.productName ? <div className="text-danger">{formik.errors.productName}</div> : null}
 
-                    <div className="form-outline mb-4">
-                        <div className="form-group row">
-                            <label className="control-label form-label col-sm-4" htmlFor="form3Example1cg">Upload images</label>
-                            <div className="col-sm-8">
-                                <input name="images" type="file" id="myfile" multiple required />
+                    <label className="control-label form-label" htmlFor="categoryName">Category Name</label>
+                    <select
+                        className="form-control form-control-lg"
+                        id="categoryName"
+                        name="categoryName"
+                        onChange={formik.handleChange}
+                        value={formik.values.categoryName}
+                    > <CategoryOption /></select>
+                    {formik.errors.categoryName ? <div className="text-danger">{formik.errors.categoryName}</div> : null}
+
+                    <label className="control-label form-label" htmlFor="descriptions">Descriptions</label>
+                    <textarea
+                        className="form-control form-control-lg"
+                        id="descriptions"
+                        name="descriptions"
+                        type="text"
+                        onChange={formik.handleChange}
+                        value={formik.values.descriptions}
+                    />
+                    {formik.errors.descriptions ? <div className="text-danger">{formik.errors.descriptions}</div> : null}
+
+                    <label className="control-label form-label" htmlFor="price">Price</label>
+                    <input
+                        className="form-control form-control-lg"
+                        id="price"
+                        name="price"
+                        type="number"
+                        onChange={formik.handleChange}
+                        value={formik.values.price}
+                    />
+                    {formik.errors.price ? <div className="text-danger">{formik.errors.price}</div> : null}
+                    <label className="control-label form-label" htmlFor="quantity">Quantity</label>
+                    <input
+                        className="form-control form-control-lg"
+                        id="quantity"
+                        name="quantity"
+                        type="number"
+                        onChange={formik.handleChange}
+                        value={formik.values.quantity}
+                    />
+                    {formik.errors.quantity ? <div className="text-danger">{formik.errors.quantity}</div> : null}
+
+
+                    <input type="file" name="file" className="form-control-lg" id="file_up" multiple onChange={handleUpload} />
+
+                    <div className="prod_images_Container">
+
+                        {images.map((image, index) => (
+                            <div className="prod_images" key={index}>
+
+                                <img src={image.url} alt="" />
+                                <span onClick={() => handleDestroy(image.public_id)}>X</span>
+
 
                             </div>
-                        </div>
-                    </div>
-                    <div className="d-flex justify-content-center">
-                        <button type="submit" disabled={pristine || submitting} className="btn btn-success btn-block btn-lg text-body">Add product</button>
-                    </div>
-                </div>
-            </form>
+                        ))} </div>
 
+                    <div className="d-flex justify-content-center mt-3">
+                        <button type="submit" className="btn btn-primary btn-block  text-body" >Add product</button>
+                    </div>
+                </form>
 
-        </div>)
+            </div>
+        </div>
+
+    )
 }
 
-AddProduct = reduxForm({
-    form: 'AddProduct',
-    validate,
-})(AddProduct);
+
 export default AddProduct;

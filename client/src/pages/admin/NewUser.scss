@@ -1,0 +1,48 @@
+.newuser {
+  flex: 4;
+  padding: 20px;
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 10px 20px 0 0;
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: rgb(151, 150, 150);
+    }
+
+    input {
+      height: 20px;
+      padding: 20px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+  }
+
+  &__select {
+    border-radius: 5px;
+    height: 40px;
+  }
+
+  &__btn {
+    width: 200px;
+    border: none;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+    padding: 7px 10px;
+    font-weight: 600;
+    margin: 30px auto 0;
+    transform: translateX(100%);
+  }
+}

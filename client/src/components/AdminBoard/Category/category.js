@@ -1,45 +1,61 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect } from "react";
 import { GetCategoryAPI } from '../../../API';
-
-
+import { MdDeleteOutline } from 'react-icons/md';
+import { deleteCategory } from '../../../API';
+import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+import { Link } from 'react-router-dom';
 
 let Category = () => {
 
 
-// const categories = GetCategoryAPI().then((data) => data)
-const [categoriesData, setcategoriesData] = useState([]);
+  // const categories = GetCategoryAPI().then((data) => data)
+  const [categoriesData, setcategoriesData] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
     GetCategoryAPI().then((data) => {
-       setcategoriesData(data)
-        
-      })
-    }, []);
+      setcategoriesData(data)
+    })
+  }, []);
 
-      
-      // const deleteItem = (item) => {
-      //   const data = categoriesData.filter(i => i.index !== item.index)
-      //   setcategoriesData({data})
-      // }
-      // const handleRemoveItem = (e) => {
-      //   const name = e.target.getAttribute("categoryName")
-      //   setcategoriesData(categoriesData.filter(item => item.name !== name));
-      //  };
-    return (
-        
-        <>
-        {categoriesData.map ((category, index) => ( 
+  function DeleteOperation(id) {
+    fetch("https://e-commerce-fwd.herokuapp.com/cateogry/" + id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: null
+    }).then(res => res.json());
+
+
+    GetCategoryAPI().then((data) => {
+      setcategoriesData(data)
+
+    })
+  }
+
+  return (
+
+    <>
+      {categoriesData.map((category, index) => (
         <tr key={index}>
-                    <td>{category.categoryName}</td>
-                    <td>
-                        <button type="button" className="btn btn-danger buttonMargin">Delete</button>
-                        <button type="button" className="btn btn-warning buttonMargin">Edit</button>
-                    </td>
-                </tr>
+          <td>{category.categoryName}</td>
+          <td>
+            <div className="prodAndCteg-List__bottons">
+              <Link to={'updateCategory/' + category._id}>
 
-        ))}
-        </>
-        )
+                <button className='prodAndCteg-List__edit'>Edit</button>
+              </Link>
+              <MdDeleteOutline
+                className='prodAndCteg-List__delete' onClick={() => DeleteOperation(category._id)}
+              />
+            </div>
+          </td>
+        </tr>
+
+      ))}
+    </>
+  )
 }
 
 

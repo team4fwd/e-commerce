@@ -1,56 +1,70 @@
-import React, { useState, useEffect }  from "react";
+import React, { useState, useEffect } from "react";
 import { GetProductAPI } from '../../../API';
+import { MdDeleteOutline } from 'react-icons/md';
+import "../prodAndCteg-List.scss"
+import { Link } from 'react-router-dom';
 
 
 
-let Product = () => {
+let Product = (props) => {
 
 
-// const categories = GetProductAPI().then((data) => data)
-const [productsData, setProductsData] = useState([]);
+    // const categories = GetProductAPI().then((data) => data)
+    const [productsData, setProductsData] = useState([]);
 
-useEffect(() => {
-    GetProductAPI().then((data) => {
-        setProductsData(data);
-    })
-}, []);
 
-      
-      // const deleteItem = (item) => {
-      //   const data = categoriesData.filter(i => i.index !== item.index)
-      //   setcategoriesData({data})
-      // }
-      // const handleRemoveItem = (e) => {
-      //   const name = e.target.getAttribute("categoryName")
-      //   setcategoriesData(categoriesData.filter(item => item.name !== name));
-      //  };
+    useEffect(() => {
+        GetProductAPI().then((data) => {
+            setProductsData(data);
+        })
+
+    }, []);
+
+    function DeleteOperation(id) {
+        fetch("https://e-commerce-fwd.herokuapp.com/products/" + id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+
+            body: null
+        }).then(res => res.json());
+
+
+        GetProductAPI().then((data) => {
+            setProductsData(data);
+        })
+    }
+
+
     return (
-        console.log(productsData)
-,
         <>
-        {productsData.map ((product, index) => ( 
-            console.log(product.images),
-        <tr key={index}>
+            {productsData.map((product, index) => (
+                <tr key={index}>
                     <td>{product.productName}</td>
                     <td>{product.categoryName}</td>
                     <td>{product.descriptions}</td>
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
-                    <td> 
-                        {/* {product.images.map (img =>(
-                        image.url
-                    ))} */}
+                    <td>
+
                     </td>
 
                     <td>
-                        <button type="button" className="btn btn-danger buttonMargin">Delete</button>
-                        <button type="button" className="btn btn-warning buttonMargin">Edit</button>
+                        <div className="prodAndCteg-List__bottons">
+                            <Link to={'updateProduct/' + product._id}>
+                                <button className='prodAndCteg-List__edit'>Edit</button>
+                            </Link>
+                            <MdDeleteOutline
+                                className='prodAndCteg-List__delete' onClick={() => DeleteOperation(product._id)}
+                            />
+                        </div>
                     </td>
                 </tr>
 
-        ))}
+            ))}
         </>
-        )
+    )
 }
 
 

@@ -1,18 +1,81 @@
+.control-label {
+  font-weight: bold;
+}
+.div-form{
+  display: flex;
+  justify-content: center;
+}
+.prod_images_Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.prod_images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  margin: 0 0 1em 0;
+  padding: 1em;
+  border: 1px solid black;
+  position: relative;
+  outline: none;
+
+
+}
+
+.prod_images img {
+  margin: 0.5em 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
+.prod_images span {
+  position: absolute;
+  top: -13px;
+  right: -13px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-weight: 900;
+  color: crimson;
+}
+
+.form-center {
+ width: 55%;
+}
+
+.form-control-lg {
+  font-size: 1rem !important;
+  margin-bottom: 20px;
+}
 
 .modal-form {
   margin-top: 1rem;
+}
+
+.Same-line {
+  white-space: nowrap;
 }
 
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 70%;
 }
-.form-select{
+
+.form-select {
   font-size: 1rem !important;
 
 }
+
 /* Categories Admin Board */
 .buttonMargin {
   margin-right: 10px;
@@ -55,14 +118,24 @@
   width: 75%;
 }
 
-.form-control-lg {
-  font-size: 1rem !important;
-}
+
 
 @media only screen and (max-width: 480px) {
   .card-body.p-5 {
     padding: 1rem !important;
 
+  }
+
+  .form-center {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 500px) {
+  .upload {
+    max-width: 250px !important;
+    height: 250px !important;
   }
 }
 
