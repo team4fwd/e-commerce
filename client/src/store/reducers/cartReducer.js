@@ -1,30 +1,13 @@
-import { ADD, REMOVE, REMOVEONE } from '../actions/cartActions';
+import {
+  ADD,
+  ADD_ADDRESS,
+  ADD_PAYMENT,
+  REMOVE,
+  REMOVEONE,
+  CLEAR_CART,
+} from '../actions/cartActions';
 
-const initialState = {
-  items: [
-    {
-      id: 1,
-      img: 'https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png',
-      price: 100,
-      name: 'Product1',
-      color: 'red',
-      size: 'M',
-      amount: 2,
-    },
-    {
-      id: 3,
-      img: 'https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png',
-      price: 100,
-      name: 'Product2',
-      color: 'red',
-      size: 'M',
-      amount: 2,
-    },
-  ],
-  totalAmount: 400,
-};
-
-const cartReducer = (state = initialState, action) => {
+const cartReducer = (state = {}, action) => {
   if (action.type === ADD) {
     const updatedTotalAmount = state.totalAmount + action.item.price;
     const existingItemIndex = state.items.findIndex(
@@ -81,6 +64,28 @@ const cartReducer = (state = initialState, action) => {
     }
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
+  }
+
+  if (action.type === ADD_ADDRESS) {
+    return {
+      ...state,
+      shippingInfo: action.info,
+    };
+  }
+
+  if (action.type === ADD_PAYMENT) {
+    return {
+      ...state,
+      paymentMethod: action.method,
+    };
+  }
+
+  if (action.type === CLEAR_CART) {
+    return {
+      ...state,
+      items: [],
+      totalAmount: 0,
+    };
   }
 
   return state;

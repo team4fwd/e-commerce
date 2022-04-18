@@ -1,15 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Cart from './pages/Cart';
-import Order from './pages/Order';
-import Profile from './pages/Profile';
+import Cart from './pages/cart/Cart';
+import Order from './pages/order/Order';
+import Profile from './pages/profile/Profile';
 import './App.css';
-import React, { useState } from "react";
 import LogIn from './components/Authentication/Login/login';
 import SignUp from './components/Authentication/Registration/signUp';
-import { LogInAPI } from './API';
-import { SignUpAPI } from './API';
-
-
+import Admin from './pages/admin/Admin';
+import AdminHome from './pages/admin/AdminHome';
+import UsersList from './pages/admin/UsersList';
+import User from './pages/admin/User';
+import NewUser from './pages/admin/NewUser';
+import Footer from './components/footer/Footer';
+import NavBar from './components/NavBar/NavBar';
+import HomePage from './pages/Home/HomePage';
+import ProductDetails from './pages/products/ProductDetails';
+import Private from './Private';
+import ShippingForm from './pages/order/ShippingForm';
+import Payment from './pages/order/Payment';
 import Categories from './components/AdminBoard/Category/Allcategories';
 import AddCategory from './components/AdminBoard/Category/addCategory';
 import AddProduct from './components/AdminBoard/Product/addProduct';
@@ -17,59 +24,25 @@ import Products from './components/AdminBoard/Product/Allproducts';
 import UpdateProduct from './components/AdminBoard/Product/updateProduct';
 import Updatecategory from './components/AdminBoard/Category/updateCategory';
 
-import Admin from './pages/admin/Admin';
-import AdminHome from './pages/admin/AdminHome';
-import UsersList from './pages/admin/UsersList';
-import User from './pages/admin/User';
-import NewUser from './pages/admin/NewUser';
-
 function App() {
-
-
-  const [LoginError, setLoginError] = useState("");
-  const [SignUpError, setSignUpError] = useState("");
-
-
-
-
-
-  // submit function & API for sign up
-  const signSubmit = (values) => {
-    SignUpAPI(values)
-    .then((data) => {
-      if (data.status === false) {
-        setSignUpError(data.message)
-      }
-    })
-  }
-
-
-  //submit function & API for login
-  const loginSubmit = (values) => {
-    LogInAPI(values)
-      .then((data) => {
-        if (data.status === false) {
-          setLoginError(data.message)
-        }
-      })
-  }
-
-
-
-
-  
+  const adminRoute = window.location.pathname.startsWith('/admin');
 
   return (
     <Router>
+      {!adminRoute && <NavBar />}
       <Routes>
-        <Route
-          path='/login'
-          element={<LogIn onSubmit={loginSubmit} LoginError={LoginError} />}
-        />
-        <Route path='/signUp' element={<SignUp onSubmit={signSubmit} SignUpError={SignUpError}/>} />
-        <Route path='/cart' element={<Cart />} />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/signUp' element={<SignUp />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/order' element={<Order />} />
+        <Route path='/product/:productId' element={<ProductDetails />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route
+          path='/shipping'
+          element={<Private Component={ShippingForm} />}
+        />
+        <Route path='/payment' element={<Private Component={Payment} />} />
+        <Route path='/order' element={<Private Component={Order} />} />
         <Route path='/admin' element={<Admin />}>
           <Route index element={<AdminHome />} />
           <Route path='home' element={<AdminHome />} />
@@ -87,6 +60,7 @@ function App() {
          
         </Route>
       </Routes>
+      {!adminRoute && <Footer />}
     </Router>
   );
 }

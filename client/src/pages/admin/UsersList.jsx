@@ -2,7 +2,7 @@ import React from 'react';
 import './UsersList.scss';
 import { DataGrid } from '@mui/x-data-grid';
 import { MdDeleteOutline } from 'react-icons/md';
-import { userRows } from '../../components/admin/DummyData';
+import { userRows } from '../../DummyData';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 

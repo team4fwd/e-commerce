@@ -1,0 +1,22 @@
+.home__section{
+    background-image: url('../../assets/images/home-image.jpeg');
+    /* background-position: center center; */
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+.home__content {
+    position: absolute;
+    top:35%;
+    left:5%;
+}
+.home__content h1{
+    font-size: 3.5rem;
+    width:55%;
+}
+.home__content button{
+    background-color: #c4949f;
+}
+.home__content button:hover{
+    background-color: #ffcd05;
+}
