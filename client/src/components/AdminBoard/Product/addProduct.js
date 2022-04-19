@@ -57,13 +57,15 @@ let AddProduct = (props) => {
           // 1mb
           return alert('Size too large!');
 
+        console.log(file.type);
         if (
           file.type !== 'image/jpeg' &&
           file.type !== 'image/png' &&
           file.type !== 'image/webp'
-        )
+        ) {
           // 1mb
           return alert('File format is incorrect.');
+        }
 
         let formData = new FormData();
         formData.append('file', file);
