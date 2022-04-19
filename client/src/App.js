@@ -14,9 +14,10 @@ import Footer from './components/footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './pages/Home/HomePage';
 import ProductDetails from './pages/products/ProductDetails';
-import Private from './Private';
+import Private from './util/Private';
 import ShippingForm from './pages/order/ShippingForm';
 import Payment from './pages/order/Payment';
+import Products from './pages/products/Products';
 
 function App() {
   const adminRoute = window.location.pathname.startsWith('/admin');
@@ -29,6 +30,7 @@ function App() {
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/' element={<HomePage />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/products' element={<Products />} />
         <Route path='/product/:productId' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route

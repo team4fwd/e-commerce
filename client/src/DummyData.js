@@ -142,3 +142,216 @@ export const productImages = [
   'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/738b8c66-32ea-4748-a504-0b2a6fadf7481625808738660-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-5.jpg',
   'https://assets.myntassets.com/h_1440,q_90,w_1080/v1/assets/images/14590826/2021/7/9/522d522a-d6d6-47b9-9ea2-10ada95365491625808738688-Calvin-Klein-Jeans-Men-Tshirts-9031625808738146-2.jpg',
 ];
+
+export const products = [
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/586212_blackshag_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/586212_blackshag_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/545734_emerald_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/545734_emerald_back_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/525886_rose_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/525886_rose_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/565959_red_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/565959_red_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/586212_blackshag_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/586212_blackshag_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/545734_emerald_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/545734_emerald_back_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/525886_rose_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/525886_rose_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+  {
+    _id: '625dbbe7e6b7ac266daba405',
+    productName: 'Carman V Neck Rib Tank',
+    categoryName: 'Casual Tops',
+    descriptions: 'Casual Tops',
+    price: 1000,
+    quantity: 10,
+    images: [
+      {
+        public_id: 'e-commerce-fwd/vqrve8tgv5jzzas9smfs',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/565959_red_back_l.jpg?i10c=img.resize(width:320)',
+      },
+      {
+        public_id: 'e-commerce-fwd/ivo2lmnam4zqzyugndvx',
+        url: 'https://www.dotti.com.au/DT/aurora/images/products/large/565959_red_l.jpg?i10c=img.resize(width:320)',
+      },
+    ],
+    createdAt: '2022-04-18T19:28:39.885Z',
+    updatedAt: '2022-04-18T23:03:38.770Z',
+    __v: 0,
+  },
+];
+
+export const sliderItems = [
+  {
+    id: 1,
+    img: 'https://the-lama-shop.vercel.app/_next/image?url=%2F7.webp&w=1920&q=75',
+    title: 'SUMMER SALE',
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: 'f5fafd',
+  },
+  {
+    id: 2,
+    img: 'https://i.ibb.co/DG69bQ4/2.png',
+    title: 'AUTUMN COLLECTION',
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: 'fcf1ed',
+  },
+  {
+    id: 3,
+    img: 'https://i.ibb.co/cXFnLLV/3.png',
+    title: 'LOUNGEWEAR LOVE',
+    desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+    bg: 'fbf0f4',
+  },
+];
+
+export const categories = [
+  {
+    id: 1,
+    img: 'https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    title: 'SHIRT STYLE!',
+  },
+  {
+    id: 2,
+    img: 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    title: 'LOUNGEWEAR LOVE',
+  },
+  {
+    id: 3,
+    img: 'https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+    title: 'LIGHT JACKETS',
+  },
+];
