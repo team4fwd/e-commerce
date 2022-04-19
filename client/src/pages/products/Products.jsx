@@ -2,12 +2,14 @@ import { useState } from 'react';
 import ProductItem from '../../components/Products/ProductItem';
 import ProductsTitle from '../../components/Products/ProductsTitle';
 import './Products.scss';
-import { products } from '../../DummyData';
 import Pagination from '@mui/material/Pagination';
 import usePagination from '../../util/Pagination';
+import { useSelector } from 'react-redux';
 
 const Products = () => {
   const [page, setPage] = useState(1);
+  const { products, error } = useSelector((state) => state.products);
+
   const PER_PAGE = 8;
 
   const count = Math.ceil(products.length / PER_PAGE);
@@ -20,11 +22,17 @@ const Products = () => {
 
   return (
     <div className='products'>
-      <ProductsTitle title='Women' />
+      <ProductsTitle title='All Products' />
+      {error && (
+        <div className='alert alert-danger' role='alert'>
+          {error}
+        </div>
+      )}
       <div className='products__items'>
         {displayedProducts.currentData().map((product) => (
           <ProductItem
             key={product._id}
+            id={product._id}
             title={product.productName}
             category={product.categoryName}
             price={product.price}

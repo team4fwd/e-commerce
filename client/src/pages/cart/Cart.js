@@ -28,6 +28,18 @@ const Cart = () => {
           </div>
           {items &&
             items.map((item) => <CartProduct item={item} key={item.id} />)}
+          {!hasItems && (
+            <div className={`${classes['cart-products__details']} text-center`}>
+              <div className='alert alert-danger' role='alert'>
+                <p className='text-center'>No Items in the cart yet</p>
+              </div>
+              <button className='btn btn-warning'>
+                <Link className='route-link' to='/products'>
+                  Go to Shopping
+                </Link>
+              </button>
+            </div>
+          )}
         </div>
         {hasItems && (
           <div className={classes['cart-summary']}>

@@ -1,13 +1,12 @@
 import Slider from '../../components/Home/Slider';
 import Category from '../../components/Home/Category';
-// import { products } from '../../DummyData';
 import ProductItem from '../../components/Products/ProductItem';
 import './HomePage.scss';
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {
   const { products, error } = useSelector((state) => state.products);
-  console.log(products);
+  const productsLatest = products.slice(0, 8);
   return (
     <>
       <Slider />
@@ -20,9 +19,10 @@ const HomePage = () => {
           </div>
         )}
         <div className='products__items'>
-          {products.map((product) => (
+          {productsLatest.map((product) => (
             <ProductItem
               key={product._id}
+              id={product._id}
               title={product.productName}
               category={product.categoryName}
               price={product.price}

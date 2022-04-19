@@ -2,19 +2,17 @@ import { BsFillBagPlusFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { addItemsToCart } from '../../store/actions/cartActions';
 
-const ProductItem = ({ img, title, price, category }) => {
+const ProductItem = ({ id, img, title, price, category }) => {
   console.log(img);
   const dispatch = useDispatch();
 
   const addToCartHandler = () => {
     dispatch(
       addItemsToCart({
-        id: Date.now(),
-        img: img[1].url,
+        id,
+        img: img[0].url,
         price,
         name: title,
-        color: 'red',
-        size: 'M',
         amount: 1,
       })
     );
