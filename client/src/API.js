@@ -22,7 +22,7 @@ export const LogInAPI = (values) =>
     .then((res) => res.json())
     .then((data) => data);
 
-export const AddOrderAPI = (userId, order) => {
+export const AddOrderAPI = (userId, order) =>
   fetch('https://e-commerce-fwd.herokuapp.com/order', {
     method: 'POST',
     headers: {
@@ -35,61 +35,48 @@ export const AddOrderAPI = (userId, order) => {
   })
     .then((res) => res.json())
     .then((data) => data.order);
-};
-
 
 export const AddCategoryAPI = (values) =>
-
-  fetch("https://e-commerce-fwd.herokuapp.com/cateogry/add", {
+  fetch('https://e-commerce-fwd.herokuapp.com/cateogry/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(values)
-  }).then(res => res.json())
-    .then(data => data
-    )
-
+    body: JSON.stringify(values),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 
 export const AddProductAPI = (values) =>
-
-  fetch("https://e-commerce-fwd.herokuapp.com/products/create", {
+  fetch('https://e-commerce-fwd.herokuapp.com/products/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(values)
-  }).then(res => res.json())
-    .then(data => data
-    )
-
-
-
+    body: JSON.stringify(values),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 
 export const GetCategoryAPI = () =>
-
-  fetch("https://e-commerce-fwd.herokuapp.com/cateogry", {
+  fetch('https://e-commerce-fwd.herokuapp.com/cateogry', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-
     },
-  }).then(res => res.json())
-    .then(data => data
-    )
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 
 export const GetProductAPI = () =>
-
-  fetch("https://e-commerce-fwd.herokuapp.com/products", {
+  fetch('https://e-commerce-fwd.herokuapp.com/products', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-
     },
-  }).then(res => res.json())
-    .then(data => data
-    )
-
+  })
+    .then((res) => res.json())
+    .then((data) => data);
 
 // export const updateCategory = () =>
 //   fetch(`https://e-commerce-fwd.herokuapp.com/cateogry/${id}`, {
@@ -99,7 +86,6 @@ export const GetProductAPI = () =>
 //     },
 //     body: JSON.stringify()
 //   }).then(res => res.json())
-
 
 // export const updateProductAPI = (values) =>
 //   fetch("https://e-commerce-fwd.herokuapp.com/products/" + id, {
@@ -111,3 +97,8 @@ export const GetProductAPI = () =>
 //     body: JSON.stringify(values)
 //   }).then(res => res.json()).then((data) => data
 //   );
+
+export const GetAllProductsAPI = () =>
+  fetch('https://e-commerce-fwd.herokuapp.com/products')
+    .then((res) => res.json())
+    .then((data) => data);

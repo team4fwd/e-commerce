@@ -1,0 +1,27 @@
+.home__latest {
+  max-width: 1080px;
+  margin: 50px auto 50px auto;
+  padding: 0 25px;
+
+  &-title {
+    text-align: center;
+    margin: 0 auto 20px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+
+    &::after {
+      content: '';
+      background-color: antiquewhite;
+      width: 80px;
+      height: 5px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
