@@ -18,9 +18,17 @@ import Private from './util/Private';
 import ShippingForm from './pages/order/ShippingForm';
 import Payment from './pages/order/Payment';
 import Products from './pages/products/Products';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllProducts } from './store/actions/productsActions';
 
 function App() {
+  const dispatch = useDispatch();
   const adminRoute = window.location.pathname.startsWith('/admin');
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   return (
     <Router>

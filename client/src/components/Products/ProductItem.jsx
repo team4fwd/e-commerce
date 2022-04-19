@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { addItemsToCart } from '../../store/actions/cartActions';
 
 const ProductItem = ({ img, title, price, category }) => {
+  console.log(img);
   const dispatch = useDispatch();
 
   const addToCartHandler = () => {

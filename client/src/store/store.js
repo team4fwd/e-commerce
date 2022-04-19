@@ -5,12 +5,14 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import orderReducer from './reducers/orderReducer';
+import productsReducer from './reducers/productsReducer';
 
 const reducer = combineReducers({
   user: userReducer,
+  products: productsReducer,
   cart: cartReducer,
-  form: formReducer,
   order: orderReducer,
+  form: formReducer,
 });
 
 const userInfo = localStorage.getItem('userInfo')

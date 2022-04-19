@@ -22,7 +22,7 @@ export const LogInAPI = (values) =>
     .then((res) => res.json())
     .then((data) => data);
 
-export const AddOrderAPI = (userId, order) => {
+export const AddOrderAPI = (userId, order) =>
   fetch('https://e-commerce-fwd.herokuapp.com/order', {
     method: 'POST',
     headers: {
@@ -35,4 +35,8 @@ export const AddOrderAPI = (userId, order) => {
   })
     .then((res) => res.json())
     .then((data) => data.order);
-};
+
+export const GetAllProductsAPI = () =>
+  fetch('https://e-commerce-fwd.herokuapp.com/products')
+    .then((res) => res.json())
+    .then((data) => data);
