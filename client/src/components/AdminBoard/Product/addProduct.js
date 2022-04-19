@@ -13,6 +13,7 @@ import "../prodAndCteg-List.scss"
 let AddProduct = props => {
     const [productError, setProductError] = useState("");
     const [images, setImages] = useState([])
+    
     let navigate = useNavigate();
 
 
@@ -57,7 +58,7 @@ let AddProduct = props => {
 
         for (var i = 0; i < files.length; i++) {
             let file = files[i]
-
+           
             try {
 
                 if (!file) return alert("File not exist.")
@@ -74,9 +75,10 @@ let AddProduct = props => {
                 const res = await axios.post('https://e-commerce-fwd.herokuapp.com/uploadImage', formData, {
                     headers: { 'content-type': 'multipart/form-data' }
                 })
-                await formik.values.images.push(res.data)
-                // images.push(res.data)
+                console.log(res.data)
 
+               await  formik.values.images.push(res.data)
+                // images.push(res.data)
             } catch (err) {
                 alert(err.response.data.message)
             }
@@ -99,7 +101,7 @@ let AddProduct = props => {
     return (
         <div className='prodAndCteg-List row'>
             <div className='prodAndCteg-List__titleContainer'>
-                <h3 className='prodAndCteg-List__title'>Update product</h3>
+                <h3 className='prodAndCteg-List__title'>Add product</h3>
 
             </div>
 

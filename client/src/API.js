@@ -91,23 +91,23 @@ export const GetProductAPI = () =>
     )
 
 
-export const updateCategory = () =>
-  fetch(`https://e-commerce-fwd.herokuapp.com/cateogry/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify()
-  }).then(res => res.json())
+// export const updateCategory = () =>
+//   fetch(`https://e-commerce-fwd.herokuapp.com/cateogry/${id}`, {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify()
+//   }).then(res => res.json())
 
 
-export const updateProductAPI = (values) =>
-  fetch("https://e-commerce-fwd.herokuapp.com/products/" + id, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+// export const updateProductAPI = (values) =>
+//   fetch("https://e-commerce-fwd.herokuapp.com/products/" + id, {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
 
-    body: JSON.stringify(values)
-  }).then(res => res.json()).then((data) => data
-  );
+//     body: JSON.stringify(values)
+//   }).then(res => res.json()).then((data) => data
+//   );

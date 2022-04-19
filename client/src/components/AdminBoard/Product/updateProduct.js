@@ -10,7 +10,9 @@ import "../prodAndCteg-List.scss"
 
 let UpdateProduct = props => {
   const [productData, setProductData] = useState([]);
-  const [images, setImages] = useState([])
+  const [images, setImages] = React.useState([]);
+  const [showImg, setShowImg] = React.useState(false)
+
   let navigate = useNavigate();
 
 
@@ -26,7 +28,7 @@ let UpdateProduct = props => {
 
       body: JSON.stringify()
     }).then(res => res.json())
-      .then((data) => { setImages(data.images), setProductData(data) })
+      .then((data) => { setImages(data.images); setProductData(data) })
   }, [id]);
 
 
@@ -37,7 +39,8 @@ let UpdateProduct = props => {
       descriptions: productData.descriptions,
       price: productData.price,
       quantity: productData.quantity,
-      images: productData.images
+      images: productData.images,
+      showImg:showImg
     },
 
     enableReinitialize: true,
@@ -85,7 +88,10 @@ let UpdateProduct = props => {
         const res = await axios.post('https://e-commerce-fwd.herokuapp.com/uploadImage', formData, {
           headers: { 'content-type': 'multipart/form-data' }
         })
-        await formik.values.images.push(res.data)
+         console.log(res.data)
+
+       await formik.values.images.push(res.data)
+       
         // images.push(res.data)
 
       } catch (err) {
@@ -93,7 +99,7 @@ let UpdateProduct = props => {
       }
     }
     setImages(formik.values.images)
-
+    setShowImg(true)
   }
 
 
