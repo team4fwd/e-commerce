@@ -165,7 +165,7 @@ let AddProduct = props => {
                     {formik.errors.quantity ? <div className="text-danger">{formik.errors.quantity}</div> : null}
 
 
-                    <input type="file" name="file" className="form-control-lg" id="file_up" multiple onChange={handleUpload} />
+                    <input type="file" name="file" className="form-control-lg" id="" multiple onChange={handleUpload} />
 
                     <div className="prod_images_Container">
 

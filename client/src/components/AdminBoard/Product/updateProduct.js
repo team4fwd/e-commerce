@@ -180,7 +180,7 @@ let UpdateProduct = props => {
 
 
 
-          <input type="file" name="file" className="form-control-lg" id="file_up" multiple onChange={handleUpload} />
+          <input type="file" name="file" className="form-control-lg" id="" multiple onChange={handleUpload} />
 
 
 

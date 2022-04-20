@@ -1,63 +1,154 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import React, { useState, useEffect } from "react";
+import './profile.css'
+import Loading from './loading/Loading'
+import { useNavigate } from 'react-router-dom'
+import { useFormik } from 'formik';
+import { AddAddressAPI } from "../../API";
 
-const ProfileAdressForm = () => {
+import { useSelector } from "react-redux";
+import axios from 'axios'
+const initialState = {
+  address: '',
+  phoneNumber: '',
+}
+const ProfileaddressForm = () => {
+  const [avatar, setAvatar] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState(initialState)
+  // const userInfo = useSelector(state => state.user)
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+
+  }, []);
+
+
+  const formik = useFormik({
+
+    initialValues: {
+      address: '',
+      phoneNumber: '',
+
+      avatar: [],
+    },
+    onSubmit: values => {
+      values.avatar = avatar;
+
+      console.log(values)
+
+      AddAddressAPI(values)
+        .then((data) => data)
+        .then((data) => console.log(data))
+
+
+
+    }
+
+  });
+
+
+  const handleUpload = async e => {
+    e.preventDefault()
+    try {
+      const file = e.target.files[0]
+
+      if (!file) return alert("File not exist.")
+
+      if (file.size > 1024 * 1024) // 1mb
+        return alert("Size too large!")
+
+      // if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
+      //     return alert("File format is incorrect.")
+
+      let formData = new FormData()
+      formData.append('file', file)
+
+      setLoading(true)
+      const res = await axios.post('https://e-commerce-fwd.herokuapp.com/uploadImage', formData, {
+        headers: { 'content-type': 'multipart/form-data' }
+      })
+      setLoading(false)
+      setAvatar(res.data)
+      // console.log(res)
+
+
+    } catch (err) {
+      // alert(err.response.data.msg)
+    }
+    console.log(data)
+
+  }
+
+  const handleDestroy = async () => {
+
+    try {
+      setLoading(false)
+      setAvatar(false)
+
+    } catch (err) {
+      // alert(err.response.data.msg)
+    }
+  }
+  const styleUpload = {
+    display: avatar ? "block" : "none"
+  }
+
   return (
-    <Form>
-      <Row className='mb-3'>
-        <Form.Group as={Col} controlId='formGridEmail'>
-          <Form.Label>Email</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' />
-        </Form.Group>
+    // console.log(userInfo),
+    <div className="row">
+      <div className="col-md-5">
+        <div className="upload">
+          <input type="file" name="file" id="file_up" onChange={handleUpload} />
+          {
+            loading ? <div id="file_img"><Loading /></div>
 
-        <Form.Group as={Col} controlId='formGridPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' />
-        </Form.Group>
-      </Row>
+              : <div id="file_img" style={styleUpload}>
+                <img src={avatar ? avatar.url : ''} alt="" />
+                <span onClick={handleDestroy}>X</span>
+              </div>
+          }
 
-      <Form.Group className='mb-3' controlId='formGridAddress1'>
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder='1234 Main St' />
-      </Form.Group>
+        </div>
+      </div>
 
-      <Form.Group className='mb-3' controlId='formGridAddress2'>
-        <Form.Label>Address 2</Form.Label>
-        <Form.Control placeholder='Apartment, studio, or floor' />
-      </Form.Group>
+      <div className="col-md-7">
+        {/* {(productError) ? <div className="alert alert-danger" role="alert">{productError}</div> : ""} */}
 
-      <Row className='mb-3'>
-        <Form.Group as={Col} controlId='formGridCity'>
-          <Form.Label>City</Form.Label>
-          <Form.Control />
-        </Form.Group>
 
-        <Form.Group as={Col} controlId='formGridState'>
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue='Choose...'>
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
-        </Form.Group>
+        <form className="form" onSubmit={formik.handleSubmit}>
+          <div className="mb-3">
 
-        <Form.Group as={Col} controlId='formGridZip'>
-          <Form.Label>Zip</Form.Label>
-          <Form.Control />
-        </Form.Group>
-      </Row>
+            <label className="form-label" htmlFor="address">Address</label>
+            <input
+              className="form-control"
+              id="address"
+              name="address"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.address}
+            />
+          </div>
+          {/* {formik.errors.address ? <div className="text-danger">{formik.errors.address}</div> : null} */}
+          <div className="mb-3">
+            <label className="form-label" htmlFor="phoneNumber">Phone number</label>
+            <input
+              className="form-control"
+              id="phoneNumber"
+              name="phoneNumber"
+              onChange={formik.handleChange}
+              value={formik.values.phoneNumber}
+            />
+          </div>
+          {/* {formik.errors.phoneNumber ? <div className="text-danger">{formik.errors.phoneNumber}</div> : null} */}
+          <div className="d-flex justify-content-center mt-3">
+            <button type="submit" className="btn btn-primary btn-block  text-body" >Add Information</button>
+          </div>
+        </form>
 
-      <Form.Group className='mb-3' id='formGridCheckbox'>
-        <Form.Check type='checkbox' label='Check me out' />
-      </Form.Group>
-
-      <Button variant='primary' type='submit'>
-        Submit
-      </Button>
-    </Form>
+      </div>
+    </div>
   );
 };
 
-export default ProfileAdressForm;
+export default ProfileaddressForm;

@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
+import { GetOrdersAPI } from "../../API";
+
 
 const ProfileOrders = () => {
+
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+
+      GetOrdersAPI().then((data) => {
+          console.log(data)
+
+      })
+  }, []);
   return (
     <Table hover>
       <thead>

@@ -63,12 +63,34 @@ export const AddProductAPI = (values) =>
     .then(data => data
     )
 
+    export const AddAddressAPI = (data, avatar) =>
 
+    fetch("https://e-commerce-fwd.herokuapp.com/userprofile/edit", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data, avatar)
+    }).then(res => res.json())
+      .then(data => data
+      )
 
 
 export const GetCategoryAPI = () =>
 
   fetch("https://e-commerce-fwd.herokuapp.com/cateogry", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+
+    },
+  }).then(res => res.json())
+    .then(data => data
+    )
+
+    export const GetOrdersAPI = () =>
+
+  fetch("https://e-commerce-fwd.herokuapp.com/order", {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
