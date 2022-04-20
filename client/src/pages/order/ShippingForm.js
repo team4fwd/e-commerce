@@ -12,16 +12,21 @@ const ShippingForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { shippingInfo } = useSelector((state) => state.cart);
-
-  const [address, setAddress] = useState(shippingInfo?.address);
-  const [city, setCity] = useState(shippingInfo?.city);
-  const [zip, setZip] = useState(shippingInfo?.zip);
-  const [country, setCountry] = useState(shippingInfo?.country);
-  const [phone, setPhone] = useState(shippingInfo?.phone);
+  const [address, setAddress] = useState(shippingInfo?.address ?? '');
+  const [city, setCity] = useState(shippingInfo?.city ?? '');
+  const [country, setCountry] = useState(shippingInfo?.country ?? '');
+  const [phone, setPhone] = useState(shippingInfo?.phone ?? '');
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(addShippingAddress({ address, city, zip, country, phone }));
+    dispatch(
+      addShippingAddress({
+        address,
+        city,
+        country,
+        phone,
+      })
+    );
     navigate('/payment');
   };
 
@@ -40,7 +45,7 @@ const ShippingForm = () => {
             <Form.Control
               onChange={(e) => setAddress(e.target.value)}
               value={address ?? ''}
-              placeholder='Apartment, studio, or floor'
+              placeholder='Apartment, Bulding, Street'
             />
           </Form.Group>
 
@@ -59,14 +64,6 @@ const ShippingForm = () => {
                 onChange={(e) => setCountry(e.target.value)}
                 value={country ?? ''}
                 placeholder='Egypt'
-              />
-            </Form.Group>
-            <Form.Group as={Col}>
-              <Form.Label className='h6'>Postcode / ZIP</Form.Label>
-              <Form.Control
-                onChange={(e) => setZip(e.target.value)}
-                value={zip ?? ''}
-                placeholder='25000'
               />
             </Form.Group>
           </Row>

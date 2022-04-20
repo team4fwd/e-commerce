@@ -1,10 +1,15 @@
 import { BsFillBagPlusFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { addItemsToCart } from '../../store/actions/cartActions';
 
 const ProductItem = ({ id, img, title, price, category }) => {
-  console.log(img);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const showProductHandler = (e) => {
+    navigate(`/products/${id}`);
+  };
 
   const addToCartHandler = () => {
     dispatch(
@@ -19,12 +24,12 @@ const ProductItem = ({ id, img, title, price, category }) => {
   };
   return (
     <div className='products__item'>
-      <figure className='products__imgs'>
+      <figure onClick={showProductHandler} className='products__imgs'>
         <img src={img[0].url} alt='' className='products__img-back' />
         <img src={img[1].url} alt='' className='products__img-front' />
       </figure>
       <figcaption className='products__caption'>
-        <h4>{title}</h4>
+        <h4 onClick={showProductHandler}>{title}</h4>
         <div className='products__caption-details'>
           <div className=''>
             <p>{category}</p>

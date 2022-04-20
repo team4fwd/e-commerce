@@ -47,7 +47,7 @@ const addPaymentMethod = (method) => (dispatch) => {
     method,
   });
 
-  localStorage.setItem('paymentMehod', JSON.stringify(method));
+  localStorage.setItem('paymentMethod', JSON.stringify(method));
 };
 
 const clearCart = () => ({

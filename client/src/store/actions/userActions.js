@@ -1,4 +1,4 @@
-import { LogInAPI, SignUpAPI } from '../../API';
+import { LogInAPI, SignUpAPI } from '../../util/API';
 
 const LOGIN = 'LOGIN';
 const LOGIN_FAIL = 'LOGIN_FAIL';

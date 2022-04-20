@@ -5,6 +5,7 @@ import './HomePage.scss';
 import { useSelector } from 'react-redux';
 
 const HomePage = () => {
+  window.scrollTo(0, 0);
   const { products, error } = useSelector((state) => state.products);
   const productsLatest = products.slice(0, 8);
   return (

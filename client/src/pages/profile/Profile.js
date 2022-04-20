@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import './Profile.scss';
 import ProfileAdressForm from '../../components/Profile/ProfileAdressForm';
-import SectionTitle from '../../components/SectionTitle';
+import SectionTitle from '../../components/layout/SectionTitle';
 import ProfileOrders from '../../components/Profile/ProfileOrders';
 
 const Profile = () => {

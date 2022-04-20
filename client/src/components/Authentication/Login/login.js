@@ -14,7 +14,8 @@ let LogIn = (props) => {
   const dispatch = useDispatch();
   const { userInfo, error } = useSelector((state) => state.user);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '';
+  console.log(redirect);
 
   useEffect(() => {
     if (userInfo) {

@@ -7,6 +7,7 @@ import usePagination from '../../util/Pagination';
 import { useSelector } from 'react-redux';
 
 const Products = () => {
+  window.scrollTo(0, 0);
   const [page, setPage] = useState(1);
   const { products, error } = useSelector((state) => state.products);
 

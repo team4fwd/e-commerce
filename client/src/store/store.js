@@ -21,10 +21,14 @@ const userInfo = localStorage.getItem('userInfo')
 
 const cartItems = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
-  : null;
+  : { items: [], totalAmount: 0 };
 
 const shippingInfo = localStorage.getItem('shippingInfo')
   ? JSON.parse(localStorage.getItem('shippingInfo'))
+  : null;
+
+const paymentMethod = localStorage.getItem('paymentMethod')
+  ? JSON.parse(localStorage.getItem('paymentMethod'))
   : null;
 
 // const cartItems = {
@@ -56,6 +60,7 @@ const initialState = {
   cart: {
     ...cartItems,
     shippingInfo,
+    paymentMethod,
   },
 };
 

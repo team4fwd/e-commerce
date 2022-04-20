@@ -2,6 +2,7 @@ import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import { useState } from 'react';
 import { sliderItems } from '../../DummyData';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -101,7 +102,11 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOW NOW</Button>
+              <Button>
+                <Link to='/products' className='route-link'>
+                  SHOW NOW
+                </Link>
+              </Button>
             </InfoContainer>
           </Slide>
         ))}

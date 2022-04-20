@@ -1,4 +1,4 @@
-import { GetAllProductsAPI } from '../../API';
+import { GetAllProductsAPI } from '../../util/API';
 
 const ADD_PRODUCTS = 'ADD_PRODUCTS';
 const ADD_PRODUCTS_FAILED = 'ADD_PRODUCTS_FAILED';

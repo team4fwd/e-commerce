@@ -14,7 +14,7 @@ const Order = () => {
   );
   const { userInfo } = useSelector((state) => state.user);
   const { order, success, error } = useSelector((state) => state.order);
-
+  console.log(paymentMethod);
   const hasItems = items ? items.length > 0 : false;
 
   // Calculate Price
@@ -30,8 +30,8 @@ const Order = () => {
 
   useEffect(() => {
     if (success) {
-      navigate(`/order/${order?.id}`);
-      dispatch(resetOrder());
+      // navigate(`/order/${order?.id}`);
+      console.log('Ordered successfully');
     }
   }, [navigate, dispatch, success, order]);
 
@@ -45,6 +45,7 @@ const Order = () => {
         shippingPrice,
         taxPrice,
         totalPrice,
+        orderStauts: 'Inprogress',
       })
     );
   };

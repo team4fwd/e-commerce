@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import classes from './Cart.module.scss';
 import CartProduct from '../../components/cart/CartProduct';
-import SectionTitle from '../../components/SectionTitle';
+import SectionTitle from '../../components/layout/SectionTitle';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';

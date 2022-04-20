@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import validate from './validationProduct';
-import { AddProductAPI } from '../../../API';
+import { AddProductAPI } from '../../../util/API';
 import CategoryOption from './categoryOption';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
