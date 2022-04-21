@@ -21,9 +21,9 @@ const resetOrder = () => ({
 
 const addOrder = (order) => async (dispatch, getState) => {
   try {
-    const { _id: userId } = getState().user.userInfo;
+    const { _id: userId, token } = getState().user.userInfo;
     console.log({ userId, ...order });
-    const data = await AddOrderAPI(userId, order);
+    const data = await AddOrderAPI(userId, order, token);
     console.log(data);
     if (data) {
       dispatch(add(data));

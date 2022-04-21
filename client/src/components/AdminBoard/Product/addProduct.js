@@ -5,12 +5,13 @@ import { AddProductAPI } from '../../../util/API';
 import CategoryOption from './categoryOption';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 import '../prodAndCteg-List.scss';
+import { useSelector } from 'react-redux';
 
 let AddProduct = (props) => {
   const [productError, setProductError] = useState('');
   const [images, setImages] = useState([]);
+  const { token } = useSelector((state) => state.user.userInfo);
 
   let navigate = useNavigate();
 
@@ -30,7 +31,7 @@ let AddProduct = (props) => {
 
       //values["images"] = images;
       values.images = images;
-      AddProductAPI(values)
+      AddProductAPI(values, token)
         .then((data) => data)
         .then((data) => {
           if (data.status === false) {
@@ -74,7 +75,10 @@ let AddProduct = (props) => {
           'https://e-commerce-fwd.herokuapp.com/uploadImage',
           formData,
           {
-            headers: { 'content-type': 'multipart/form-data' },
+            headers: {
+              'content-type': 'multipart/form-data',
+              'x-access-token': token,
+            },
           }
         );
         console.log(res.data);

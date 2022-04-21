@@ -22,7 +22,9 @@ let SignUp = (props) => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`);
+      if (userInfo.isAdmin === true) navigate(`/admin`);
+
+      if (userInfo.isAdmin === false) navigate(`/${redirect}`);
     }
   }, [userInfo, navigate, redirect]);
 

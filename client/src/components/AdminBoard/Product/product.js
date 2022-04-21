@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { GetProductAPI } from '../../../util/API';
+import { DeleteAPI, GetAllProductsAPI } from '../../../util/API';
 import { MdDeleteOutline } from 'react-icons/md';
 import '../prodAndCteg-List.scss';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 let Product = (props) => {
   // const categories = GetProductAPI().then((data) => data)
   const [productsData, setProductsData] = useState([]);
+  const { token } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
-    GetProductAPI().then((data) => {
+    GetAllProductsAPI().then((data) => {
       setProductsData(data);
     });
   }, []);
 
   function DeleteOperation(id) {
-    fetch('https://e-commerce-fwd.herokuapp.com/products/' + id, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    DeleteAPI(id, 'products', token);
 
-      body: null,
-    }).then((res) => res.json());
-
-    GetProductAPI().then((data) => {
+    GetAllProductsAPI().then((data) => {
       setProductsData(data);
     });
   }

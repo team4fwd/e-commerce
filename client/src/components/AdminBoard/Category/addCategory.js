@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { AddCategoryAPI } from '../../../util/API';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 let AddCategory = (props) => {
   const [categoryError, setCategoryError] = useState('');
+  const { token } = useSelector((state) => state.user.userInfo);
   let navigate = useNavigate();
 
   const formik = useFormik({
@@ -13,7 +15,7 @@ let AddCategory = (props) => {
       categoryName: '',
     },
     onSubmit: (values) => {
-      AddCategoryAPI(values)
+      AddCategoryAPI(values, token)
         .then((data) => data)
         .then((data) => {
           if (data.status === false) {

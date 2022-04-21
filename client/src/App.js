@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './store/actions/productsActions';
 import Cart from './pages/cart/Cart';
 import Order from './pages/order/Order';
@@ -30,6 +30,10 @@ import Updatecategory from './components/AdminBoard/Category/updateCategory';
 
 function App() {
   const dispatch = useDispatch();
+  let isAdmin = false;
+  const { userInfo } = useSelector((state) => state.user);
+  if (userInfo) isAdmin = userInfo.isAdmin;
+
   const adminRoute = window.location.pathname.startsWith('/admin');
 
   useEffect(() => {
@@ -53,25 +57,27 @@ function App() {
         />
         <Route path='/payment' element={<Private Component={Payment} />} />
         <Route path='/order' element={<Private Component={Order} />} />
-        <Route path='/admin' element={<Admin />}>
-          <Route index element={<AdminHome />} />
-          <Route path='home' element={<AdminHome />} />
-          <Route path='users' element={<UsersList />} />
-          <Route path='users/newuser' element={<NewUser />} />
-          <Route path='users/:userId' element={<User />} />
-          <Route path='categories' element={<Categories />} />
-          <Route path='categories/addCategory' element={<AddCategory />} />
-          <Route
-            path='categories/updateCategory/:id'
-            element={<Updatecategory />}
-          />
-          <Route path='products' element={<AllProducts />} />
-          <Route path='products/addProduct' element={<AddProduct />} />
-          <Route
-            path='products/updateProduct/:id'
-            element={<UpdateProduct />}
-          />
-        </Route>
+        {isAdmin && (
+          <Route path='/admin' element={<Admin />}>
+            <Route index element={<AdminHome />} />
+            <Route path='home' element={<AdminHome />} />
+            <Route path='users' element={<UsersList />} />
+            <Route path='users/newuser' element={<NewUser />} />
+            <Route path='users/:userId' element={<User />} />
+            <Route path='categories' element={<Categories />} />
+            <Route path='categories/addCategory' element={<AddCategory />} />
+            <Route
+              path='categories/updateCategory/:id'
+              element={<Updatecategory />}
+            />
+            <Route path='products' element={<AllProducts />} />
+            <Route path='products/addProduct' element={<AddProduct />} />
+            <Route
+              path='products/updateProduct/:id'
+              element={<UpdateProduct />}
+            />
+          </Route>
+        )}
       </Routes>
       {!adminRoute && <Footer />}
     </Router>

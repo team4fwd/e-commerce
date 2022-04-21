@@ -1,31 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { GetCategoryAPI } from '../../../util/API';
+import { DeleteAPI, GetCategoryAPI } from '../../../util/API';
 import { MdDeleteOutline } from 'react-icons/md';
 import { deleteCategory } from '../../../util/API';
 import { gridColumnsTotalWidthSelector } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 let Category = () => {
   // const categories = GetCategoryAPI().then((data) => data)
   const [categoriesData, setcategoriesData] = useState([]);
+  const { token } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
-    GetCategoryAPI().then((data) => {
+    GetCategoryAPI(token).then((data) => {
       setcategoriesData(data);
     });
-  }, []);
+  }, [token]);
 
   function DeleteOperation(id) {
-    fetch('https://e-commerce-fwd.herokuapp.com/cateogry/' + id, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    DeleteAPI(id, 'cateogry', token);
 
-      body: null,
-    }).then((res) => res.json());
-
-    GetCategoryAPI().then((data) => {
+    GetCategoryAPI(token).then((data) => {
       setcategoriesData(data);
     });
   }

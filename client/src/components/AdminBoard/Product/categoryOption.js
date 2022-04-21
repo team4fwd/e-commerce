@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { GetCategoryAPI } from '../../../util/API';
 
 let CategoryOption = () => {
   // const categories = GetCategoryAPI().then((data) => data)
   const [categoriesData, setcategoriesData] = useState([]);
+  const { token } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
-    GetCategoryAPI().then((data) => {
+    GetCategoryAPI(token).then((data) => {
       setcategoriesData(data);
     });
-  }, []);
+  }, [token]);
 
   return (
     <>
