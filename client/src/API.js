@@ -87,10 +87,21 @@ export const GetCategoryAPI = () =>
   }).then(res => res.json())
     .then(data => data
     )
+    export const ChangePassAPI = () =>
+
+  fetch("https://e-commerce-fwd.herokuapp.com/users/changePass", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+
+    },
+  }).then(res => res.json())
+    .then(data => data
+    )
 
     export const GetOrdersAPI = () =>
 
-  fetch("https://e-commerce-fwd.herokuapp.com/order", {
+  fetch("https://e-commerce-fwd.herokuapp.com/order/userorder", {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

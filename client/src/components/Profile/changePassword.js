@@ -2,27 +2,27 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from 'formik';
 import validate from './profilevalidation';
+import {ChangePassAPI} from '../../API'
 
 
 const ChangePassword = () => {
-    const [password, setPassword] = useState(false)
+    // const [NewPassword, setNewPassword] = useState(false)
 
   const formik = useFormik({
 
     initialValues: {
-        password: '',
+        newPassword: '',
+        currentPassword: '',
+        confirmPassword: '',
        
     },
     validate,
     onSubmit: values => {
-      values.avatar = avatar;
+    //   console.log(values)
 
-      console.log(values)
-
-        AddAddressAPI(values)
+      ChangePassAPI(values)
             .then((data) => data)
             .then((data) => console.log(data))
-
 
 
     }

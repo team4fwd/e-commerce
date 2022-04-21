@@ -24,6 +24,8 @@ let LogIn = (props) => {
 
   const submitHandler = (user) => {
     dispatch(loginUser(user));
+    navigate("/profile")
+
   };
 
   const { handleSubmit, pristine, submitting } = props;
