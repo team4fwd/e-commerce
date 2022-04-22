@@ -46,9 +46,15 @@ const CartProduct = ({ item, order }) => {
           <button onClick={removeOneItemHandler}>-</button>
         </div>
       )}
-      <div>EGP{item.amount * item.price}</div>
+      <div className={classes['cart-products__total']}>
+        EGP{item.amount * item.price}
+      </div>
       {!order && (
-        <div style={{ cursor: 'pointer' }} onClick={removeItemHandler}>
+        <div
+          className={classes['cart-products__remove']}
+          style={{ cursor: 'pointer' }}
+          onClick={removeItemHandler}
+        >
           X
         </div>
       )}

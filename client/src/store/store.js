@@ -5,11 +5,12 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import orderReducer from './reducers/orderReducer';
-import productsReducer from './reducers/productsReducer';
+import productsReducer, { categoriesReducer } from './reducers/productsReducer';
 
 const reducer = combineReducers({
   user: userReducer,
   products: productsReducer,
+  categories: categoriesReducer,
   cart: cartReducer,
   order: orderReducer,
   form: formReducer,

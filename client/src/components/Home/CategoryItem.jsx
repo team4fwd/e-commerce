@@ -23,17 +23,28 @@ const Info = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-wrap: break-word;
 `;
 
 const Title = styled.h1`
   color: white;
   margin-bottom: 20px;
+  @media only screen and (max-width: 1100px) {
+    font-size: 32px;
+    text-align: center;
+    word-break: break-word;
+    hyphens: manual;
+  }
+  @media only screen and (max-width: 600px) {
+    font-size: 20px;
+    text-align: center;
+  }
 `;
 
 const Button = styled.button`
   border: none;
   padding: 10px;
-  background-color: white;
+  background-color: #ffffffc9;
   color: gray;
   cursor: pointer;
   font-weight: 600;

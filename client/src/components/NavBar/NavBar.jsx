@@ -80,7 +80,7 @@ function NavBar() {
               />
               {searchIsShown && (
                 <Modal onClose={hideSearchHandler}>
-                  <Search />
+                  <Search onClose={hideSearchHandler} />
                 </Modal>
               )}
             </li>

@@ -12,15 +12,15 @@ let Category = () => {
   const { token } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
-    GetCategoryAPI(token).then((data) => {
+    GetCategoryAPI().then((data) => {
       setcategoriesData(data);
     });
-  }, [token]);
+  }, []);
 
   function DeleteOperation(id) {
     DeleteAPI(id, 'cateogry', token);
 
-    GetCategoryAPI(token).then((data) => {
+    GetCategoryAPI().then((data) => {
       setcategoriesData(data);
     });
   }

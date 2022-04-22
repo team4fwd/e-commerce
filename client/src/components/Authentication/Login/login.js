@@ -15,13 +15,12 @@ let LogIn = (props) => {
   const { userInfo, error } = useSelector((state) => state.user);
 
   const redirect = location.search ? location.search.split('=')[1] : '';
-  console.log(redirect);
 
   useEffect(() => {
     if (userInfo) {
-      if (userInfo.isAdmin === true) navigate(`/admin`)
-      
-      if(userInfo.isAdmin === false) navigate(`/${redirect}`);
+      if (userInfo.isAdmin === true) navigate(`/admin`);
+
+      if (userInfo.isAdmin === false) navigate(`/${redirect}`);
     }
   }, [userInfo, navigate, redirect]);
 

@@ -3,15 +3,22 @@
   margin: 50px auto 0 auto;
   padding: 0 25px;
 
-  // @media only screen and (max-width: 700px) {
-  //   margin: 50px 25px 0 25px;
-  // }
+  @media only screen and (max-width: 700px) {
+    margin: 50px 25px 0 25px;
+  }
+  @media only screen and (max-width: 500px) {
+    text-align: center;
+  }
 
   &__title {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 auto 50px;
+
+    @media only screen and (max-width: 500px) {
+      flex-direction: column;
+    }
 
     h2 {
       font-weight: 700;
@@ -32,9 +39,9 @@
 
   &__items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
     grid-row-gap: 50px;
-    grid-column-gap: 20px;
+    grid-column-gap: 10px;
 
     // @media only screen and (max-width: 900) {
     //   grid-template-columns: repeat(3, minmax(200px, 1fr));
@@ -67,6 +74,10 @@
   }
 
   &__caption {
+    @media only screen and (max-width: 500px) {
+      text-align: center;
+    }
+
     h4 {
       font-weight: 400;
       font-size: 18px;
@@ -82,6 +93,11 @@
         color: #555;
         font-weight: 600;
       }
+
+      @media only screen and (max-width: 500px) {
+        justify-content: center;
+        flex-direction: column;
+      }
     }
   }
   &__cart-icon {
@@ -89,6 +105,10 @@
     margin-right: 22px;
     margin-top: -16px;
     cursor: pointer;
+
+    @media only screen and (max-width: 500px) {
+      margin: 0;
+    }
   }
   &__pagination {
     position: relative;

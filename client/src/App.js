@@ -1,7 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts } from './store/actions/productsActions';
+import {
+  getAllCategory,
+  getAllProducts,
+} from './store/actions/productsActions';
 import Cart from './pages/cart/Cart';
 import Order from './pages/order/Order';
 import Profile from './pages/profile/Profile';
@@ -38,6 +41,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getAllCategory());
   }, [dispatch]);
 
   return (
@@ -49,6 +53,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/products' element={<Products />} />
+        <Route path='/search/:product' element={<Products />} />
         <Route path='/products/:productId' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route

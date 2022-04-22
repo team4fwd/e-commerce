@@ -61,19 +61,23 @@ export const AddProductAPI = (values, token) =>
     .then((res) => res.json())
     .then((data) => data);
 
-export const GetCategoryAPI = (token) =>
+export const GetCategoryAPI = () =>
   fetch('https://e-commerce-fwd.herokuapp.com/cateogry', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'x-access-token': token,
     },
   })
     .then((res) => res.json())
     .then((data) => data);
 
-export const GetAllProductsAPI = () =>
-  fetch('https://e-commerce-fwd.herokuapp.com/products')
+export const GetAllProductsAPI = (product = '') =>
+  fetch(`https://e-commerce-fwd.herokuapp.com/products?products=${product}`)
+    .then((res) => res.json())
+    .then((data) => data);
+
+export const GetProductsByCatAPI = (category) =>
+  fetch(`https://e-commerce-fwd.herokuapp.com/products?cat=${category}`)
     .then((res) => res.json())
     .then((data) => data);
 
