@@ -3,9 +3,9 @@ const cloudinary = require('cloudinary');
 const {userAuth} = require('../middleware/auth')
 
 cloudinary.config({ 
-    cloud_name: "djsjeedek", 
-    api_key: "789662481463974", 
-    api_secret: "Q7MjNeZizwuBLrIKVfeq2shZKmo",
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.PAI_KEY, 
+    api_secret: process.env.API_SECRET,
     secure: true
   });
 
@@ -36,12 +36,5 @@ uploadImage.post('/delete',userAuth,(req,res)=>{
         return res.status(500).json({msg: err.message})
     }
 })
-
-
-
-
-
-
-
 
 module.exports = uploadImage

@@ -1,5 +1,3 @@
-// const session = require('express-session');
-// const MongoStore = require('connect-mongo');
 const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet');
@@ -27,23 +25,12 @@ try {
 
 app.use(cors())
 app.use(helmet());
-// app.use(session({
-//   store: MongoStore.create({mongoUrl:MONGODB_URI}),
-//   secret:  process.env.SESSION_SECRET,
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: { path: '/', httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 24}
-// }));
+
 app.use(fileUpload({
   useTempFiles: true
 }))
 
-// app.use(express.static('public'))
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(bodyParser.json())
-// parse application/x-www-form-urlencoded
-// parse application/json
-// app.use (express.bodyParser()) 
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/',router)
