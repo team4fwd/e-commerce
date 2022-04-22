@@ -10,12 +10,12 @@ const AllOrders = () => {
        
       </div>
       <div className='prodAndCteg-List__table'>
-        <table className='table table-striped table-hover table-responsive'>
+        <table className='orderadminT table table-striped table-hover table-responsive'>
           <thead>
             <tr>
               <th className='Same-line'>Order ID</th>
               <th className='Same-line'>Paymment Method</th>
-              <th>Customer ID</th>
+              {/* <th>Customer ID</th> */}
               <th>Amount</th>
               <th>Status</th>
               <th>change Status</th>

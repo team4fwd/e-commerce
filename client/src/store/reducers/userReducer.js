@@ -1,4 +1,6 @@
 import {
+  INFO,
+  INFO_FAIL,
   LOGIN,
   LOGIN_FAIL,
   LOGOUT,
@@ -12,6 +14,10 @@ const userReducer = (state = {}, action) => {
       return { userInfo: action.user };
     case LOGIN_FAIL:
       return { error: action.errMsg };
+      case INFO:
+        return { userInfo: action.user };
+      case INFO_FAIL:
+        return { error: action.errMsg };
     case REGISTER:
       return { userInfo: action.user };
     case REGISTER_FAIL:

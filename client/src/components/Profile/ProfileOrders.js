@@ -12,12 +12,11 @@ const ProfileOrders = () => {
   useEffect(() => {
 
       GetOrdersAPI(token).then((data) => {
-          setOrders(data)
+          setOrders(data);
 
       })
   }, [token]);
   return (
-    console.log(token),
     <Table hover className="orderPro">
       <thead>
         <tr>

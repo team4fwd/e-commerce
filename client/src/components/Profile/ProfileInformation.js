@@ -1,44 +1,54 @@
 import React, { useState, useEffect } from "react";
-import './profile.css'
 import Loading from './loading/Loading'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
 import { AddInformationAPI } from "../../util/API";
-import { useSelector } from "react-redux";
-import axios from 'axios'
+import { useDispatch,useSelector } from "react-redux";
+import axios from 'axios';
+import { GetUserInfoAPI } from "../../util/API";
 
-const initialState = {
-  address: '',
-  phoneNumber: '',
-}
+
 const ProfileInformation = () => {
-  const [avatar, setAvatar] = useState(false)
+  const dispatch = useDispatch();
+
+  const userInfo = useSelector(state => state.user.userInfo)
+
+  const [avatar, setAvatar] = useState([])
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState(initialState)
+  const [data, setData] = useState([])
+
   const { token } = useSelector((state) => state.user.userInfo);
 
   let navigate = useNavigate();
 
   useEffect(() => {
 
-  }, []);
+    GetUserInfoAPI(token).then( (data) => {
+        setData(data.userprofile);
+        setAvatar(data.userprofile.avatar);
+
+    })
+}, [token]);
 
   const formik = useFormik({
 
     initialValues: {
-      address: '',
-      phoneNumber: '',
-
-      avatar: [],
+      address: data.address,
+      phoneNumber: data.phoneNumber,
+      avatar: avatar
     },
+    enableReinitialize: true,
     onSubmit: values => {
       values.avatar = avatar;
 
-      console.log(values)
 
       AddInformationAPI(values, token)
-        .then((data) => data)
-        .then((data) => console.log(data))
+        .then((data) => data).then((data) => {if(data.status==true){
+          alert(data.message)} else{
+              alert(data.message)
+          }
+      })
+    
 
     }
 
@@ -49,14 +59,17 @@ const ProfileInformation = () => {
     e.preventDefault()
     try {
       const file = e.target.files[0]
-      console.log(file)
       if (!file) return alert("File not exist.")
 
       if (file.size > 1024 * 1024) // 1mb
         return alert("Size too large!")
 
-      // if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
-      //     return alert("File format is incorrect.")
+        if (
+          file.type !== 'image/jpeg' &&
+          file.type !== 'image/png' &&
+          file.type !== 'image/webp'
+        )
+        return alert('File format is incorrect.');
 
       let formData = new FormData()
       formData.append('file', file)
@@ -71,13 +84,10 @@ const ProfileInformation = () => {
       })
       setLoading(false)
       setAvatar(res.data)
-      // console.log(res)
 
 
     } catch (err) {
-      // alert(err.response.data.msg)
     }
-    console.log(data)
 
   }
 
@@ -88,7 +98,6 @@ const ProfileInformation = () => {
       setAvatar(false)
 
     } catch (err) {
-      // alert(err.response.data.msg)
     }
   }
   const styleUpload = {
@@ -96,10 +105,9 @@ const ProfileInformation = () => {
   }
 
   return (
-    // console.log(userInfo),
     <div className="row">
       <div className="col-md-5">
-        <div className="upload">
+        <div className="upload profileInfo">
           <input type="file" name="file" id="file_up" onChange={handleUpload} />
           {
             loading ? <div id="file_img"><Loading /></div>

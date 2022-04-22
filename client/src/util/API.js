@@ -85,7 +85,8 @@ export const GetAllProductsAPI = () =>
         'Content-Type': 'application/json',
         'x-access-token': token,
       },
-    })
+    }) .then((res) => res.json())
+    .then((data) => data);
 
 
 export const DeleteAPI = (id, kind, token) =>
@@ -143,4 +144,30 @@ fetch("https://e-commerce-fwd.herokuapp.com/order/userorder", {
   .then(data => data
   )
 
+  export const GetUserInfoAPI = (token) =>
 
+fetch("https://e-commerce-fwd.herokuapp.com/userprofile", {
+  method: 'GET',
+  headers: {
+    'x-access-token': token,
+
+
+  },
+}).then(res => res.json())
+  .then(data => data)
+  
+  export const EditOrderStatus = (id, orderStauts, token) =>
+
+  fetch("https://e-commerce-fwd.herokuapp.com/order/" + id, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token,
+    },
+
+    body: JSON.stringify({orderStauts:orderStauts}),
+  })
+    .then((res) => res.json())
+    .then(
+      (data) => data
+    )

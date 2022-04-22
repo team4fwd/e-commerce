@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux';
+
+
+
 
 
 import "../prodAndCteg-List.scss"
 
 let Updatecategory = props => {
+  const { token } = useSelector((state) => state.user.userInfo);
   const [categoryData, setcategoryData] = useState([]);
   let navigate = useNavigate();
   const { id } = useParams();
@@ -15,12 +20,14 @@ let Updatecategory = props => {
     fetch("https://e-commerce-fwd.herokuapp.com/cateogry/" + id, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'x-access-token': token,
+
       },
 
       body: JSON.stringify()
     }).then(res => res.json()).then((data) => setcategoryData(data))
-  }, [id]);
+  }, [id, token]);
 
 
 
@@ -34,12 +41,21 @@ let Updatecategory = props => {
       fetch("https://e-commerce-fwd.herokuapp.com/cateogry/" + id, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'x-access-token': token,
+
         },
 
         body: JSON.stringify(values)
       }).then(res => res.json()).then((data) => data)
-      navigate("/admin/categories")
+        .then((data) => {
+          if (data.status === true) {
+            navigate('/admin/categories');
+          } else {
+            alert(data.message)
+          }
+        })
+
     }
   })
 

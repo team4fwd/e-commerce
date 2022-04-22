@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 
 
 const ChangePassword = () => {
-    // const [NewPassword, setNewPassword] = useState(false)
     const { token } = useSelector((state) => state.user.userInfo);
 
   const formik = useFormik({
@@ -19,11 +18,15 @@ const ChangePassword = () => {
     },
     validate,
     onSubmit: values => {
-    //   console.log(values)
-
+        console.log(values)
       ChangePassAPI(values, token)
             .then((data) => data)
-            .then((data) => console.log(data))
+            .then((data) => {if(data.status==true){
+                alert(data.message)} else{
+                    alert(data.message)
+                }
+            })
+
 
     }
 

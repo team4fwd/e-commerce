@@ -9,7 +9,6 @@ const AcountDetailsForm = () => {
 
   }, []);
   return (
-    console.log(userInfo),
 
     <div className="card-block">
       <div className="row">

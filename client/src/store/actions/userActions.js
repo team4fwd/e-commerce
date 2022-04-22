@@ -1,10 +1,12 @@
-import { LogInAPI, SignUpAPI } from '../../util/API';
+import { LogInAPI, SignUpAPI,AddInformationAPI } from '../../util/API';
 
 const LOGIN = 'LOGIN';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const REGISTER = 'REGISTER';
 const REGISTER_FAIL = 'REGISTER_FAIL';
 const LOGOUT = 'LOGOUT';
+const INFO = 'INFO';
+const INFO_FAIL = 'INFO_FAIL';
 
 const logUserIn = (user) => ({
   type: LOGIN,
@@ -30,6 +32,15 @@ const logUserOut = () => ({
   type: LOGOUT,
 });
 
+const InfoIn = (user) => ({
+  type: INFO,
+  user,
+});
+
+const InfoFailed = (errMsg) => ({
+  type: INFO_FAIL,
+  errMsg,
+});
 const loginUser = (userInfo) => async (dispatch) => {
   try {
     const data = await LogInAPI(userInfo);
@@ -73,6 +84,26 @@ const logoutUser = () => (dispatch) => {
   dispatch(logUserOut());
 };
 
+const profileInfo = (userInfo) => async (dispatch) => {
+  try {
+    const data = await AddInformationAPI(userInfo);
+
+    if (data.status === true) {
+      const { user } = data;
+      user.token = data.accesstoken;
+      dispatch(InfoIn(user));
+      localStorage.setItem('userInfo', JSON.stringify(user));
+    }
+
+    if (data.status === false) {
+      throw new Error(data.message);
+    }
+  } catch (err) {
+    dispatch(InfoFailed(err.message));
+  }
+};
+
+
 export {
   loginUser,
   LOGIN,
@@ -82,4 +113,7 @@ export {
   LOGOUT,
   logoutUser,
   registerUser,
+  INFO,
+  INFO_FAIL,
+  profileInfo,
 };
