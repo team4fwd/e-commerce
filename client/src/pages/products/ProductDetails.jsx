@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart } from '../../store/actions/cartActions';
 import { useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
+import Comments from '../../components/comment/Comments';
 
 const ProductDetails = () => {
   const [key, setKey] = useState(0);
@@ -49,7 +50,7 @@ const ProductDetails = () => {
   const addToCartHandler = () => {
     dispatch(
       addItemsToCart({
-        id,
+        product_id: id,
         img: productImages[0],
         price,
         name,
@@ -59,70 +60,75 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className='product'>
-      <div className='product__images'>
-        <div className='product__image'>
-          <img src={productImages[key]} alt='' className='product__img' />
+    <>
+      <div className='product'>
+        <div className='product__images'>
+          <div className='product__image'>
+            <img src={productImages[key]} alt='' className='product__img' />
+          </div>
+          <div className='product__thumbnails'>
+            {productImages.map((img, i) => (
+              <div key={i} className='product__thumbnail'>
+                <img
+                  src={img}
+                  alt=''
+                  onClick={() => setKey(i)}
+                  className={`product__thumbnail-img ${
+                    key === i ? 'selected' : ''
+                  }`}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <div className='product__thumbnails'>
-          {productImages.map((img, i) => (
-            <div key={i} className='product__thumbnail'>
-              <img
-                src={img}
-                alt=''
-                onClick={() => setKey(i)}
-                className={`product__thumbnail-img ${
-                  key === i ? 'selected' : ''
-                }`}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className='product__info'>
-        <p>{`Home / ${cat}`}</p>
-        <h2 className='product__heading'>{name}</h2>
-        <span className='product__price'>{`EGP${price}`}</span>
+        <div className='product__info'>
+          <p>{`Home / ${cat}`}</p>
+          <h2 className='product__heading'>{name}</h2>
+          <span className='product__price'>{`EGP${price}`}</span>
 
-        <div className='product__details'>
-          <span>Status:</span>
-          <span>{quantity > 0 ? `In Stock(${quantity})` : 'Out of Stock'}</span>
-        </div>
-        <div className='product__details'>
-          <span>Category:</span>
-          <span>{cat}</span>
-        </div>
-        <div className='product__details'>
-          <span>Reviews:</span>
-          <span>8 reviews</span>
-        </div>
-        <div className='product__cta'>
-          <div className='product__quantity'>
-            <button
-              onClick={() =>
-                setAmount((val) => (val < quantity ? amount + 1 : val))
-              }
-            >
-              +
-            </button>
-            <span>{amount}</span>
-            <button
-              onClick={() => setAmount((val) => (val > 1 ? amount - 1 : 1))}
-            >
-              -
+          <div className='product__details'>
+            <span>Status:</span>
+            <span>
+              {quantity > 0 ? `In Stock(${quantity})` : 'Out of Stock'}
+            </span>
+          </div>
+          <div className='product__details'>
+            <span>Category:</span>
+            <span>{cat}</span>
+          </div>
+          <div className='product__details'>
+            <span>Reviews:</span>
+            <span>8 reviews</span>
+          </div>
+          <div className='product__cta'>
+            <div className='product__quantity'>
+              <button
+                onClick={() =>
+                  setAmount((val) => (val < quantity ? amount + 1 : val))
+                }
+              >
+                +
+              </button>
+              <span>{amount}</span>
+              <button
+                onClick={() => setAmount((val) => (val > 1 ? amount - 1 : 1))}
+              >
+                -
+              </button>
+            </div>
+            <button onClick={addToCartHandler} className='product__add-to-cart'>
+              Add to cart
             </button>
           </div>
-          <button onClick={addToCartHandler} className='product__add-to-cart'>
-            Add to cart
-          </button>
+          <h3 className='product__detail-heading'>
+            Product Details
+            <FaIndent className='product__icon' />
+          </h3>
+          <p className='product__description'>{descriptions}</p>
         </div>
-        <h3 className='product__detail-heading'>
-          Product Details
-          <FaIndent className='product__icon' />
-        </h3>
-        <p className='product__description'>{descriptions}</p>
       </div>
-    </div>
+      <Comments productId={productId} />
+    </>
   );
 };
 

@@ -4,7 +4,8 @@ import CartProduct from '../../components/cart/CartProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaUser, FaTruck, FaMapMarkerAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { addOrder, resetOrder } from '../../store/actions/orderActions';
+import { addOrder } from '../../store/actions/orderActions';
+import { getAllProducts } from '../../store/actions/productsActions';
 
 const Order = () => {
   const navigate = useNavigate();
@@ -30,8 +31,8 @@ const Order = () => {
 
   useEffect(() => {
     if (success) {
-      // navigate(`/order/${order?.id}`);
-      console.log('Ordered successfully');
+      dispatch(getAllProducts());
+      navigate(`/profile?redirect=orders`);
     }
   }, [navigate, dispatch, success, order]);
 
@@ -61,7 +62,7 @@ const Order = () => {
                   <FaUser />
                 </div>
               </div>
-              <div className='col-md-8 center'>
+              <div className={`col-md-8 center ${classes['order-box-text']}`}>
                 <h5>
                   <strong>Customer</strong>
                 </h5>
@@ -78,7 +79,7 @@ const Order = () => {
                   <FaTruck />
                 </div>
               </div>
-              <div className='col-md-8 center'>
+              <div className={`col-md-8 center ${classes['order-box-text']}`}>
                 <h5>
                   <strong>Order info</strong>
                 </h5>
@@ -94,7 +95,7 @@ const Order = () => {
                   <FaMapMarkerAlt />
                 </div>
               </div>
-              <div className='col-md-8 center'>
+              <div className={`col-md-8 center ${classes['order-box-text']}`}>
                 <h5>
                   <strong>Deliver to</strong>
                 </h5>
@@ -116,7 +117,7 @@ const Order = () => {
             </div>
             {items &&
               items.map((item) => (
-                <CartProduct order item={item} key={item.id} />
+                <CartProduct order item={item} key={item.product_id} />
               ))}
           </div>
           <div className={classes['order-summary']}>

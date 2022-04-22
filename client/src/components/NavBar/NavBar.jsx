@@ -19,9 +19,9 @@ function NavBar() {
     ? items.reduce((pre, curr) => pre + curr.amount, 0)
     : 0;
   const user = useSelector((state) => state.user.userInfo);
-  // const avatar = user.userProfile[0].avatar[0];
-  const avatar =
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60';
+  let avatar =
+    'https://cdn-icons.flaticon.com/png/512/668/premium/668709.png?token=exp=1650660805~hmac=cb7a07ddf26c627c1022395c83d8b182';
+  if (user) avatar = user?.userProfile[0].avatar?.url || avatar;
 
   const [searchIsShown, setSearchIsShown] = useState(false);
 
@@ -121,22 +121,6 @@ function NavBar() {
                 </NavDropdown>
               </li>
             )}
-            {/* <li className='navbar__user'>
-              {user ? (
-                <span className='navbar__name'>{`Hi,${user.firstName}`}</span>
-              ) : (
-                ''
-              )}
-              {avatar ? (
-                <img
-                  src={avatar}
-                  className='navbar__avatar'
-                  alt={user.firstName}
-                />
-              ) : (
-                <CgProfile />
-              )}
-            </li> */}
             {!user && (
               <li>
                 <Link className='route-link navbar__btn' to='/login'>

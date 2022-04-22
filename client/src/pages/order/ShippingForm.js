@@ -33,7 +33,7 @@ const ShippingForm = () => {
   return (
     <Card
       className='shadow-sm text-center'
-      style={{ width: '30rem', margin: '30px auto' }}
+      style={{ maxWidth: '30rem', margin: '30px auto' }}
     >
       <Card.Body>
         <Card.Title className='h3 my-3 text-center'>

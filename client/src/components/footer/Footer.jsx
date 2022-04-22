@@ -12,8 +12,8 @@ function Footer() {
   return (
     <section className='footer__section bg-black py-5 text-white overflow-hidden'>
       <div className='container'>
-        <div className='row'>
-          <div className='offset-2 col-md-3'>
+        <div className='row text-center'>
+          <div className='offset-md-2 col-md-3'>
             <h5 className='text-capitalize mb-4'> about us</h5>
             <ul className='list-unstyled'>
               <li className='text-capitalize mb-3'>
@@ -61,9 +61,9 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className='col-md-3'>
+          <div className='col-md-3 mx-auto'>
             <h5 className='text-capitalize mb-4'> contact info</h5>
-            <ul className='list-unstyled'>
+            <ul className='list-unstyled d-flex flex-column align-items-center d-md-block'>
               <li className='mb-3'>
                 <div className='footer__contact__listItem d-flex'>
                   <HiLocationMarker className='fs-5 me-3' />
@@ -73,7 +73,9 @@ function Footer() {
               <li className='mb-3'>
                 <div className='footer__contact__listItem d-flex'>
                   <BsFillTelephoneFill className='fs-5 me-3' />
-                  <span className='text-capitalize'>phone: 0123-456-789</span>
+                  <span className='text-capitalize'>
+                    phone:<br></br> 0123-456-789
+                  </span>
                 </div>
               </li>
               <li className='mb-3'>

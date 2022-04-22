@@ -14,7 +14,7 @@ const ProductItem = ({ id, img, title, price, category }) => {
   const addToCartHandler = () => {
     dispatch(
       addItemsToCart({
-        id,
+        product_id: id,
         img: img[0].url,
         price,
         name: title,

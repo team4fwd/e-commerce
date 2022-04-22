@@ -30,6 +30,7 @@ import AddProduct from './components/AdminBoard/Product/addProduct';
 import AllProducts from './components/AdminBoard/Product/Allproducts';
 import UpdateProduct from './components/AdminBoard/Product/updateProduct';
 import Updatecategory from './components/AdminBoard/Category/updateCategory';
+import NotFound from './pages/NotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ function App() {
             />
           </Route>
         )}
+        <Route path='*' element={<NotFound />} />
       </Routes>
       {!adminRoute && <Footer />}
     </Router>

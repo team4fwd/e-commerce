@@ -1,0 +1,30 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+}
+
+.comments li {
+  text-align: left;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ca7c13a3;
+}
+
+.comments p {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.comments address {
+  display: inline;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-style: italic;
+  color: #555;
+}

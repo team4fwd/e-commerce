@@ -42,6 +42,7 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
     grid-row-gap: 50px;
     grid-column-gap: 10px;
+    justify-content: center;
 
     // @media only screen and (max-width: 900) {
     //   grid-template-columns: repeat(3, minmax(200px, 1fr));

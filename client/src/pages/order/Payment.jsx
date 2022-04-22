@@ -23,7 +23,7 @@ const Payment = () => {
   return (
     <Card
       className='shadow-sm text-center'
-      style={{ width: '30rem', margin: '30px auto', padding: '30px' }}
+      style={{ maxWidth: '30rem', margin: '30px auto', padding: '30px' }}
     >
       <Card.Body>
         <Card.Title className='font-weight-bold my-3 text-center'>

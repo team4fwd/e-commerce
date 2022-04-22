@@ -9,13 +9,20 @@ import './Profile.scss';
 import ProfileAdressForm from '../../components/Profile/ProfileAdressForm';
 import SectionTitle from '../../components/layout/SectionTitle';
 import ProfileOrders from '../../components/Profile/ProfileOrders';
+import { useLocation } from 'react-router-dom';
 
 const Profile = () => {
+  const location = useLocation();
+  const redirect = location.search ? location.search.split('=')[1] : '';
+  const defaultKey = redirect ? redirect : 'dash';
+  console.log(redirect);
+  console.log(defaultKey);
+
   return (
     <>
       <SectionTitle title='My Profile' />
       <Container className='mt-5 mx-auto'>
-        <Tab.Container id='left-tabs-example' defaultActiveKey='dash'>
+        <Tab.Container id='left-tabs-example' defaultActiveKey={defaultKey}>
           <Row>
             <Col sm={3}>
               <Nav variant='pills' className='flex-column nav-pills-custom'>
@@ -27,7 +34,7 @@ const Profile = () => {
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link className='mb-3 p-3 shadow' eventKey='order'>
+                  <Nav.Link className='mb-3 p-3 shadow' eventKey='orders'>
                     <span class='font-weight-bold text-uppercase'>Orders</span>
                   </Nav.Link>
                 </Nav.Item>
@@ -71,7 +78,7 @@ const Profile = () => {
                 </Tab.Pane>
                 <Tab.Pane
                   className='shadow rounded bg-white p-5'
-                  eventKey='order'
+                  eventKey='orders'
                 >
                   <ProfileOrders />
                 </Tab.Pane>
