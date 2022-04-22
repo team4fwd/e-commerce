@@ -19,30 +19,43 @@ const orderController = {
         }
         const orderItems = req.body.orderItems  
         const checkStock =[]
+        const existPublicID = []
         Promise.all(
-            orderItems.map(async(item)=>{
-                await products.findById({_id:item.product_id}).then((prod)=>{
-                    if (item.amount>prod.quantity) {
-                        checkStock.push(item.name)
-                    }
-                })
+            orderItems.map((item)=>{
+                if (!item.product_id) {
+                    existPublicID.push(1)
+                }
             })
         ).then(()=>{
-            if(checkStock.length>0){
-                return res.status(404).json({OutOfStock:checkStock,status:false,message:'Out Of Stock'})
+            if (existPublicID.length>0) {
+                return res.status(404).json({status:false,message:'No Public_id Exist'})
             }
-            const addOrder = new orderModels(req.body)
-            try {
-                    addOrder.save().then(()=>{
-                    orderItems.map(async(item)=>{
-                        await products.findByIdAndUpdate({_id:item.product_id},{$inc:{quantity:-item.amount}})
+            Promise.all(
+                orderItems.map(async(item)=>{
+                    await products.findById({_id:item.product_id}).then((prod)=>{
+                        if (item.amount>prod.quantity) {
+                            checkStock.push(item.name)
+                        }
                     })
-                    res.json({order:addOrder,status:true,message:"Order Added Successfully"})
                 })
-            } catch (error) {
-                res.json({status:false,message:"Order Not Added"})
-            }
+            ).then(()=>{
+                if(checkStock.length>0){
+                    return res.status(404).json({OutOfStock:checkStock,status:false,message:'Out Of Stock'})
+                }
+                const addOrder = new orderModels(req.body)
+                try {
+                        addOrder.save().then(()=>{
+                        orderItems.map(async(item)=>{
+                            await products.findByIdAndUpdate({_id:item.product_id},{$inc:{quantity:-item.amount}})
+                        })
+                        res.json({order:addOrder,status:true,message:"Order Added Successfully"})
+                    })
+                } catch (error) {
+                    res.json({status:false,message:"Order Not Added"})
+                }
+            })
         })
+
     },
     all : async (req,res)=>{
         try {
