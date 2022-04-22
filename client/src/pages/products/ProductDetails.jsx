@@ -1,27 +1,58 @@
 import React from 'react';
 import './ProductDetails.scss';
 import { useState } from 'react';
-import { productImages as images } from '../../DummyData';
 import { FaIndent } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItemsToCart } from '../../store/actions/cartActions';
+import { useParams } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const ProductDetails = () => {
   const [key, setKey] = useState(0);
   const [amount, setAmount] = useState(1);
+  const { productId } = useParams();
   const dispatch = useDispatch();
+  const { products, error } = useSelector((state) => state.products);
 
-  const quantity = 10;
+  const product = products.find((product) => product._id === productId);
+
+  if (error) {
+    <div className='product__loading'>
+      <div className='alert alert-danger' role='alert'>
+        {error}
+      </div>
+    </div>;
+  }
+
+  if (!product) {
+    return (
+      <div className='product__loading'>
+        <CircularProgress className='product__loading-spinner' />
+      </div>
+    );
+  }
+
+  let productImages = product.images.map((image) => image.url);
+  productImages = productImages.concat(
+    Array(5 - productImages.length).fill(productImages[0])
+  );
+
+  const {
+    quantity,
+    _id: id,
+    price,
+    productName: name,
+    categoryName: cat,
+    descriptions,
+  } = product;
 
   const addToCartHandler = () => {
     dispatch(
       addItemsToCart({
-        id: Date.now(),
-        img: images[0],
-        price: 290,
-        name: 'Men Brown Polo Collar T-shirt',
-        color: 'red',
-        size: 'M',
+        id,
+        img: productImages[0],
+        price,
+        name,
         amount,
       })
     );
@@ -31,10 +62,10 @@ const ProductDetails = () => {
     <div className='product'>
       <div className='product__images'>
         <div className='product__image'>
-          <img src={images[key]} alt='' className='product__img' />
+          <img src={productImages[key]} alt='' className='product__img' />
         </div>
         <div className='product__thumbnails'>
-          {images.map((img, i) => (
+          {productImages.map((img, i) => (
             <div key={i} className='product__thumbnail'>
               <img
                 src={img}
@@ -49,17 +80,17 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className='product__info'>
-        <p>Home / Calvin Klein Jeans</p>
-        <h2 className='product__heading'>Men Brown Polo Collar T-shirt</h2>
-        <span className='product__price'>EGP290</span>
+        <p>{`Home / ${cat}`}</p>
+        <h2 className='product__heading'>{name}</h2>
+        <span className='product__price'>{`EGP${price}`}</span>
 
         <div className='product__details'>
           <span>Status:</span>
-          <span>In Stock</span>
+          <span>{quantity > 0 ? `In Stock(${quantity})` : 'Out of Stock'}</span>
         </div>
         <div className='product__details'>
           <span>Category:</span>
-          <span>casual</span>
+          <span>{cat}</span>
         </div>
         <div className='product__details'>
           <span>Reviews:</span>
@@ -89,10 +120,7 @@ const ProductDetails = () => {
           Product Details
           <FaIndent className='product__icon' />
         </h3>
-        <p className='product__description'>
-          Brown Tshirt for men Solid Regular length Polo collar Short, regular
-          sleeves Knitted cotton fabric Button closure
-        </p>
+        <p className='product__description'>{descriptions}</p>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { AddOrderAPI } from '../../API';
+import { AddOrderAPI } from '../../util/API';
 import { clearCart } from './cartActions';
 
 const ADD_ORDER = 'ADD_ORDER';
@@ -21,14 +21,16 @@ const resetOrder = () => ({
 
 const addOrder = (order) => async (dispatch, getState) => {
   try {
-    const { _id: userId } = getState().user.userInfo;
-    const data = await AddOrderAPI(userId, order);
-    if (data.status === true) {
+    const { _id: userId, token } = getState().user.userInfo;
+    console.log({ userId, ...order });
+    const data = await AddOrderAPI(userId, order, token);
+    console.log(data);
+    if (data) {
       dispatch(add(data));
       dispatch(clearCart());
       localStorage.removeItem('cartItems');
     }
-    if (data.status === false) {
+    if (data?.status === false) {
       throw new Error(data.message);
     }
   } catch (err) {

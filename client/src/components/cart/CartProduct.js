@@ -31,9 +31,7 @@ const CartProduct = ({ item, order }) => {
       <div className={classes['cart-products__info']}>
         <img src={item.img} alt={item.name} />
         <div className={classes['cart-products__info__text']}>
-          <span>
-            {item.name} - {item.color}, {item.size}
-          </span>
+          <span>{item.name}</span>
           <span>EGP{item.price}</span>
         </div>
       </div>

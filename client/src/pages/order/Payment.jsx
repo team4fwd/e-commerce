@@ -7,14 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPaymentMethod } from '../../store/actions/cartActions';
 
 const Payment = () => {
-  const [paymentMethod, setPaymentMethod] = useState('cash');
+  const [paymentMethod, setPaymentMethod] = useState('Cash On Delivered');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { shippingInfo } = useSelector((state) => state.cart);
 
   if (!shippingInfo) navigate('/shipping');
 
-  console.log(paymentMethod);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addPaymentMethod(paymentMethod));
@@ -36,7 +35,7 @@ const Payment = () => {
             type='radio'
             id='cash'
             checked={paymentMethod === 'cash'}
-            value='cash'
+            value='Cash On Delivered'
             onChange={(e) => setPaymentMethod(e.target.value)}
             label='Cash on delivery'
             style={{
@@ -51,9 +50,9 @@ const Payment = () => {
           <Form.Check
             name='payment'
             type='radio'
-            id='credit'
+            id='credit card'
             checked={paymentMethod === 'credit'}
-            value='credit'
+            value='Credit Card'
             onChange={(e) => setPaymentMethod(e.target.value)}
             label='Credit Card'
             style={{

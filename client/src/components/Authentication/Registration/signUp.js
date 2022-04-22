@@ -18,11 +18,13 @@ let SignUp = (props) => {
   const dispatch = useDispatch();
   const { userInfo, error } = useSelector((state) => state.user);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '';
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`);
+      if (userInfo.isAdmin === true) navigate(`/admin`);
+
+      if (userInfo.isAdmin === false) navigate(`/${redirect}`);
     }
   }, [userInfo, navigate, redirect]);
 

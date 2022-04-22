@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from './store/actions/productsActions';
 import Cart from './pages/cart/Cart';
 import Order from './pages/order/Order';
 import Profile from './pages/profile/Profile';
@@ -14,18 +17,31 @@ import Footer from './components/footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './pages/Home/HomePage';
 import ProductDetails from './pages/products/ProductDetails';
-import Private from './Private';
+import Private from './util/Private';
 import ShippingForm from './pages/order/ShippingForm';
+import Products from './pages/products/Products';
 import Payment from './pages/order/Payment';
 import Categories from './components/AdminBoard/Category/Allcategories';
 import AddCategory from './components/AdminBoard/Category/addCategory';
 import AddProduct from './components/AdminBoard/Product/addProduct';
-import Products from './components/AdminBoard/Product/Allproducts';
+import AllProducts from './components/AdminBoard/Product/Allproducts';
 import UpdateProduct from './components/AdminBoard/Product/updateProduct';
 import Updatecategory from './components/AdminBoard/Category/updateCategory';
+import AllOrders from './components/AdminBoard/Orders/AllOrders';
+
 
 function App() {
+  const dispatch = useDispatch();
+  let isAdmin = false;
+  const { userInfo } = useSelector((state) => state.user);
+  if (userInfo) isAdmin = userInfo.isAdmin;
+
   const adminRoute = window.location.pathname.startsWith('/admin');
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+
+  }, [dispatch]);
 
   return (
     <Router>
@@ -35,7 +51,8 @@ function App() {
         <Route path='/signUp' element={<SignUp />} />
         <Route path='/' element={<HomePage />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/product/:productId' element={<ProductDetails />} />
+        <Route path='/products' element={<Products />} />
+        <Route path='/products/:productId' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route
           path='/shipping'
@@ -43,22 +60,29 @@ function App() {
         />
         <Route path='/payment' element={<Private Component={Payment} />} />
         <Route path='/order' element={<Private Component={Order} />} />
-        <Route path='/admin' element={<Admin />}>
-          <Route index element={<AdminHome />} />
-          <Route path='home' element={<AdminHome />} />
-          <Route path='users' element={<UsersList />} />
-          <Route path='users/newuser' element={<NewUser />} />
-          <Route path='users/:userId' element={<User />} />
-          <Route path='categories' element={<Categories />} />
-          <Route path='categories/addCategory' element={<AddCategory/>} />
-          <Route path='categories/updateCategory/:id' element={<Updatecategory/>}/>
-          <Route path='products' element={<Products />} />
-          <Route path='products/addProduct' element={<AddProduct/>}/>
-          <Route path='products/updateProduct/:id' element={<UpdateProduct/>}/>
+        {isAdmin && (
+          <Route path='/admin' element={<Admin />}>
+            <Route index element={<AdminHome />} />
+            <Route path='home' element={<AdminHome />} />
+            <Route path='users' element={<UsersList />} />
+            <Route path='users/newuser' element={<NewUser />} />
+            <Route path='users/:userId' element={<User />} />
+            <Route path='categories' element={<Categories />} />
+            <Route path='categories/addCategory' element={<AddCategory />} />
+            <Route
+              path='categories/updateCategory/:id'
+              element={<Updatecategory />}
+            />
+            <Route path='products' element={<AllProducts />} />
+            <Route path='products/addProduct' element={<AddProduct />} />
+            <Route
+              path='products/updateProduct/:id'
+              element={<UpdateProduct />}
+            />
+            <Route path='orders' element={<AllOrders />} />
 
-
-         
-        </Route>
+          </Route>
+        )}
       </Routes>
       {!adminRoute && <Footer />}
     </Router>

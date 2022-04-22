@@ -14,17 +14,19 @@ let LogIn = (props) => {
   const dispatch = useDispatch();
   const { userInfo, error } = useSelector((state) => state.user);
 
-  const redirect = location.search ? location.search.split('=')[1] : '/';
+  const redirect = location.search ? location.search.split('=')[1] : '';
+  console.log(redirect);
 
   useEffect(() => {
     if (userInfo) {
-      navigate(`/${redirect}`);
+      if (userInfo.isAdmin === true) navigate(`/admin`)
+      
+      if(userInfo.isAdmin === false) navigate(`/${redirect}`);
     }
   }, [userInfo, navigate, redirect]);
 
-  const submitHandler = (user) => {
-    dispatch(loginUser(user));
-    navigate("/profile")
+  const submitHandler = async(user) => {
+   await dispatch(loginUser(user));
 
   };
 

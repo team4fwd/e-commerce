@@ -6,12 +6,11 @@ import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import './Profile.scss';
-import ProfileAdressForm from '../../components/Profile/ProfileAdressForm';
-import AcountDetailsForm from '../../components/Profile/AcountDetailsForm';
-
-import SectionTitle from '../../components/SectionTitle';
+import ProfileInformation from '../../components/Profile/ProfileInformation';
+import SectionTitle from '../../components/layout/SectionTitle';
 import ProfileOrders from '../../components/Profile/ProfileOrders';
 import ChangePassword from '../../components/Profile/changePassword';
+import AcountDetailsForm from '../../components/Profile/AcountDetailsForm';
 
 
 const Profile = () => {
@@ -68,7 +67,7 @@ const Profile = () => {
                   className='shadow rounded bg-white p-5'
                   eventKey='information'
                 >
-                  <ProfileAdressForm />
+                  <ProfileInformation />
                 </Tab.Pane>
 
                 <Tab.Pane

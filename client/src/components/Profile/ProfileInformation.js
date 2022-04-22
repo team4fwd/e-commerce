@@ -3,26 +3,25 @@ import './profile.css'
 import Loading from './loading/Loading'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik';
-import { AddAddressAPI } from "../../API";
-
+import { AddInformationAPI } from "../../util/API";
 import { useSelector } from "react-redux";
 import axios from 'axios'
+
 const initialState = {
   address: '',
   phoneNumber: '',
 }
-const ProfileaddressForm = () => {
+const ProfileInformation = () => {
   const [avatar, setAvatar] = useState(false)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState(initialState)
-  // const userInfo = useSelector(state => state.user)
+  const { token } = useSelector((state) => state.user.userInfo);
 
   let navigate = useNavigate();
 
   useEffect(() => {
 
   }, []);
-
 
   const formik = useFormik({
 
@@ -37,11 +36,9 @@ const ProfileaddressForm = () => {
 
       console.log(values)
 
-      AddAddressAPI(values)
+      AddInformationAPI(values, token)
         .then((data) => data)
         .then((data) => console.log(data))
-
-
 
     }
 
@@ -52,7 +49,7 @@ const ProfileaddressForm = () => {
     e.preventDefault()
     try {
       const file = e.target.files[0]
-
+      console.log(file)
       if (!file) return alert("File not exist.")
 
       if (file.size > 1024 * 1024) // 1mb
@@ -66,7 +63,11 @@ const ProfileaddressForm = () => {
 
       setLoading(true)
       const res = await axios.post('https://e-commerce-fwd.herokuapp.com/uploadImage', formData, {
-        headers: { 'content-type': 'multipart/form-data' }
+        headers: {
+          'content-type': 'multipart/form-data',
+          'content-type': 'multipart/form-data',
+          'x-access-token': token,
+        }
       })
       setLoading(false)
       setAvatar(res.data)
@@ -151,4 +152,4 @@ const ProfileaddressForm = () => {
   );
 };
 
-export default ProfileaddressForm;
+export default ProfileInformation;

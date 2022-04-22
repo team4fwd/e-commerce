@@ -1,4 +1,4 @@
-import { LogInAPI, SignUpAPI } from '../../API';
+import { LogInAPI, SignUpAPI } from '../../util/API';
 
 const LOGIN = 'LOGIN';
 const LOGIN_FAIL = 'LOGIN_FAIL';
@@ -36,6 +36,7 @@ const loginUser = (userInfo) => async (dispatch) => {
 
     if (data.status === true) {
       const { user } = data;
+      user.token = data.accesstoken;
       dispatch(logUserIn(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }
@@ -54,6 +55,7 @@ const registerUser = (userInfo) => async (dispatch) => {
 
     if (data.status === true) {
       const { user } = data;
+      user.token = data.accesstoken;
       dispatch(register(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }

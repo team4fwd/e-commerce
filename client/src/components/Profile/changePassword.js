@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from 'formik';
 import validate from './profilevalidation';
-import {ChangePassAPI} from '../../API'
+import {ChangePassAPI} from '../../util/API'
+import { useSelector } from 'react-redux';
 
 
 const ChangePassword = () => {
     // const [NewPassword, setNewPassword] = useState(false)
+    const { token } = useSelector((state) => state.user.userInfo);
 
   const formik = useFormik({
 
@@ -14,16 +16,14 @@ const ChangePassword = () => {
         newPassword: '',
         currentPassword: '',
         confirmPassword: '',
-       
     },
     validate,
     onSubmit: values => {
     //   console.log(values)
 
-      ChangePassAPI(values)
+      ChangePassAPI(values, token)
             .then((data) => data)
             .then((data) => console.log(data))
-
 
     }
 
