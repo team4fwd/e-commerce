@@ -1,0 +1,30 @@
+.Inprogress{
+    background-color: #f0ad4e !important;
+}
+.Shipped{
+    background-color: rgb(211, 52, 211) !important;
+}
+.Delivered{
+    background-color: #4bbd4b !important;
+}
+.Canceled{
+    background-color: #eb433d !important;
+}
+.orderStatus{
+    background-color:#0275d8;
+}
+.orderStatus{
+    padding: 4px;
+    border-radius: 8%;
+    color: white;
+}
+select{
+    width: 20px;
+}
+
+.orderadminT th{
+    text-align: center;
+}
+.orderadminT td{
+    text-align: center;
+}

@@ -91,22 +91,83 @@ export const DeleteAPI = (id, kind, token) =>
     body: null,
   }).then((res) => res.json());
 
-// export const updateCategory = () =>
-//   fetch(`https://e-commerce-fwd.herokuapp.com/cateogry/${id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify()
-//   }).then(res => res.json())
+    
+export const GetAllOrdersAPI = (token)  =>
+fetch('https://e-commerce-fwd.herokuapp.com/order', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-access-token': token,
+  },
+}) .then((res) => res.json())
+.then((data) => data);
 
-// export const updateProductAPI = (values) =>
-//   fetch("https://e-commerce-fwd.herokuapp.com/products/" + id, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
+//user
+export const AddInformationAPI = (values, token) =>
 
-//     body: JSON.stringify(values)
-//   }).then(res => res.json()).then((data) => data
-//   );
+fetch("https://e-commerce-fwd.herokuapp.com/userprofile/edit", {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-access-token': token,
+
+  },
+  body: JSON.stringify(values)
+}).then(res => res.json())
+  .then(data => data
+  )
+
+export const ChangePassAPI = (values, token) =>
+
+fetch("https://e-commerce-fwd.herokuapp.com/users/changePass", {
+method: 'POST',
+headers: {
+  'Content-Type': 'application/json',
+  'x-access-token': token,
+
+},
+
+body: JSON.stringify(values)
+}).then(res => res.json())
+.then(data => data
+)
+export const GetOrdersAPI = (token) =>
+
+fetch("https://e-commerce-fwd.herokuapp.com/order/userorder", {
+method: 'GET',
+headers: {
+  'x-access-token': token,
+
+
+},
+}).then(res => res.json())
+.then(data => data
+)
+
+export const GetUserInfoAPI = (token) =>
+
+fetch("https://e-commerce-fwd.herokuapp.com/userprofile", {
+method: 'GET',
+headers: {
+  'x-access-token': token,
+
+
+},
+}).then(res => res.json())
+.then(data => data)
+
+export const EditOrderStatus = (id, orderStauts, token) =>
+
+fetch("https://e-commerce-fwd.herokuapp.com/order/" + id, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-access-token': token,
+  },
+
+  body: JSON.stringify({orderStauts:orderStauts}),
+})
+  .then((res) => res.json())
+  .then(
+    (data) => data
+  )

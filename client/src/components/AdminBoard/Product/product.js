@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 let Product = (props) => {
-  // const categories = GetProductAPI().then((data) => data)
   const [productsData, setProductsData] = useState([]);
   const { token } = useSelector((state) => state.user.userInfo);
 

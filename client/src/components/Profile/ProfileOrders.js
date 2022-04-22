@@ -1,30 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
+import { GetOrdersAPI } from "../../util/API";
+import { useSelector } from 'react-redux';
+
 
 const ProfileOrders = () => {
+
+  const [orders, setOrders] = useState([]);
+  const { token } = useSelector((state) => state.user.userInfo);
+
+  useEffect(() => {
+
+      GetOrdersAPI(token).then((data) => {
+          setOrders(data);
+
+      })
+  }, [token]);
   return (
-    <Table hover>
+    <Table hover className="orderPro">
       <thead>
         <tr>
           <th>ID</th>
-          <th>STATUS</th>
+          <th>NUMBER OF ITEMS</th>
+          <th>ORDER STATUS</th>
           <th>DATE</th>
-          <th>TOTAL</th>
+          <th>PAYMENT METHOD</th>
+          <th>TOTAL PRICE</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>62485c9abda8879542128c58</td>
-          <td>Paid</td>
-          <td>4/4/2020 at 4:24 PM</td>
-          <td>EGP1147.7</td>
-        </tr>
-        <tr className='table-danger'>
-          <td>62485c9abda8879542128c58</td>
-          <td>Not Paid</td>
-          <td>Last Saturday at 4:24 PM</td>
-          <td>EGP1147</td>
-        </tr>
+        {orders.map((order, index)=> 
+         <tr key={index}>
+          <td>{order._id}</td>
+          <td>{order.orderItems.length}</td>
+          <td>{order.orderStauts}</td>
+          <td>{order.createdAt}</td>
+          <td>{order.paymentMethod}</td>
+          <td>{order.totalPrice}</td>
+
+
+        </tr>)
+       }
+       
       </tbody>
     </Table>
   );

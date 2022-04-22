@@ -31,6 +31,7 @@ import AllProducts from './components/AdminBoard/Product/Allproducts';
 import UpdateProduct from './components/AdminBoard/Product/updateProduct';
 import Updatecategory from './components/AdminBoard/Category/updateCategory';
 import NotFound from './pages/NotFound';
+import AllOrders from './components/AdminBoard/Orders/AllOrders';
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,8 @@ function App() {
               path='products/updateProduct/:id'
               element={<UpdateProduct />}
             />
+            <Route path='orders' element={<AllOrders />} />
+
           </Route>
         )}
         <Route path='*' element={<NotFound />} />

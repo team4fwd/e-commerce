@@ -60,6 +60,12 @@ const Sidebar = () => {
                 Categories
               </li>
             </Link>
+            <Link to='orders' className='route-link'>
+              <li className='sidebar__list-item'>
+                <MdStorefront className='sidebar__icon' />
+                Orders
+              </li>
+            </Link>
             <li className='sidebar__list-item'>
               <MdAttachMoney className='sidebar__icon' />
               Transactions

@@ -5,10 +5,14 @@ import { useParams } from 'react-router-dom';
 import CategoryOption from './categoryOption';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+
 
 import '../prodAndCteg-List.scss';
 
 let UpdateProduct = (props) => {
+  const { token } = useSelector((state) => state.user.userInfo);
   const [productData, setProductData] = useState([]);
   const [images, setImages] = React.useState([]);
   const [showImg, setShowImg] = React.useState(false);
@@ -22,6 +26,8 @@ let UpdateProduct = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'x-access-token': token,
+
       },
 
       body: JSON.stringify(),
@@ -31,7 +37,7 @@ let UpdateProduct = (props) => {
         setImages(data.images);
         setProductData(data);
       });
-  }, [id]);
+  }, [id, token]);
 
   const formik = useFormik({
     initialValues: {
@@ -55,16 +61,18 @@ let UpdateProduct = (props) => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'x-access-token': token,
+
         },
 
         body: JSON.stringify(values),
       })
         .then((res) => res.json())
         .then(
-          (data) => data
-          //   alert(JSON.stringify(values, null, 5));
-        );
-      navigate('/admin/products');
+          (data) => data).then((data) => {if (data.status === true) {
+            navigate('/admin/products');
+          } else { alert(data.message)
+          }})
     },
   });
 
@@ -98,10 +106,12 @@ let UpdateProduct = (props) => {
           'https://e-commerce-fwd.herokuapp.com/uploadImage',
           formData,
           {
-            headers: { 'content-type': 'multipart/form-data' },
+            headers: { 'content-type': 'multipart/form-data' ,
+            'x-access-token': token,
+
+          },
           }
         );
-        console.log(res.data);
 
         await formik.values.images.push(res.data);
 
@@ -212,12 +222,12 @@ let UpdateProduct = (props) => {
             type='file'
             name='file'
             className='form-control-lg'
-            id='file_up'
+            id='file_up2'
             multiple
             onChange={handleUpload}
           />
 
-          <div className='prod_images_Container'>
+          <div className="prod_images_Container">
             {images.map((image, index) => (
               <div className='prod_images' key={index}>
                 <img src={image.url} alt='' />

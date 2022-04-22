@@ -58,7 +58,6 @@ let AddProduct = (props) => {
           // 1mb
           return alert('Size too large!');
 
-        console.log(file.type);
         if (
           file.type !== 'image/jpeg' &&
           file.type !== 'image/png' &&
@@ -81,10 +80,8 @@ let AddProduct = (props) => {
             },
           }
         );
-        console.log(res.data);
 
         await formik.values.images.push(res.data);
-        // images.push(res.data)
       } catch (err) {
         alert(err.response.data.message);
       }
@@ -199,7 +196,7 @@ let AddProduct = (props) => {
             type='file'
             name='file'
             className='form-control-lg'
-            id='file_up'
+            id='file_up2'
             multiple
             onChange={handleUpload}
           />
