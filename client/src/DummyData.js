@@ -1,5 +1,3 @@
-import productDetailImg1 from './assets/images/gallery-1.jpg';
-
 export const usersData = [
   {
     name: 'Jan',
