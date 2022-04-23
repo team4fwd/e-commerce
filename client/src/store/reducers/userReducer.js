@@ -4,6 +4,7 @@ import {
   LOGOUT,
   REGISTER,
   REGISTER_FAIL,
+  UPDATE_USER_PROFILE,
 } from '../actions/userActions';
 
 const userReducer = (state = {}, action) => {
@@ -18,6 +19,17 @@ const userReducer = (state = {}, action) => {
       return { error: action.errMsg };
     case LOGOUT:
       return {};
+    case UPDATE_USER_PROFILE:
+      return {
+        userInfo: {
+          ...state.userInfo,
+          userProfile: [
+            {
+              ...action.updatedValues,
+            },
+          ],
+        },
+      };
     default:
       return state;
   }

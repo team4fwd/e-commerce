@@ -1,10 +1,11 @@
-import { LogInAPI, SignUpAPI } from '../../util/API';
+import { AddInformationAPI, LogInAPI, SignUpAPI } from '../../util/API';
 
 const LOGIN = 'LOGIN';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const REGISTER = 'REGISTER';
 const REGISTER_FAIL = 'REGISTER_FAIL';
 const LOGOUT = 'LOGOUT';
+const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
 
 const logUserIn = (user) => ({
   type: LOGIN,
@@ -73,13 +74,32 @@ const logoutUser = () => (dispatch) => {
   dispatch(logUserOut());
 };
 
+const updateUserInfo = (values) => async (dispatch, getState) => {
+  try {
+    const { token } = getState().user.userInfo;
+    const data = await AddInformationAPI(values, token);
+    if (data.status === true) {
+      alert(data.message);
+      dispatch({
+        type: UPDATE_USER_PROFILE,
+        updatedValues: values,
+      });
+    }
+    if (data.status === false) throw new Error(data.message);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
 export {
   loginUser,
   LOGIN,
   LOGIN_FAIL,
   REGISTER,
   REGISTER_FAIL,
+  UPDATE_USER_PROFILE,
   LOGOUT,
   logoutUser,
   registerUser,
+  updateUserInfo,
 };
