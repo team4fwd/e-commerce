@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 import './Profile.scss';
 import ProfileInformation from '../../components/Profile/ProfileInformation';
 import SectionTitle from '../../components/layout/SectionTitle';
@@ -13,13 +12,10 @@ import { useLocation } from 'react-router-dom';
 import ChangePassword from '../../components/Profile/changePassword';
 import AcountDetailsForm from '../../components/Profile/AcountDetailsForm';
 
-
 const Profile = () => {
   const location = useLocation();
   const redirect = location.search ? location.search.split('=')[1] : '';
-  const defaultKey = redirect ? redirect : 'dash';
-  console.log(redirect);
-  console.log(defaultKey);
+  const defaultKey = redirect ? redirect : 'account';
 
   return (
     <>
@@ -29,8 +25,7 @@ const Profile = () => {
           <Row>
             <Col sm={3}>
               <Nav variant='pills' className='flex-column nav-pills-custom'>
-               
-              <Nav.Item>
+                <Nav.Item>
                   <Nav.Link className='mb-3 p-3 shadow' eventKey='account'>
                     <span className='font-weight-bold text-uppercase'>
                       Account details
@@ -38,7 +33,7 @@ const Profile = () => {
                   </Nav.Link>
                 </Nav.Item>
 
-              <Nav.Item>
+                <Nav.Item>
                   <Nav.Link className='mb-3 p-3 shadow' eventKey='information'>
                     <span className='font-weight-bold text-uppercase'>
                       profile information
@@ -47,30 +42,35 @@ const Profile = () => {
                 </Nav.Item>
 
                 <Nav.Item>
-                  <Nav.Link className='mb-3 p-3 shadow' eventKey='order'>
-                    <span className='font-weight-bold text-uppercase'>Orders</span>
-                  </Nav.Link>
-                </Nav.Item>              
-               
-                <Nav.Item>
-                  <Nav.Link className='mb-3 p-3 shadow' eventKey='changePassword'>
-                    <span className='font-weight-bold text-uppercase'>change Password</span>
+                  <Nav.Link className='mb-3 p-3 shadow' eventKey='orders'>
+                    <span className='font-weight-bold text-uppercase'>
+                      Orders
+                    </span>
                   </Nav.Link>
                 </Nav.Item>
 
+                <Nav.Item>
+                  <Nav.Link
+                    className='mb-3 p-3 shadow'
+                    eventKey='changePassword'
+                  >
+                    <span className='font-weight-bold text-uppercase'>
+                      change Password
+                    </span>
+                  </Nav.Link>
+                </Nav.Item>
               </Nav>
             </Col>
             <Col sm={9}>
               <Tab.Content>
-
-              <Tab.Pane
+                <Tab.Pane
                   className='shadow rounded bg-white p-5'
                   eventKey='account'
                 >
-                   <AcountDetailsForm />
+                  <AcountDetailsForm />
                 </Tab.Pane>
 
-              <Tab.Pane
+                <Tab.Pane
                   className='shadow rounded bg-white p-5'
                   eventKey='information'
                 >
@@ -79,7 +79,7 @@ const Profile = () => {
 
                 <Tab.Pane
                   className='shadow rounded bg-white p-5'
-                  eventKey='order'
+                  eventKey='orders'
                 >
                   <ProfileOrders />
                 </Tab.Pane>
@@ -90,7 +90,6 @@ const Profile = () => {
                 >
                   <ChangePassword />
                 </Tab.Pane>
-
               </Tab.Content>
             </Col>
           </Row>

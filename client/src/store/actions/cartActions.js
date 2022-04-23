@@ -17,7 +17,7 @@ const addItemsToCart = (item) => (dispatch, getState) => {
 const removeItemsFromCart = (id) => (dispatch, getState) => {
   dispatch({
     type: REMOVE,
-    id,
+    product_id: id,
   });
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart));
@@ -26,7 +26,7 @@ const removeItemsFromCart = (id) => (dispatch, getState) => {
 const removeOneItemFromCart = (id) => (dispatch, getState) => {
   dispatch({
     type: REMOVEONE,
-    id,
+    product_id: id,
   });
 
   localStorage.setItem('cartItems', JSON.stringify(getState().cart));

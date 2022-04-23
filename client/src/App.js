@@ -32,6 +32,7 @@ import UpdateProduct from './components/AdminBoard/Product/updateProduct';
 import Updatecategory from './components/AdminBoard/Category/updateCategory';
 import NotFound from './pages/NotFound';
 import AllOrders from './components/AdminBoard/Orders/AllOrders';
+import LoadingBar from 'react-redux-loading-bar';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +49,8 @@ function App() {
 
   return (
     <Router>
-      {!adminRoute && <NavBar />}
+      <NavBar />
+      <LoadingBar showFastActions />
       <Routes>
         <Route path='/login' element={<LogIn />} />
         <Route path='/signUp' element={<SignUp />} />
@@ -84,7 +86,6 @@ function App() {
               element={<UpdateProduct />}
             />
             <Route path='orders' element={<AllOrders />} />
-
           </Route>
         )}
         <Route path='*' element={<NotFound />} />

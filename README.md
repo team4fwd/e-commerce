@@ -15,15 +15,18 @@
 # Api Documentaion:
 Registration API: 
 =========================
+
 Link: https://e-commerce-fwd.herokuapp.com/users/add <br /> 
 Required Fields: <br />
-{ 
-    "firstName": " ", <br />
-    "lastName": " ",     "email": " ", <br />
-    "password" : " " } <br />
+{ <br />
+    "firstName": "", <br />
+    "lastName": "",  <br />   
+    "email": "", <br />
+    "password" : "" <br />
+} <br />
 Request type: POST <br />
 Response :  <br />
-{ 
+{ <br />
     "message": "User added successfully." <br />
 } <br />
  
@@ -31,7 +34,7 @@ Login API:
 ========================= 
 Link: https://e-commerce-fwd.herokuapp.com/users/ login <br />
 Required Fields: <br />
-{ 
+{ <br />
     "email": " ", <br />
     "password" : " " <br />
 }  <br />
@@ -44,241 +47,224 @@ Response:  <br />
  
 Logout API: 
 ========================= 
-Link: https://e-commerce-fwd.herokuapp.com/users/ logout 
-Request type: GET  
-Response:  
-{ 
-    "message": "logout Success", 
-} 
+Link: https://e-commerce-fwd.herokuapp.com/users/ logout <br />
+Request type: GET  <br />
+Response:  <br />
+{ <br />
+    "message": "logout Success", <br />
+} <br />
 Category API
 =========================
 Add Category:
 =========================
-Link: https://e-commerce-fwd.herokuapp.com/cateogry/add 
-Request type: POST 
-Required Fields: 
-{ 
-    "categoryName" : "" } 
+Link: https://e-commerce-fwd.herokuapp.com/cateogry/add <br />
+Request type: POST <br />
+Required Fields: <br />
+{ <br />
+    "categoryName" : "" } <br />
  
-Response:  
-{ 
-     	Status: true, message: " Category Added Successfully " 
-} 
-======================= 
+Response:  <br />
+{ <br />
+     	Status: true, message: " Category Added Successfully " <br />
+} <br />
+ 
 Show Category:
-Link: https://e-commerce-fwd.herokuapp.com/cateogry 
-========================= 
-Request type: GET 
-========================= 
+=======================
+Link: https://e-commerce-fwd.herokuapp.com/cateogry  <br /> 
+Request type: GET  <br /> 
+
 Edit Category:
-Link: https://e-commerce-fwd.herokuapp.com/cateogry/id 
-========================= 
-Request type: PUT 
-========================= 
-Required Fields: 
-{ 
-    "categoryName" : "" } 
-========================= 
-Response:  
-{ 
-     	Status: true, 
-message: " Category Updated Successfully " 
-} 
-========================= 
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/cateogry/id  <br /> 
+Request type: PUT  <br /> 
+Required Fields: <br /> 
+{ <br /> 
+    "categoryName" : "" <br /> 
+}  <br /> 
+Response:  <br /> 
+{ <br /> 
+  Status: true, <br /> 
+  message: " Category Updated Successfully " <br /> 
+} <br /> 
+ 
 Delete Category:
-Link: https://e-commerce-fwd.herokuapp.com/cateogry/id 
-========================= 
-Request type: DELETE 
-========================= 
-Response:  
-{ 
-     	Status: true, 
-message: " Category Deleted Successfully " 
-} 
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/cateogry/id <br /> 
+Request type: DELETE  <br /> 
+Response:  <br /> 
+{ <br /> 
+ Status: true, <br /> 
+ message: " Category Deleted Successfully " <br /> 
+} <br /> 
+
+Products API
+=========================
+Add Products: 
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/products/ create  <br /> 
+Request type: POST  <br /> 
+Required Fields: <br /> 
+{ <br /> 
+    "productName"  	:   "", <br /> 
+    "categoryName"  	: "", <br /> 
+    "descriptions"   	:  "", <br /> 
+    "price"            	:   , <br /> 
+    "quantity"         	: , <br /> 
+    "images"           	:[{"public_id": "","url": ""}    ] <br /> 
+}  <br /> 
+To add images by upload API and the response is:<br /> 
+{"public_id": "","url": ""}<br /> 
+Link: https://e-commerce-fwd.herokuapp.com/uploadImage <br /> 
+Response:  <br /> 
+{ <br /> 
+  Status: true, <br /> 
+  message: " Product Added Successfully " <br /> 
+} <br /> 
+  
+Show Products:
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/ products <br /> 
+Request type: GET <br /> 
+
+Edit Products:
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/ products/id <br /> 
+Request type: PUT  <br /> 
+Required Fields: <br /> 
+{ <br /> 
+    "productName"  	:   "", <br /> 
+    "categoryName"  	: "", <br /> 
+    "descriptions"   	:  "", <br /> 
+    "price"            	:   , <br /> 
+    "quantity"         	: , <br /> 
+    "images"           	:[{"public_id": "","url": ""}    ] <br /> 
+}  <br /> 
+To add images by upload API and the response is:<br /> 
+{"public_id": "","url": ""}<br /> 
+Link: https://e-commerce-fwd.herokuapp.com/uploadImage<br /> 
+Response:  <br /> 
+{ <br /> 
+  Status: true, <br /> 
+  message: " Product Updated Successfully " <br /> 
+} <br /> 
+
+Delete Products:
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/ products/id <br /> 
+Request type: DELETE  <br /> 
+Response:  <br /> 
+{ <br /> 
+  Status: true, <br /> 
+  message: " Product Deleted Successfully " <br /> 
+} <br /> 
+
+Product Details:
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/products/id <br /> 
+Request type: GET  <br /> 
+Response:  <br /> 
+{ <br /> 
+    "productName"  	:   "", <br /> 
+    "categoryName"  	: "", <br /> 
+    "descriptions"   	:  "", <br /> 
+    "price"            	:   , <br /> 
+    "quantity"         	: , <br /> 
+    "images"           	:[{"public_id": "","url": ""}    ]} <br /> 
 
  
-
-
-
- 
-Products API
-Add Products: 
-Link: https://e-commerce-fwd.herokuapp.com/products/ create 
-========================= 
-Request type: POST 
-========================= 
-Required Fields: 
-{ 
-    "productName"  	:   "", 
-    "categoryName"  	: "", 
-    "descriptions"   	:  "", 
-    "price"            	:   , 
-    "quantity"         	: , 
-    "images"           	:[{"public_id": "","url": ""}    ] 
-}  
-To add images by upload API and the response is:
-{"public_id": "","url": ""}
-Link: https://e-commerce-fwd.herokuapp.com/uploadImage
-========================= 
-Response:  
-{ 
-     	Status: true, 
-message: " Product Added Successfully " 
-} 
-======================= 
-Show Products: 
-Link: https://e-commerce-fwd.herokuapp.com/ products 
-=========================
-Request type: GET 
-=========================
- Edit Products:
-Link: https://e-commerce-fwd.herokuapp.com/ products/id 
-========================= 
-Request type: PUT 
-========================= 
-Required Fields: 
-{ 
-    "productName"  	:   "", 
-    "categoryName"  	: "", 
-    "descriptions"   	:  "", 
-    "price"            	:   , 
-    "quantity"         	: , 
-    "images"           	:[{"public_id": "","url": ""}    ] 
-}  
-To add images by upload API and the response is:
-{"public_id": "","url": ""}
-Link: https://e-commerce-fwd.herokuapp.com/uploadImage
-========================= 
-Response:  
-{ 
-     	Status: true, 
-message: " Product Updated Successfully " 
-} 
-========================= 
-Delete Products:
-Link: https://e-commerce-fwd.herokuapp.com/ products/id 
-========================= 
-Request type: DELETE 
-========================= 
-Response:  
-{ 
-     	Status: true, 
-message: " Product Deleted Successfully " 
-} 
-Product Details:
-Link: https://e-commerce-fwd.herokuapp.com/products/id 
-========================= 
-Request type: GET 
-========================= 
-Response:  
-{ 
-    "productName"  	:   "", 
-    "categoryName"  	: "", 
-    "descriptions"   	:  "", 
-    "price"            	:   , 
-    "quantity"         	: , 
-    "images"           	:[{"public_id": "","url": ""}    ]} 
-
-======================= 
 Search Products: 
-Link: https://e-commerce-fwd.herokuapp.com/products? Products=””&cat=””
 =========================
-Request type: GET 
-=========================
+Link: https://e-commerce-fwd.herokuapp.com/products? Products=””&cat=””<br /> 
+Request type: GET <br /> 
 
- 
 userprofile API
+=========================
 show userprofile: 
-Link: https://e-commerce-fwd.herokuapp.com/userprofile 
-========================= 
-Request type: GET 
-========================= 
-Response:  
-{
-    "userprofile": [
-        {
-            "_id": "",
-            "user_id": "",
-            "card": [],
-            "__v": 0,
-            "address": "",
-            "phoneNumber": ""
-        }
-    ],
-    "user": {
-        "firstName": "",
-        "lastName": "",
-        "email": ""
-    }
-}
-======================= 
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/userprofile  <br /> 
+Request type: GET  <br /> 
+Response:  <br /> 
+{<br /> 
+    "userprofile": [<br /> 
+        {<br /> 
+            "_id": "",<br /> 
+            "user_id": "",<br /> 
+            "card": [],<br /> 
+            "__v": 0,<br /> 
+            "address": "",<br /> 
+            "phoneNumber": ""<br /> 
+        }<br /> 
+    ],<br /> 
+    "user": {<br /> 
+        "firstName": "",<br /> 
+        "lastName": "",<br /> 
+        "email": ""<br /> 
+    }<br /> 
+}<br /> 
+ 
 Edit userprofile: 
-Link: https://e-commerce-fwd.herokuapp.com/userprofile/edit
-========================= 
-Request type: POST 
-========================= 
-Required Fields: 
-{ 
-    " address "  	:   "", 
-    " phoneNumber "  	: "", 
-    "avatar"           	:[{"public_id": "","url": ""}    ] 
-}  
-To add avatar by upload API and the response is:
-{"public_id": "","url": ""}
-Link: https://e-commerce-fwd.herokuapp.com/uploadImage
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/userprofile/edit <br /> 
+Request type: POST  <br /> 
+Required Fields: <br /> 
+{ <br /> 
+    " address "  	:   "", <br /> 
+    " phoneNumber "  	: "", <br /> 
+    "avatar"           	:[{"public_id": "","url": ""}    ] <br /> 
+}  <br /> 
+To add avatar by upload API and the response is:<br /> 
+{"public_id": "","url": ""}<br /> 
+Link: https://e-commerce-fwd.herokuapp.com/uploadImage<br /> 
 
 
  
  
 Orders API
+=========================
 Add order: 
-Link: https://e-commerce-fwd.herokuapp.com/order 
-This link for user to add order 
-========================= 
-Request type: POST 
-========================= 
-Required Fields: 
-{
-user_id     : String,
-    	orderItems  : [{
-            "img": String,
-            "price": Number,
-            "amount" : Number,
-            "name": String,
-        }],
-    	shippingInfo :[{
-            "address": String,
-            "phone": Number,
-        }],
-    	itemsPrice   : Number,
-    	shippingPrice : Number,    
-    	taxPrice     : Number,
-    	totalPrice     : Number,
-    orderStauts     :String enum: ['Inprogress', 'Shipped','In The Way','Delivered','Canceled'],
-    paymentMethod     :String enum: ['Cash On Delivered', 'PayPal','Visa','Master Card'],
-}
-
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/order <br /> 
+This link for user to add order <br /> 
+Request type: POST  <br /> 
+Required Fields: <br /> 
+{<br /> 
+user_id     : String,<br /> 
+    	orderItems  : [{<br /> 
+            "img": String,<br /> 
+            "price": Number,<br /> 
+            "amount" : Number,<br /> 
+            "name": String,<br /> 
+        }],<br /> 
+    	shippingInfo :[{<br /> 
+            "address": String,<br /> 
+            "phone": Number,<br /> 
+        }],<br /> 
+    	itemsPrice   : Number,<br /> 
+    	shippingPrice : Number,    <br /> 
+    	taxPrice     : Number,<br /> 
+    	totalPrice     : Number,<br /> 
+    orderStauts     :String enum: ['Inprogress', 'Shipped','In The Way','Delivered','Canceled'],<br /> 
+    paymentMethod     :String enum: ['Cash On Delivered', 'PayPal','Visa','Master Card'],<br /> 
+}<br /> 
 Show order: 
 =========================
-Link: https://e-commerce-fwd.herokuapp.com/order 
-This link for admin to show all orders  
-Request type: GET 
-========================= 
-Response:  
-All orders in database
+Link: https://e-commerce-fwd.herokuapp.com/order <br /> 
+This link for admin to show all orders  <br /> 
+Request type: GET  <br /> 
+Response:  <br /> 
+All orders in database<br /> 
  
 Edit order Status: 
-Link: https://e-commerce-fwd.herokuapp.com/order/id
-This link for admin to edit order status 
-'Inprogress', 'Shipped','In The Way','Delivered','Canceled'
-After any changes in order status the user received email for order status 
-========================= 
-Request type: PUT 
-========================= 
-Required Fields: 
-{
-orderStauts : “”
+=========================
+Link: https://e-commerce-fwd.herokuapp.com/order/id<br /> 
+This link for admin to edit order status <br /> 
+'Inprogress', 'Shipped','In The Way','Delivered','Canceled'<br /> 
+After any changes in order status the user received email for order status  <br /> 
+Request type: PUT <br /> 
+Required Fields: <br /> 
+{<br /> 
+orderStauts : “”<br /> 
 
-} 
+} <br /> 
 
 

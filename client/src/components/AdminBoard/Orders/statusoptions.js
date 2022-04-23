@@ -3,10 +3,7 @@ import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import './order.css'
 
-
-
 let StatusOptions = (props) => {
-
   const { token } = useSelector((state) => state.user.userInfo);
   
   const statusOfOrder = props.order.orderStauts

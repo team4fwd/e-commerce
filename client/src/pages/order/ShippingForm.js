@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,19 +11,20 @@ import { useNavigate } from 'react-router-dom';
 const ShippingForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { shippingInfo } = useSelector((state) => state.cart);
-  const [address, setAddress] = useState(shippingInfo?.address ?? '');
-  const [city, setCity] = useState(shippingInfo?.city ?? '');
-  const [country, setCountry] = useState(shippingInfo?.country ?? '');
-  const [phone, setPhone] = useState(shippingInfo?.phone ?? '');
+  const { userProfile } = useSelector((state) => state.user.userInfo);
+  // const { shippingInfo } = useSelector((state) => state.cart);
+  const userAdress = userProfile[0].address;
+  const userPhone = userProfile[0].phoneNumber;
+  const [address, setAddress] = useState(userAdress || '');
+  // const [city, setCity] = useState(shippingInfo?.city ?? '');
+  // const [country, setCountry] = useState(shippingInfo?.country ?? '');
+  const [phone, setPhone] = useState(userPhone || '');
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       addShippingAddress({
         address,
-        city,
-        country,
         phone,
       })
     );
@@ -45,11 +46,11 @@ const ShippingForm = () => {
             <Form.Control
               onChange={(e) => setAddress(e.target.value)}
               value={address ?? ''}
-              placeholder='Apartment, Bulding, Street'
+              placeholder='Apartment, Bulding, Street, city , country'
             />
           </Form.Group>
 
-          <Row className='mb-3'>
+          {/* <Row className='mb-3'>
             <Form.Group as={Col}>
               <Form.Label className='h6'>Town / City</Form.Label>
               <Form.Control
@@ -66,7 +67,7 @@ const ShippingForm = () => {
                 placeholder='Egypt'
               />
             </Form.Group>
-          </Row>
+          </Row> */}
 
           <Form.Group className='mb-3'>
             <Form.Label className='h6'>Phone</Form.Label>

@@ -3,8 +3,8 @@ import Chart from '../../components/admin/Chart';
 import FeaturedInfo from '../../components/admin/FeaturedInfo';
 import './AdminHome.scss';
 import { usersData } from '../../DummyData';
-import WidgetSm from '../../components/admin/WidgetSm';
-import WidgetLg from '../../components/admin/WidgetLg';
+// import WidgetSm from '../../components/admin/WidgetSm';
+// import WidgetLg from '../../components/admin/WidgetLg';
 
 const Home = () => {
   return (
@@ -16,10 +16,10 @@ const Home = () => {
         dataKey='Active Users'
         grid
       />
-      <div className='home__widgets'>
+      {/* <div className='home__widgets'>
         <WidgetSm />
         <WidgetLg />
-      </div>
+      </div> */}
     </div>
   );
 };
