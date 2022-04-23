@@ -15,12 +15,14 @@
 # Api Documentaion:
 Registration API: 
 =========================
+
 Link: https://e-commerce-fwd.herokuapp.com/users/add <br /> 
 Required Fields: <br />
 { 
     "firstName": " ", <br />
     "lastName": " ",     "email": " ", <br />
-    "password" : " " } <br />
+    "password" : " " 
+} <br />
 Request type: POST <br />
 Response :  <br />
 { 
