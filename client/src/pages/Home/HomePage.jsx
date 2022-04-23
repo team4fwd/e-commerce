@@ -2,12 +2,20 @@ import Slider from '../../components/Home/Slider';
 import Category from '../../components/Home/Category';
 import ProductItem from '../../components/Products/ProductItem';
 import './HomePage.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllProducts } from '../../store/actions/productsActions';
 
 const HomePage = () => {
   window.scrollTo(0, 0);
   const { products, error } = useSelector((state) => state.products);
   const productsLatest = products.slice(0, 8);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
   return (
     <>
       <Slider />

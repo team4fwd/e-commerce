@@ -1,4 +1,6 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import { AddInformationAPI, LogInAPI, SignUpAPI } from '../../util/API';
+import { clearCart } from './cartActions';
 
 const LOGIN = 'LOGIN';
 const LOGIN_FAIL = 'LOGIN_FAIL';
@@ -33,15 +35,15 @@ const logUserOut = () => ({
 
 const loginUser = (userInfo) => async (dispatch) => {
   try {
+    dispatch(showLoading());
     const data = await LogInAPI(userInfo);
-
     if (data.status === true) {
       const { user } = data;
       user.token = data.accesstoken;
       dispatch(logUserIn(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }
-
+    dispatch(hideLoading());
     if (data.status === false) {
       throw new Error(data.message);
     }
@@ -52,6 +54,7 @@ const loginUser = (userInfo) => async (dispatch) => {
 
 const registerUser = (userInfo) => async (dispatch) => {
   try {
+    dispatch(showLoading());
     const data = await SignUpAPI(userInfo);
 
     if (data.status === true) {
@@ -60,7 +63,7 @@ const registerUser = (userInfo) => async (dispatch) => {
       dispatch(register(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }
-
+    dispatch(hideLoading());
     if (data.status === false) {
       throw new Error(data.message);
     }
@@ -71,11 +74,13 @@ const registerUser = (userInfo) => async (dispatch) => {
 
 const logoutUser = () => (dispatch) => {
   localStorage.removeItem('userInfo');
+  dispatch(clearCart());
   dispatch(logUserOut());
 };
 
 const updateUserInfo = (values) => async (dispatch, getState) => {
   try {
+    dispatch(showLoading());
     const { token } = getState().user.userInfo;
     const data = await AddInformationAPI(values, token);
     if (data.status === true) {
@@ -85,6 +90,7 @@ const updateUserInfo = (values) => async (dispatch, getState) => {
         updatedValues: values,
       });
     }
+    dispatch(hideLoading());
     if (data.status === false) throw new Error(data.message);
   } catch (err) {
     alert(err.message);

@@ -20,11 +20,11 @@ const CartProduct = ({ item, order }) => {
   };
 
   const removeOneItemHandler = () => {
-    dispatch(removeOneItemFromCart(item.id));
+    dispatch(removeOneItemFromCart(item.product_id));
   };
 
   const removeItemHandler = () => {
-    dispatch(removeItemsFromCart(item.id));
+    dispatch(removeItemsFromCart(item.product_id));
   };
   return (
     <div className={classes['cart-products__details']}>
