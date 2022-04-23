@@ -60,8 +60,6 @@ const registerUser = (userInfo) => async (dispatch) => {
     if (data.status === true) {
       const { user } = data;
       user.token = data.accesstoken;
-      console.log(user);
-      console.log(data);
       dispatch(logUserIn(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }
