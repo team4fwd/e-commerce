@@ -33,7 +33,7 @@ const userController = {
             await adduser.save()
             await user_profile.save()
             const accesstoken = createAccessToken({id: user_id})
-            res.json({user:{_id:user_id,firstName:adduser.firstName,lastName:adduser.lastName,email:adduser.email},accesstoken:accesstoken,status:true,message:"User added successfully."})
+            res.json({user:{_id:user_id,firstName:adduser.firstName,lastName:adduser.lastName,email:adduser.email,userprofile:user_profile},accesstoken:accesstoken,status:true,message:"User added successfully."})
         }
         catch(err){
             res.status(404).json({status:false,message:"User not Saved."})

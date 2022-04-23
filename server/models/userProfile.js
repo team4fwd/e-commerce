@@ -19,9 +19,6 @@ const userProfileSchema = Schema({
         maxLength   : 100,
         trim        : true,
     },
-    card            :{
-        type        : []
-    },
     avatar          : {
         type        : {
             "public_id": String,
