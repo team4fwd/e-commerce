@@ -156,18 +156,3 @@ headers: {
 }).then(res => res.json())
 .then(data => data)
 
-export const EditOrderStatus = (id, orderStauts, token) =>
-
-fetch("https://e-commerce-fwd.herokuapp.com/order/" + id, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-access-token': token,
-  },
-
-  body: JSON.stringify({orderStauts:orderStauts}),
-})
-  .then((res) => res.json())
-  .then(
-    (data) => data
-  )
