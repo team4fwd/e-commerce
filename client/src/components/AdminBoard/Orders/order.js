@@ -16,19 +16,17 @@ let Order = (props) => {
   return (
     <>
       {ordersData.map((order, index) => (
+        console.log(order),
         <tr key={index} id={order._id}>
           <td>{order._id}</td>
+          <td>{order.name}</td>
           <td>{order.paymentMethod}</td>
-          {/* <td>{order.user_id}</td> */}
+          <td>{order.shippingInfo.address}</td>
+          <td>{order.shippingInfo.phone}</td>
           <td>{order.totalPrice}</td>
-          <td>
-            <p className={`orderStatus ${order.orderStauts}`}>
-              {order.orderStauts}
-            </p>
-          </td>
-          <td>
-            <StatusOptions order={order} id={order._id} token={token} />
-          </td>
+          <td><StatusOptions order={order} id={order._id} token={token} orderStatus={order.orderStauts}/></td>
+
+          
         </tr>
       ))}
     </>

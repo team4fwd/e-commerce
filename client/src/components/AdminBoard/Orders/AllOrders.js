@@ -13,11 +13,12 @@ const AllOrders = () => {
           <thead>
             <tr>
               <th className='Same-line'>Order ID</th>
+              <th className='Same-line'>Customer Name</th>
               <th className='Same-line'>Paymment Method</th>
-              {/* <th>Customer ID</th> */}
+              <th>customer Adress</th>
+              <th>customer Number</th>
               <th>Amount</th>
               <th>Status</th>
-              <th>change Status</th>
             </tr>
           </thead>
           <tbody>

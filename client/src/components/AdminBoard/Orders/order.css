@@ -28,3 +28,6 @@ select{
 .orderadminT td{
     text-align: center;
 }
+.disabled{
+    color: #eb433d;
+}
