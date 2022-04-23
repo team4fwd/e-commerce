@@ -18,14 +18,15 @@ Registration API:
 
 Link: https://e-commerce-fwd.herokuapp.com/users/add <br /> 
 Required Fields: <br />
-{ 
-    "firstName": " ", <br />
-    "lastName": " ",     "email": " ", <br />
-    "password" : " " 
+{ <br />
+    "firstName": "", <br />
+    "lastName": "",  <br />   
+    "email": "", <br />
+    "password" : "" <br />
 } <br />
 Request type: POST <br />
 Response :  <br />
-{ 
+{ <br />
     "message": "User added successfully." <br />
 } <br />
  
@@ -33,7 +34,7 @@ Login API:
 ========================= 
 Link: https://e-commerce-fwd.herokuapp.com/users/ login <br />
 Required Fields: <br />
-{ 
+{ <br />
     "email": " ", <br />
     "password" : " " <br />
 }  <br />
