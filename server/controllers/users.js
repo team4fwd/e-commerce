@@ -38,7 +38,7 @@ const userController = {
                 firstName:adduser.firstName,
                 lastName:adduser.lastName,
                 email:adduser.email,
-                userprofile:[{
+                userProfile:[{
                     user_id:user_id,
                 }]},
                 accesstoken:accesstoken,
