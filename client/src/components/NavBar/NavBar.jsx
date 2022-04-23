@@ -10,6 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState } from 'react';
 import Modal from '../layout/Modal';
 import Search from '../search/Search';
+import NavBarShop from './NavBarShop';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ function NavBar() {
     ? items.reduce((pre, curr) => pre + curr.amount, 0)
     : 0;
   const user = useSelector((state) => state.user.userInfo);
+  const userProfile = user ? user.userProfile[0] : null;
+
   let avatar =
     'https://cdn-icons.flaticon.com/png/512/668/premium/668709.png?token=exp=1650660805~hmac=cb7a07ddf26c627c1022395c83d8b182';
-  if (user) avatar = user?.userProfile[0].avatar?.url || avatar;
+  if (userProfile) avatar = userProfile.avatar.url || avatar;
 
   const [searchIsShown, setSearchIsShown] = useState(false);
 
@@ -41,7 +44,16 @@ function NavBar() {
   return (
     <Navbar bg='white' expand='lg' variant='light'>
       <Container fluid>
-        <Navbar.Brand as={NavLink} to='/'>
+        <Navbar.Brand
+          style={{
+            color: 'darkblue',
+            fontWeight: 'bold',
+            fontSize: '26px',
+            cursor: 'pointer',
+          }}
+          as={NavLink}
+          to='/'
+        >
           4Commerce
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='navbarScroll' />
@@ -53,24 +65,18 @@ function NavBar() {
             <Nav.Link as={NavLink} to='/products'>
               Products
             </Nav.Link>
-            <NavDropdown title='Shop' id='navbarScrollingDropdown'>
-              <NavDropdown.Item as={NavLink} to='/products'>
-                Mens
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to='/products'>
-                Womens
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item as={NavLink} to='/products'>
-                Kids
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link as={NavLink} to='/contact'>
+            <NavBarShop />
+            {/* <Nav.Link as={NavLink} to='/contact'>
               contact us
             </Nav.Link>
             <Nav.Link as={NavLink} to='/about'>
               about us
-            </Nav.Link>
+            </Nav.Link> */}
+            {user && user.isAdmin && (
+              <Nav.Link as={NavLink} to='/admin'>
+                admin panel
+              </Nav.Link>
+            )}
           </Nav>
           <ul className='d-flex list-unstyled align-items-baseline'>
             <li>

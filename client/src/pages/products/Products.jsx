@@ -10,7 +10,7 @@ import {
   getProductsByCategory,
 } from '../../store/actions/productsActions';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Products = () => {
   window.scrollTo(0, 0);
@@ -22,9 +22,18 @@ const Products = () => {
   let sortedProducts = !error ? products.map((p) => ({ ...p })) : [];
   let title = message ? message : 'All Products';
 
+  const location = useLocation();
+  const cat = location.search
+    ? location.search.split('=')[1].split('-').join(' ')
+    : '';
+
   useEffect(() => {
-    dispatch(getAllProducts(product));
-  }, [dispatch, product]);
+    if (cat) {
+      dispatch(getProductsByCategory(cat));
+    } else {
+      dispatch(getAllProducts(product));
+    }
+  }, [dispatch, product, cat]);
 
   const getProductsHandler = (e) => {
     dispatch(getProductsByCategory(''));

@@ -1,3 +1,4 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import {
   GetAllProductsAPI,
   GetCategoryAPI,
@@ -33,7 +34,9 @@ const getAllProducts =
   (product = '') =>
   async (dispatch) => {
     try {
+      dispatch(showLoading());
       const products = await GetAllProductsAPI(product);
+      dispatch(hideLoading());
       if (!products || products.length === 0)
         throw new Error('No Products found!');
 
@@ -47,8 +50,9 @@ const getAllProducts =
 
 const getAllCategory = () => async (dispatch, getState) => {
   try {
-    // const { token } = getState().user.userInfo;
+    dispatch(showLoading());
     const categories = await GetCategoryAPI();
+    dispatch(hideLoading());
     if (!categories || categories.length === 0)
       throw new Error('No categories found!');
 
@@ -62,7 +66,9 @@ const getAllCategory = () => async (dispatch, getState) => {
 
 const getProductsByCategory = (cat) => async (dispatch) => {
   try {
+    dispatch(showLoading());
     const products = await GetProductsByCatAPI(cat);
+    dispatch(hideLoading());
     if (!products || products.length === 0)
       throw new Error('No Products found!');
 

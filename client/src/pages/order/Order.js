@@ -15,7 +15,6 @@ const Order = () => {
   );
   const { userInfo } = useSelector((state) => state.user);
   const { order, success, error } = useSelector((state) => state.order);
-  console.log(paymentMethod);
   const hasItems = items ? items.length > 0 : false;
 
   // Calculate Price
@@ -39,6 +38,8 @@ const Order = () => {
   const placeOrderHandler = () => {
     dispatch(
       addOrder({
+        user_id: userInfo._id,
+        name: `${userInfo.firstName} ${userInfo.lastName}`,
         orderItems: items,
         shippingInfo,
         paymentMethod,
@@ -83,7 +84,7 @@ const Order = () => {
                 <h5>
                   <strong>Order info</strong>
                 </h5>
-                <p>Shipping: {shippingInfo.country}</p>
+                <p>Shipping: {hasItems ? items.length : 0} items</p>
                 <p>Pay method: {paymentMethod}</p>
               </div>
             </div>
@@ -99,10 +100,7 @@ const Order = () => {
                 <h5>
                   <strong>Deliver to</strong>
                 </h5>
-                <p>
-                  Address: {shippingInfo.city},{shippingInfo.address},
-                  {shippingInfo.zip}
-                </p>
+                <p>Address: {shippingInfo.address},</p>
               </div>
             </div>
           </div>

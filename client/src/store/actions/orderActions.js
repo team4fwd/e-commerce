@@ -1,5 +1,6 @@
 import { AddOrderAPI } from '../../util/API';
 import { clearCart } from './cartActions';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 const ADD_ORDER = 'ADD_ORDER';
 const ADD_ORDER_FAILED = 'ADD_ORDER_FAILED';
@@ -21,15 +22,15 @@ const resetOrder = () => ({
 
 const addOrder = (order) => async (dispatch, getState) => {
   try {
-    const { _id: userId, token } = getState().user.userInfo;
-    console.log({ userId, ...order });
-    const data = await AddOrderAPI(userId, order, token);
-    console.log(data);
+    dispatch(showLoading());
+    const { token } = getState().user.userInfo;
+    const data = await AddOrderAPI(order, token);
     if (data) {
       dispatch(add(data));
       dispatch(clearCart());
       localStorage.removeItem('cartItems');
     }
+    dispatch(hideLoading());
     if (data?.status === false) {
       throw new Error(data.message);
     }
