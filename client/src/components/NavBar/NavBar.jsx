@@ -20,11 +20,12 @@ function NavBar() {
     ? items.reduce((pre, curr) => pre + curr.amount, 0)
     : 0;
   const user = useSelector((state) => state.user.userInfo);
-  const userProfile = user ? user.userProfile[0] : null;
+  // const userProfile = user ? user.userProfile[0] : null;
+  const userProfile = user ? user.userProfile : null;
 
   let avatar =
     'https://cdn-icons.flaticon.com/png/512/668/premium/668709.png?token=exp=1650660805~hmac=cb7a07ddf26c627c1022395c83d8b182';
-  if (userProfile) avatar = userProfile.avatar.url || avatar;
+  if (userProfile) avatar = userProfile.avatar?.url || avatar;
 
   const [searchIsShown, setSearchIsShown] = useState(false);
 

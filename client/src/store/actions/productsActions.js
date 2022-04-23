@@ -35,7 +35,8 @@ const getAllProducts =
   async (dispatch) => {
     try {
       dispatch(showLoading());
-      const products = await GetAllProductsAPI(product);
+      let products = await GetAllProductsAPI(product);
+      products = products.filter((product) => product.quantity !== 0);
       dispatch(hideLoading());
       if (!products || products.length === 0)
         throw new Error('No Products found!');

@@ -32,7 +32,7 @@ export const AddOrderAPI = (order, token) =>
     body: JSON.stringify(order),
   })
     .then((res) => res.json())
-    .then((data) => data.order);
+    .then((data) => data);
 
 export const AddCategoryAPI = (values, token) =>
   fetch('https://e-commerce-fwd.herokuapp.com/cateogry/add', {
