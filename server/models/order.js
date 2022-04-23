@@ -2,9 +2,13 @@ const mongoose = require('mongoose')
 const Joi = require('joi');
 
 const orderSchema = mongoose.Schema({
-    user_id     : {
+    user_id    : {
         type        : String,
         required    : true
+    },
+    name : {
+        type : String,
+        required : true
     },
     orderItems       :{
         type        : [{
@@ -62,6 +66,7 @@ const order = mongoose.model('order',orderSchema)
 function orderValidation(order){
     const Schema = Joi.object().keys({
         user_id         : Joi.string().required(),
+        name            : Joi.string().required(),
         orderItems      : Joi.array().required(),
         shippingInfo    : Joi.object().required(),
         itemsPrice      : Joi.number().required(),
