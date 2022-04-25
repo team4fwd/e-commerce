@@ -14,8 +14,18 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const { products, error } = useSelector((state) => state.products);
-
   const product = products.find((product) => product._id === productId);
+
+  const {
+    quantity,
+    _id: id,
+    price,
+    productName: name,
+    categoryName: cat,
+    descriptions,
+  } = product;
+
+  const [stock, setStock] = useState(quantity);
 
   if (error) {
     <div className='product__loading'>
@@ -38,15 +48,6 @@ const ProductDetails = () => {
     Array(5 - productImages.length).fill(productImages[0])
   );
 
-  const {
-    quantity,
-    _id: id,
-    price,
-    productName: name,
-    categoryName: cat,
-    descriptions,
-  } = product;
-
   const addToCartHandler = () => {
     dispatch(
       addItemsToCart({
@@ -57,6 +58,8 @@ const ProductDetails = () => {
         amount,
       })
     );
+    setStock((state) => state - amount);
+    setAmount(0);
   };
 
   return (
@@ -88,9 +91,7 @@ const ProductDetails = () => {
 
           <div className='product__details'>
             <span>Status:</span>
-            <span>
-              {quantity > 0 ? `In Stock(${quantity})` : 'Out of Stock'}
-            </span>
+            <span>{stock > 0 ? `In Stock(${stock})` : 'Out of Stock'}</span>
           </div>
           <div className='product__details'>
             <span>Category:</span>
@@ -104,14 +105,14 @@ const ProductDetails = () => {
             <div className='product__quantity'>
               <button
                 onClick={() =>
-                  setAmount((val) => (val < quantity ? amount + 1 : val))
+                  setAmount((val) => (val < stock ? amount + 1 : val))
                 }
               >
                 +
               </button>
               <span>{amount}</span>
               <button
-                onClick={() => setAmount((val) => (val > 1 ? amount - 1 : 1))}
+                onClick={() => setAmount((val) => (val > 1 ? amount - 1 : 0))}
               >
                 -
               </button>

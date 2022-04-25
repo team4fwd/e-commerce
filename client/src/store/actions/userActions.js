@@ -60,7 +60,7 @@ const registerUser = (userInfo) => async (dispatch) => {
     if (data.status === true) {
       const { user } = data;
       user.token = data.accesstoken;
-      dispatch(register(user));
+      dispatch(logUserIn(user));
       localStorage.setItem('userInfo', JSON.stringify(user));
     }
     dispatch(hideLoading());
@@ -69,6 +69,7 @@ const registerUser = (userInfo) => async (dispatch) => {
     }
   } catch (err) {
     dispatch(registerFailed(err.message));
+    console.log(err.message);
   }
 };
 

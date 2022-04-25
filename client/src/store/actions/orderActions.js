@@ -25,8 +25,8 @@ const addOrder = (order) => async (dispatch, getState) => {
     dispatch(showLoading());
     const { token } = getState().user.userInfo;
     const data = await AddOrderAPI(order, token);
-    if (data) {
-      dispatch(add(data));
+    if (data.order) {
+      dispatch(add(data.order));
       dispatch(clearCart());
       localStorage.removeItem('cartItems');
     }

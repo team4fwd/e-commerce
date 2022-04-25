@@ -24,7 +24,7 @@ let SignUp = (props) => {
     if (userInfo) {
       if (userInfo.isAdmin === true) navigate(`/admin`);
 
-      if (userInfo.isAdmin === false) navigate(`/${redirect}`);
+      navigate(`/${redirect}`);
     }
   }, [userInfo, navigate, redirect]);
 

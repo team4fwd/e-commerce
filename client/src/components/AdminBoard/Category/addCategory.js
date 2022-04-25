@@ -23,9 +23,7 @@ let AddCategory = (props) => {
         .then((data) => {
           if (data.status === false) {
             setLoading(false);
-
             setCategoryError(data.message);
-
           } else {
             setLoading(false);
             setsuccess(data.message);
