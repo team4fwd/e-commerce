@@ -3,7 +3,7 @@
 # To Run Server: 
 1- npm install <br />
 2- npm run start-dev <br />
-3- Add .env file with this variabld:<br />
+3- Add .env file with these variables:<br />
 =========================
 1- MONGODB_URI             // For Mongodb URI <br />
 2- EMAIL                   // For nodemailer Auth to send mail to customer after changing order status Example: example@gmail.com <br />
@@ -13,26 +13,23 @@
 6- API_KEY                 // For cloudinary <br />
 7- API_SECRET              // For cloudinary <br />
 # Api Documentaion:
-Registration API: 
-=========================
-
+# Registration API: 
 Link: https://e-commerce-fwd.herokuapp.com/users/add <br /> 
 Required Fields: <br />
 { <br />
     "firstName": "", <br />
-    "lastName": "",  <br />   
-    "email": "", <br />
-    "password" : "" <br />
-} <br />
+    "lastName": "",  <br /> 
+    "email": " ", <br />
+    "password" : " " <br />
+}  <br />
 Request type: POST <br />
 Response :  <br />
 { <br />
     "message": "User added successfully." <br />
 } <br />
  
-Login API: 
-========================= 
-Link: https://e-commerce-fwd.herokuapp.com/users/ login <br />
+# Login API:  
+Link: https://e-commerce-fwd.herokuapp.com/users/login <br />
 Required Fields: <br />
 { <br />
     "email": " ", <br />
@@ -45,36 +42,33 @@ Response:  <br />
     "accessToken": "" <br />
 } <br />
  
-Logout API: 
-========================= 
-Link: https://e-commerce-fwd.herokuapp.com/users/ logout <br />
+# Logout API:  
+Link: https://e-commerce-fwd.herokuapp.com/users/logout <br />
 Request type: GET  <br />
 Response:  <br />
 { <br />
     "message": "logout Success", <br />
 } <br />
-Category API
-=========================
-Add Category:
-=========================
+
+# Category API
+# Add Category:
 Link: https://e-commerce-fwd.herokuapp.com/cateogry/add <br />
 Request type: POST <br />
 Required Fields: <br />
 { <br />
-    "categoryName" : "" } <br />
+    "categoryName" : "" <br />
+} <br />
  
 Response:  <br />
 { <br />
      	Status: true, message: " Category Added Successfully " <br />
 } <br />
  
-Show Category:
-=======================
+# Show Category:
 Link: https://e-commerce-fwd.herokuapp.com/cateogry  <br /> 
 Request type: GET  <br /> 
 
-Edit Category:
-=========================
+# Edit Category:
 Link: https://e-commerce-fwd.herokuapp.com/cateogry/id  <br /> 
 Request type: PUT  <br /> 
 Required Fields: <br /> 
@@ -87,8 +81,7 @@ Response:  <br />
   message: " Category Updated Successfully " <br /> 
 } <br /> 
  
-Delete Category:
-=========================
+# Delete Category:
 Link: https://e-commerce-fwd.herokuapp.com/cateogry/id <br /> 
 Request type: DELETE  <br /> 
 Response:  <br /> 
@@ -97,11 +90,9 @@ Response:  <br />
  message: " Category Deleted Successfully " <br /> 
 } <br /> 
 
-Products API
-=========================
-Add Products: 
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/products/ create  <br /> 
+# Products API
+# Add Products: 
+Link: https://e-commerce-fwd.herokuapp.com/products/create  <br /> 
 Request type: POST  <br /> 
 Required Fields: <br /> 
 { <br /> 
@@ -121,14 +112,12 @@ Response:  <br />
   message: " Product Added Successfully " <br /> 
 } <br /> 
   
-Show Products:
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/ products <br /> 
+# Show Products:
+Link: https://e-commerce-fwd.herokuapp.com/products <br /> 
 Request type: GET <br /> 
 
-Edit Products:
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/ products/id <br /> 
+# Edit Products:
+Link: https://e-commerce-fwd.herokuapp.com/products/id <br /> 
 Request type: PUT  <br /> 
 Required Fields: <br /> 
 { <br /> 
@@ -148,9 +137,8 @@ Response:  <br />
   message: " Product Updated Successfully " <br /> 
 } <br /> 
 
-Delete Products:
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/ products/id <br /> 
+# Delete Products:
+Link: https://e-commerce-fwd.herokuapp.com/products/id <br /> 
 Request type: DELETE  <br /> 
 Response:  <br /> 
 { <br /> 
@@ -158,8 +146,7 @@ Response:  <br />
   message: " Product Deleted Successfully " <br /> 
 } <br /> 
 
-Product Details:
-=========================
+# Product Details:
 Link: https://e-commerce-fwd.herokuapp.com/products/id <br /> 
 Request type: GET  <br /> 
 Response:  <br /> 
@@ -172,15 +159,12 @@ Response:  <br />
     "images"           	:[{"public_id": "","url": ""}    ]} <br /> 
 
  
-Search Products: 
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/products? Products=””&cat=””<br /> 
+# Search Products: 
+Link: https://e-commerce-fwd.herokuapp.com/products?Products=””&cat=””<br /> 
 Request type: GET <br /> 
 
-userprofile API
-=========================
-show userprofile: 
-=========================
+# userprofile API
+# show userprofile: 
 Link: https://e-commerce-fwd.herokuapp.com/userprofile  <br /> 
 Request type: GET  <br /> 
 Response:  <br /> 
@@ -202,8 +186,7 @@ Response:  <br />
     }<br /> 
 }<br /> 
  
-Edit userprofile: 
-=========================
+# Edit userprofile: 
 Link: https://e-commerce-fwd.herokuapp.com/userprofile/edit <br /> 
 Request type: POST  <br /> 
 Required Fields: <br /> 
@@ -216,14 +199,11 @@ To add avatar by upload API and the response is:<br />
 {"public_id": "","url": ""}<br /> 
 Link: https://e-commerce-fwd.herokuapp.com/uploadImage<br /> 
 
+# Orders API
 
- 
- 
-Orders API
-=========================
-Add order: 
-=========================
-Link: https://e-commerce-fwd.herokuapp.com/order <br /> 
+# Add order: 
+
+Link: https://e-commerce-fwd.herokuapp.com/order<br /> 
 This link for user to add order <br /> 
 Request type: POST  <br /> 
 Required Fields: <br /> 
@@ -240,22 +220,21 @@ user_id     : String,<br />
             "phone": Number,<br /> 
         }],<br /> 
     	itemsPrice   : Number,<br /> 
-    	shippingPrice : Number,    <br /> 
+    	shippingPrice : Number,<br /> 
     	taxPrice     : Number,<br /> 
     	totalPrice     : Number,<br /> 
     orderStauts     :String enum: ['Inprogress', 'Shipped','In The Way','Delivered','Canceled'],<br /> 
     paymentMethod     :String enum: ['Cash On Delivered', 'PayPal','Visa','Master Card'],<br /> 
 }<br /> 
-Show order: 
-=========================
+
+# Show order: 
 Link: https://e-commerce-fwd.herokuapp.com/order <br /> 
 This link for admin to show all orders  <br /> 
 Request type: GET  <br /> 
 Response:  <br /> 
 All orders in database<br /> 
  
-Edit order Status: 
-=========================
+# Edit order Status: 
 Link: https://e-commerce-fwd.herokuapp.com/order/id<br /> 
 This link for admin to edit order status <br /> 
 'Inprogress', 'Shipped','In The Way','Delivered','Canceled'<br /> 
@@ -264,7 +243,6 @@ Request type: PUT <br />
 Required Fields: <br /> 
 {<br /> 
 orderStauts : “”<br /> 
-
 } <br /> 
 
 
