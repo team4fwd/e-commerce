@@ -6,6 +6,7 @@ import CategoryOption from './categoryOption';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loadingpage from '../../../util/loading/Loading'
 
 
 
@@ -16,12 +17,18 @@ let UpdateProduct = (props) => {
   const [productData, setProductData] = useState([]);
   const [images, setImages] = React.useState([]);
   const [showImg, setShowImg] = React.useState(false);
+  const [loading, setLoading] = useState(false);
+  const [productError, setProductError] = useState('');
+
+  const [success, setsuccess] = useState('');
+
 
   let navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     fetch('https://e-commerce-fwd.herokuapp.com/products/' + id, {
       method: 'GET',
       headers: {
@@ -36,6 +43,8 @@ let UpdateProduct = (props) => {
       .then((data) => {
         setImages(data.images);
         setProductData(data);
+        setLoading(false);
+
       });
   }, [id, token]);
 
@@ -56,7 +65,7 @@ let UpdateProduct = (props) => {
 
     onSubmit: (values) => {
       values.images = images;
-
+      setLoading(true);
       fetch('https://e-commerce-fwd.herokuapp.com/products/' + id, {
         method: 'PUT',
         headers: {
@@ -70,8 +79,17 @@ let UpdateProduct = (props) => {
         .then((res) => res.json())
         .then(
           (data) => data).then((data) => {if (data.status === true) {
+            setLoading(false);
+            window.scrollTo(0, 0)
+            setsuccess(data.message);
+             setTimeout(() => {
+
             navigate('/admin/products');
-          } else { alert(data.message)
+          },3000)
+         } else { 
+            setLoading(false);
+            window.scrollTo(0, 0)
+            setProductError(data.message);
           }})
     },
   });
@@ -101,6 +119,7 @@ let UpdateProduct = (props) => {
 
         let formData = new FormData();
         formData.append('file', file);
+        setLoading(true);
 
         const res = await axios.post(
           'https://e-commerce-fwd.herokuapp.com/uploadImage',
@@ -122,6 +141,8 @@ let UpdateProduct = (props) => {
     }
     setImages(formik.values.images);
     setShowImg(true);
+    setLoading(false);
+
   };
 
   const handleDestroy = async (public_id) => {
@@ -140,8 +161,26 @@ let UpdateProduct = (props) => {
       <div className='prodAndCteg-List__titleContainer'>
         <h3 className='prodAndCteg-List__title'>Update product</h3>
       </div>
+      {loading ? (
+        <Loadingpage />
+
+      ) : (
       <div className='col-md-12 div-form'>
         <form className='form-center' onSubmit={formik.handleSubmit}>
+        {productError ? (
+        <div className='alert alert-danger' role='alert'>
+          {productError}
+        </div>
+      ) : (
+        ''
+      )}
+       {success ? (
+              <div className='alert alert-success' role='alert'>
+                {success}
+              </div>
+            ) : (
+              ''
+            )}
           <label className='control-label form-label' htmlFor='productName'>
             Product Name
           </label>
@@ -245,7 +284,7 @@ let UpdateProduct = (props) => {
             </button>
           </div>
         </form>
-      </div>
+      </div>)}
     </div>
   );
 };

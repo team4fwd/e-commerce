@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import Loadingpage from '../../../util/loading/Loading'
 
 
 
@@ -15,8 +16,12 @@ let Updatecategory = props => {
   const [categoryData, setcategoryData] = useState([]);
   let navigate = useNavigate();
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [categoryError, setCategoryError] = useState('');
+  const [success, setsuccess] = useState('');
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://e-commerce-fwd.herokuapp.com/cateogry/" + id, {
       method: 'GET',
       headers: {
@@ -26,7 +31,10 @@ let Updatecategory = props => {
       },
 
       body: JSON.stringify()
-    }).then(res => res.json()).then((data) => setcategoryData(data))
+    }).then(res => res.json()).then((data) => {setcategoryData(data)
+    setLoading(false);}
+
+    )
   }, [id, token]);
 
 
@@ -38,6 +46,7 @@ let Updatecategory = props => {
     enableReinitialize: true,
 
     onSubmit: (values) => {
+      setLoading(true);
       fetch("https://e-commerce-fwd.herokuapp.com/cateogry/" + id, {
         method: 'PUT',
         headers: {
@@ -50,9 +59,15 @@ let Updatecategory = props => {
       }).then(res => res.json()).then((data) => data)
         .then((data) => {
           if (data.status === true) {
+            setLoading(false);
+            setsuccess(data.message);
+            setTimeout(() => {
             navigate('/admin/categories');
+          },2000)
           } else {
-            alert(data.message)
+            setLoading(false);
+            setCategoryError(data.message);
+           
           }
         })
 
@@ -65,30 +80,46 @@ let Updatecategory = props => {
         <h3 className='prodAndCteg-List__title'>Update Category</h3>
 
       </div>
-      <form onSubmit={formik.handleSubmit} >
+      {loading ? (
+        <Loadingpage />
 
-        <div className="col-md-6 form-center">
-          <div className="form-outline mb-3">
-            <label className="control-label form-label" htmlFor="categoryName">Category Name</label>
-            <input
-              className="form-control form-control-lg"
-              id="categoryName"
-              name="categoryName"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.categoryName}
-            />
-            {formik.errors.categoryName ? <div className="text-danger">{formik.errors.categoryName}</div> : null}
+      ) : (
+        <form onSubmit={formik.handleSubmit} >
+  {categoryError ? (
+              <div className='alert alert-danger' role='alert'>
+                {categoryError}
+              </div>
+            ) : (
+              ''
+            )}
+            {success ? (
+              <div className='alert alert-success' role='alert'>
+                {success}
+              </div>
+            ) : (
+              ''
+            )}
+          <div className="col-md-6 form-center">
+            <div className="form-outline mb-3">
+              <label className="control-label form-label" htmlFor="categoryName">Category Name</label>
+              <input
+                className="form-control form-control-lg"
+                id="categoryName"
+                name="categoryName"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.categoryName}
+              />
+              {formik.errors.categoryName ? <div className="text-danger">{formik.errors.categoryName}</div> : null}
 
+            </div>
+            <div className="d-flex justify-content-center">
+              <button type="submit" className="btn btn-primary btn-block  text-body">update category</button>
+            </div>
           </div>
-          <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-primary btn-block  text-body">update category</button>
-          </div>
-        </div>
-      </form>
+        </form>
 
-
-
+      )}
 
     </div>)
 }

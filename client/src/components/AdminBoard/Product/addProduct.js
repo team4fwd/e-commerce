@@ -7,11 +7,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../prodAndCteg-List.scss';
 import { useSelector } from 'react-redux';
+import Loadingpage from '../../../util/loading/Loading'
 
 let AddProduct = (props) => {
   const [productError, setProductError] = useState('');
   const [images, setImages] = useState([]);
   const { token } = useSelector((state) => state.user.userInfo);
+  const [loading, setLoading] = useState(false);
+  const [success, setsuccess] = useState('');
 
   let navigate = useNavigate();
 
@@ -27,6 +30,8 @@ let AddProduct = (props) => {
     },
     validate,
     onSubmit: (values) => {
+      setLoading(true);
+
       if (!images) return alert('No Image Upload');
 
       //values["images"] = images;
@@ -34,10 +39,20 @@ let AddProduct = (props) => {
       AddProductAPI(values, token)
         .then((data) => data)
         .then((data) => {
+          console.log(data)
           if (data.status === false) {
-            setProductError(data.message);
+            setLoading(false);
+            window.scrollTo(0, 0)
+            setProductError(data.messsge);
+
+
           } else {
-            navigate('/admin/products');
+            setLoading(false);
+            window.scrollTo(0, 0)
+            setsuccess(data.message);
+            setTimeout(() => {
+              navigate('/admin/products');
+            },3000)
           }
         });
     },
@@ -69,6 +84,7 @@ let AddProduct = (props) => {
 
         let formData = new FormData();
         formData.append('file', file);
+        setLoading(true);
 
         const res = await axios.post(
           'https://e-commerce-fwd.herokuapp.com/uploadImage',
@@ -87,6 +103,8 @@ let AddProduct = (props) => {
       }
     }
     setImages(formik.values.images);
+    setLoading(false);
+
   };
 
   const handleDestroy = async (public_id) => {
@@ -105,17 +123,30 @@ let AddProduct = (props) => {
       <div className='prodAndCteg-List__titleContainer'>
         <h3 className='prodAndCteg-List__title'>Add product</h3>
       </div>
+      {loading ? (
+        <Loadingpage />
 
-      {productError ? (
+      ) : (
+     
+
+      <div className='col-md-12 div-form'>
+      
+        <form className='form-center' onSubmit={formik.handleSubmit}>
+         
+       {productError ? (
         <div className='alert alert-danger' role='alert'>
           {productError}
         </div>
       ) : (
         ''
       )}
-
-      <div className='col-md-12 div-form'>
-        <form className='form-center' onSubmit={formik.handleSubmit}>
+       {success ? (
+              <div className='alert alert-success' role='alert'>
+                {success}
+              </div>
+            ) : (
+              ''
+            )}
           <label className='control-label form-label' htmlFor='productName'>
             Product Name
           </label>
@@ -219,7 +250,7 @@ let AddProduct = (props) => {
             </button>
           </div>
         </form>
-      </div>
+      </div>)}
     </div>
   );
 };

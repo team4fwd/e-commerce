@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import './order.css'
+import Loadingpage from '../../../util/loading/Loading'
 
 let StatusOptions = (props) => {
   const { token } = useSelector((state) => state.user.userInfo);
-  
+  const [loading, setLoading] = useState(false);
   const statusOfOrder = props.order.orderStauts
   const id = props.id
   const [orderStauts, setOrderStautsData] = useState(statusOfOrder);
@@ -54,6 +55,7 @@ let StatusOptions = (props) => {
   }
 
   const handleChange = async (event) => {
+    setLoading(true);
     const changeStatus = event.label;
     fetch("https://e-commerce-fwd.herokuapp.com/order/" + id, {
       method: 'PUT',
@@ -69,17 +71,26 @@ let StatusOptions = (props) => {
         (data) => {
           if (data.status === true) {
             setOrderStautsData(event);
-            
+            setLoading(false);
             window.location.reload();
+
           } else {
             alert(data.message)
+            setLoading(false);
+
           }
         }
       )
 
   }
   return (
+    <>    
+    {loading ? (
+      <Loadingpage />
+
+    ) : (
     <div>
+    
       <p className={`orderStatus ${status}`}>{status}</p>
       <Select
         placeholder="change status"
@@ -89,7 +100,8 @@ let StatusOptions = (props) => {
         isOptionDisabled={(option) => option.isdisabled} // disable an option
 
       />
-    </div>
+    </div>)}</>
+
 
   )
 

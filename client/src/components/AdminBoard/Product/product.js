@@ -4,14 +4,20 @@ import { MdDeleteOutline } from 'react-icons/md';
 import '../prodAndCteg-List.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loadingpage from '../../../util/loading/Loading'
 
 let Product = (props) => {
   const [productsData, setProductsData] = useState([]);
   const { token } = useSelector((state) => state.user.userInfo);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     GetAllProductsAPI().then((data) => {
       setProductsData(data);
+      setLoading(false);
+
     });
   }, []);
 
@@ -24,6 +30,10 @@ let Product = (props) => {
   }
 
   return (
+   <> {loading ? (
+      <Loadingpage />
+
+    ) : (
     <>
       {productsData.map((product, index) => (
         <tr key={index}>
@@ -47,6 +57,7 @@ let Product = (props) => {
           </td>
         </tr>
       ))}
+    </>)}
     </>
   );
 };

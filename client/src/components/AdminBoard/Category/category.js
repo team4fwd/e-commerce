@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { DeleteAPI, GetCategoryAPI } from '../../../util/API';
 import { MdDeleteOutline } from 'react-icons/md';
-import { deleteCategory } from '../../../util/API';
-import { gridColumnsTotalWidthSelector } from '@mui/x-data-grid';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Loadingpage from '../../../util/loading/Loading'
 
 let Category = () => {
-  // const categories = GetCategoryAPI().then((data) => data)
+  const [loading, setLoading] = useState(false);
   const [categoriesData, setcategoriesData] = useState([]);
   const { token } = useSelector((state) => state.user.userInfo);
 
   useEffect(() => {
+    setLoading(true);
     GetCategoryAPI().then((data) => {
       setcategoriesData(data);
+      setLoading(false);
+
     });
   }, []);
 
@@ -26,8 +28,12 @@ let Category = () => {
   }
 
   return (
+    <> {loading ? (
+      <Loadingpage />
+
+    ) : (
     <>
-      {categoriesData.map((category, index) => (
+          {categoriesData.map((category, index) => (
         <tr key={index}>
           <td>{category.categoryName}</td>
           <td>
@@ -43,7 +49,7 @@ let Category = () => {
           </td>
         </tr>
       ))}
-    </>
+    </>)}</>
   );
 };
 
