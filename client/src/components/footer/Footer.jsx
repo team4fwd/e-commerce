@@ -17,17 +17,17 @@ function Footer() {
             <h5 className='text-capitalize mb-4'> about us</h5>
             <ul className='list-unstyled'>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   about shop
                 </a>
               </li>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   our shop
                 </a>
               </li>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   our partners
                 </a>
               </li>
@@ -45,17 +45,17 @@ function Footer() {
             <h5 className='text-capitalize mb-4'> important links</h5>
             <ul className='list-unstyled'>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   privacy police
                 </a>
               </li>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   cookies police
                 </a>
               </li>
               <li className='text-capitalize mb-3'>
-                <a href='#' className='text-decoration-none text-white'>
+                <a href='/' className='text-decoration-none text-white'>
                   terms & conditions
                 </a>
               </li>

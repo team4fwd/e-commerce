@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const AcountDetailsForm = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
-  useEffect(() => {}, []);
   return (
     <div className='card-block'>
       <div className='row'>

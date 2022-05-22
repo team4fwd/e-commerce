@@ -19,10 +19,10 @@ const loginFailed = (errMsg) => ({
   errMsg,
 });
 
-const register = (user) => ({
-  type: REGISTER,
-  user,
-});
+// const register = (user) => ({
+//   type: REGISTER,
+//   user,
+// });
 
 const registerFailed = (errMsg) => ({
   type: REGISTER_FAIL,

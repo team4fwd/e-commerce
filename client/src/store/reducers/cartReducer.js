@@ -7,7 +7,7 @@ import {
   CLEAR_CART,
 } from '../actions/cartActions';
 
-const cartReducer = (state = {}, action) => {
+const cartReducer = (state = { items: [], totalAmount: 0 }, action) => {
   if (action.type === ADD) {
     const updatedTotalAmount = state.totalAmount + action.item.price;
     const existingItemIndex = state.items.findIndex(
@@ -85,7 +85,7 @@ const cartReducer = (state = {}, action) => {
   }
 
   if (action.type === CLEAR_CART) {
-    return {};
+    return { items: [], totalAmount: 0 };
   }
 
   return state;

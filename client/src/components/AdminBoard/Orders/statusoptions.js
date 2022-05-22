@@ -1,54 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
-import './order.css'
-import Loadingpage from '../../../util/loading/Loading'
+import './order.css';
+import Loadingpage from '../../../util/loading/Loading';
 
 let StatusOptions = (props) => {
   const { token } = useSelector((state) => state.user.userInfo);
   const [loading, setLoading] = useState(false);
-  const statusOfOrder = props.order.orderStauts
-  const id = props.id
+  const statusOfOrder = props.order.orderStauts;
+  const id = props.id;
   const [orderStauts, setOrderStautsData] = useState(statusOfOrder);
-  
+
   const statusData = [
     {
-      name: "orderStauts",
+      name: 'orderStauts',
       value: 1,
-      label: "Inprogress",
-      isdisabled: (orderStauts != "Inprogress"?true :false),
-
+      label: 'Inprogress',
+      isdisabled: orderStauts !== 'Inprogress' ? true : false,
     },
     {
-      name: "orderStauts",
+      name: 'orderStauts',
       value: 2,
-      label: "Shipped",
-      isdisabled: (orderStauts == "Inprogress" ?false :true)
+      label: 'Shipped',
+      isdisabled: orderStauts === 'Inprogress' ? false : true,
     },
     {
-      name: "orderStauts",
+      name: 'orderStauts',
       value: 3,
-      label: "Canceled",
-      isdisabled: (orderStauts == "Inprogress"?false :true)
+      label: 'Canceled',
+      isdisabled: orderStauts === 'Inprogress' ? false : true,
     },
     {
-      name: "orderStauts",
+      name: 'orderStauts',
       value: 4,
-      label: "In The Way",
-      isdisabled: (orderStauts == "Shipped"?false :true)
+      label: 'In The Way',
+      isdisabled: orderStauts === 'Shipped' ? false : true,
     },
     {
-      name: "orderStauts",
+      name: 'orderStauts',
       value: 5,
-      label: "Delivered",
-      isdisabled: (orderStauts == "In The Way"?false :true)
+      label: 'Delivered',
+      isdisabled: orderStauts === 'In The Way' ? false : true,
     },
-
   ];
-  const [statusDataChange, setstatusDataChange]= useState(statusData);
-  
-  var status
-  if (orderStauts == statusOfOrder) {
+  const [statusDataChange, setstatusDataChange] = useState(statusData);
+
+  var status;
+  if (orderStauts === statusOfOrder) {
     status = statusOfOrder;
   } else {
     status = orderStauts.label;
@@ -57,7 +55,7 @@ let StatusOptions = (props) => {
   const handleChange = async (event) => {
     setLoading(true);
     const changeStatus = event.label;
-    fetch("https://e-commerce-fwd.herokuapp.com/order/" + id, {
+    fetch('https://e-commerce-fwd.herokuapp.com/order/' + id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -67,44 +65,35 @@ let StatusOptions = (props) => {
       body: JSON.stringify({ orderStauts: changeStatus }),
     })
       .then((res) => res.json())
-      .then(
-        (data) => {
-          if (data.status === true) {
-            setOrderStautsData(event);
-            setLoading(false);
-            window.location.reload();
-
-          } else {
-            alert(data.message)
-            setLoading(false);
-
-          }
+      .then((data) => {
+        if (data.status === true) {
+          setOrderStautsData(event);
+          setLoading(false);
+          window.location.reload();
+        } else {
+          alert(data.message);
+          setLoading(false);
         }
-      )
-
-  }
+      });
+  };
   return (
-    <>    
-    {loading ? (
-      <Loadingpage />
-
-    ) : (
-    <div>
-    
-      <p className={`orderStatus ${status}`}>{status}</p>
-      <Select
-        placeholder="change status"
-        value={orderStauts} // set selected value
-        options={statusDataChange} // set list of the data
-        onChange={handleChange} // assign onChange function
-        isOptionDisabled={(option) => option.isdisabled} // disable an option
-
-      />
-    </div>)}</>
-
-
-  )
-
-}
+    <>
+      {loading ? (
+        <Loadingpage />
+      ) : (
+        <div>
+          <p className={`orderStatus ${status}`}>{status}</p>
+          <Select
+            placeholder='change status'
+            value={orderStauts} // set selected value
+            options={statusDataChange} // set list of the data
+            onChange={handleChange} // assign onChange function
+            isOptionDisabled={(option) => option.isdisabled} // disable an option
+          />
+        </div>
+      )}
+    </>
+  );
+};
 
 export default StatusOptions;
